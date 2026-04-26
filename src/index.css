@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Outfit", sans-serif;
+  
+  --color-brand-saffron: #fb8500;
+  --color-brand-earth: #023e8a;
+  --color-brand-teal: #80b918;
+  --color-brand-coral: #fb5607;
+  --color-brand-warm: #f8fbff; /* Slightly cleaner light blue */
+  --color-brand-twitter: #1DA1F2;
+  
+  --shadow-premium: 0 20px 40px -15px rgba(2, 62, 138, 0.15);
+  --shadow-inner: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+}
+
+@layer base {
+  body {
+    @apply font-sans bg-brand-warm text-brand-earth tracking-tight subpixel-antialiased;
+  }
+  
+  h1, h2, h3, .font-serif {
+    @apply font-serif font-bold tracking-tight;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-brand-earth text-white px-8 py-4 rounded-full font-bold shadow-premium hover:bg-brand-earth/90 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center;
+  }
+  
+  .btn-secondary {
+    @apply bg-white text-brand-earth px-8 py-4 rounded-full font-bold shadow-sm border border-brand-earth/5 hover:bg-brand-warm hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center;
+  }
+  
+  .btn-teal {
+    @apply bg-brand-teal text-white px-8 py-4 rounded-full font-bold shadow-premium hover:bg-brand-teal/90 hover:scale-[1.02] active:scale-95 transition-all duration-300 flex items-center justify-center;
+  }
+
+  .glass-card {
+    @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-premium;
+  }
+
+  .glass-card-dark {
+    @apply bg-brand-earth/10 backdrop-blur-xl border border-brand-earth/10 shadow-premium;
+  }
+
+  .pill-image {
+    @apply rounded-[40px] aspect-[3/4] object-cover;
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}

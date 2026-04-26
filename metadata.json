@@ -1,0 +1,12 @@
+{
+  "name": "Manjaro",
+  "description": "Premium travel platform for Africa & Caribbean. Features detailed experience creation, driver onboarding, multi-step booking with rides/stays, and a complete support & dispute resolution center.",
+  "requestFramePermissions": [
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "AI-powered trip suggestions",
+    "Real-time guide chat",
+    "Secure escrow payments"
+  ]
+}
