@@ -25,7 +25,7 @@ import StatusModal from '@/components/StatusModal';
 
 export default function BookingFlow() {
   const { id } = useParams();
-  const navigate = useRouter();
+  const router = useRouter();
   const location = usePathname();
   const trip = MOCK_TRIPS.find((t) => t.id === id) || MOCK_TRIPS[0];
 
@@ -115,7 +115,7 @@ export default function BookingFlow() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
     >
       <AnimatePresence>
         {activeGallery && (
@@ -220,17 +220,17 @@ export default function BookingFlow() {
 
       <StatusModal
         isOpen={showPaymentSuccess}
-        onClose={() => navigate('/dashboard')}
+        onClose={() => router.push('/dashboard')}
         type="success"
         title="Payment Successful!"
         message="Your adventure is now officially booked! We've sent the details to your email and notification center. Your guide and driver have been notified. Get ready for an unforgettable journey!"
         actionLabel="Go to My Bookings"
-        onAction={() => navigate('/dashboard')}
+        onAction={() => router.push('/dashboard')}
       />
 
       <div className="max-w-6xl mx-auto">
         {/* Progress Header */}
-        <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-6">
           <div>
             <Link
               href={`/trip/${trip.id}`}
@@ -241,25 +241,25 @@ export default function BookingFlow() {
             <h1 className="font-serif text-3xl">Booking: {trip.title}</h1>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-2 md:space-x-4">
             {[1, 2, 3, 4].map((s) => (
               <div key={s} className="flex items-center">
                 <div
-                  className={`w-10 h-10 rounded-full flex items-center justify-center text-xs font-bold transition-all ${step >= s ? 'bg-brand-teal text-white shadow-lg' : 'bg-brand-earth/10 text-brand-earth/30'}`}
+                  className={`w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center text-[10px] md:text-xs font-bold transition-all ${step >= s ? 'bg-brand-teal text-white shadow-lg' : 'bg-brand-earth/10 text-brand-earth/30'}`}
                 >
                   {step > s ? (
-                    <CheckCircle2 className="w-5 h-5" />
+                    <CheckCircle2 className="w-4 h-4 md:w-5 md:h-5" />
                   ) : s === 2 ? (
-                    <Home className="w-4 h-4" />
+                    <Home className="w-3 h-3 md:w-4 md:h-4" />
                   ) : s === 3 ? (
-                    <Car className="w-4 h-4" />
+                    <Car className="w-3 h-3 md:w-4 md:h-4" />
                   ) : (
                     s
                   )}
                 </div>
                 {s < 4 && (
                   <div
-                    className={`w-8 h-1 mx-2 rounded-full ${step > s ? 'bg-brand-teal' : 'bg-brand-earth/10'}`}
+                    className={`w-4 md:w-8 h-0.5 md:h-1 mx-1 md:mx-2 rounded-full ${step > s ? 'bg-brand-teal' : 'bg-brand-earth/10'}`}
                   />
                 )}
               </div>
@@ -267,32 +267,32 @@ export default function BookingFlow() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-12">
           {/* Main Wizard Area */}
           <div className="lg:col-span-2 space-y-8">
             {step === 1 && (
               <motion.div
                 initial={{ x: 20, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                className="glass-card rounded-[48px] p-8 md:p-12 shadow-xl border border-brand-earth/5"
+                className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-xl border border-brand-earth/5"
               >
-                <h2 className="font-serif text-4xl mb-8">Traveler Details</h2>
+                <h2 className="font-serif text-3xl md:text-4xl mb-6 md:mb-8">Traveler Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                   <div className="p-6 bg-brand-warm rounded-3xl">
                     <label className="block text-[10px] uppercase font-bold tracking-widest text-brand-earth/40 mb-4">
                       Number of Bookings
                     </label>
-                    <div className="flex items-center justify-between bg-white p-2 rounded-2xl">
+                    <div className="flex items-center justify-between bg-white p-1.5 md:p-2 rounded-2xl">
                       <button
                         onClick={() => setGuestCount(Math.max(1, guestCount - 1))}
-                        className="w-12 h-12 bg-brand-warm rounded-xl font-bold"
+                        className="w-10 h-10 md:w-12 md:h-12 bg-brand-warm rounded-xl font-bold"
                       >
                         -
                       </button>
-                      <span className="text-xl font-bold">{guestCount}</span>
+                      <span className="text-lg md:text-xl font-bold">{guestCount}</span>
                       <button
                         onClick={() => setGuestCount(guestCount + 1)}
-                        className="w-12 h-12 bg-brand-warm rounded-xl font-bold"
+                        className="w-10 h-10 md:w-12 md:h-12 bg-brand-warm rounded-xl font-bold"
                       >
                         +
                       </button>
@@ -312,13 +312,13 @@ export default function BookingFlow() {
                   </div>
 
                   {!trip.startDate && (
-                    <div className="md:col-span-2 p-8 bg-brand-teal/5 border border-brand-teal/10 rounded-[32px] mt-4">
-                      <div className="flex items-center justify-between mb-8">
+                    <div className="md:col-span-2 p-6 md:p-8 bg-brand-teal/5 border border-brand-teal/10 rounded-[32px] mt-4">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 md:mb-8 gap-4">
                         <div className="flex items-center space-x-3">
-                          <Calendar className="w-6 h-6 text-brand-teal" />
-                          <h3 className="font-serif text-2xl">Select From Guide's Open Days</h3>
+                          <Calendar className="w-5 h-5 md:w-6 md:h-6 text-brand-teal" />
+                          <h3 className="font-serif text-xl md:text-2xl">Guide's Open Days</h3>
                         </div>
-                        <div className="flex items-center space-x-3 bg-white p-2 rounded-full shadow-sm border border-brand-earth/5">
+                        <div className="flex items-center space-x-3 bg-white p-1.5 md:p-2 rounded-full shadow-sm border border-brand-earth/5 self-end sm:self-auto">
                           <button
                             onClick={() =>
                               setCalendarDate(
@@ -350,7 +350,7 @@ export default function BookingFlow() {
                         {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d) => (
                           <div
                             key={d}
-                            className="text-center text-[10px] uppercase font-black text-brand-earth/20 py-2"
+                            className="text-center text-[9px] md:text-[10px] uppercase font-black text-brand-earth/20 py-2"
                           >
                             {d}
                           </div>
@@ -420,7 +420,7 @@ export default function BookingFlow() {
                 <div className="flex justify-end mt-12">
                   <button
                     onClick={handleNext}
-                    className="bg-brand-earth text-white px-10 py-5 rounded-full font-bold flex items-center hover:bg-brand-earth/90 transition-all shadow-xl"
+                    className="w-full sm:w-auto bg-brand-earth text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold flex items-center justify-center hover:bg-brand-earth/90 transition-all shadow-xl"
                   >
                     Next: Accommodation <ChevronRight className="ml-2 w-5 h-5" />
                   </button>
@@ -434,10 +434,10 @@ export default function BookingFlow() {
                 animate={{ x: 0, opacity: 1 }}
                 className="space-y-8"
               >
-                <div className="glass-card rounded-[48px] p-8 md:p-12 shadow-xl border border-brand-earth/5">
-                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+                <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-xl border border-brand-earth/5">
+                  <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 md:mb-8 gap-4">
                     <div>
-                      <h2 className="font-serif text-4xl mb-2">Nearby Stays</h2>
+                      <h2 className="font-serif text-3xl md:text-4xl mb-2">Nearby Stays</h2>
                       <p className="text-sm text-brand-earth/60">
                         Enhance your trip with local accommodation.
                       </p>
@@ -619,7 +619,7 @@ export default function BookingFlow() {
                   </div>
                 </div>
 
-                <div className="flex justify-between mt-12">
+                <div className="flex flex-col-reverse sm:flex-row sm:justify-between mt-8 md:mt-12 gap-4">
                   <button
                     onClick={handleBack}
                     className="text-brand-earth/40 font-bold px-8 py-5 flex items-center hover:text-brand-earth"
@@ -628,7 +628,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={handleNext}
-                    className="bg-brand-earth text-white px-10 py-5 rounded-full font-bold flex items-center hover:bg-brand-earth/90 transition-all shadow-xl"
+                    className="w-full sm:w-auto bg-brand-earth text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold flex items-center justify-center hover:bg-brand-earth/90 transition-all shadow-xl"
                   >
                     Next: Ride Booking <ChevronRight className="ml-2 w-5 h-5" />
                   </button>
@@ -642,10 +642,10 @@ export default function BookingFlow() {
                 animate={{ x: 0, opacity: 1 }}
                 className="space-y-8"
               >
-                <div className="glass-card rounded-[48px] p-8 md:p-12 shadow-xl border border-brand-earth/5">
-                  <div className="flex justify-between items-start mb-8">
+                <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-xl border border-brand-earth/5">
+                  <div className="flex flex-col sm:flex-row justify-between items-start mb-6 md:mb-8 gap-4">
                     <div>
-                      <h2 className="font-serif text-4xl mb-2">Ride Booking</h2>
+                      <h2 className="font-serif text-3xl md:text-4xl mb-2">Ride Booking</h2>
                       <p className="text-sm text-brand-earth/60">
                         Verified local drivers for your journey.
                       </p>
@@ -830,7 +830,7 @@ export default function BookingFlow() {
                   </div>
                 </div>
 
-                <div className="flex justify-between mt-12">
+                <div className="flex flex-col-reverse sm:flex-row sm:justify-between mt-8 md:mt-12 gap-4">
                   <button
                     onClick={handleBack}
                     className="text-brand-earth/40 font-bold px-8 py-5 flex items-center hover:text-brand-earth"
@@ -839,7 +839,7 @@ export default function BookingFlow() {
                   </button>
                   <button
                     onClick={handleNext}
-                    className="bg-brand-earth text-white px-10 py-5 rounded-full font-bold flex items-center hover:bg-brand-earth/90 transition-all shadow-xl"
+                    className="w-full sm:w-auto bg-brand-earth text-white px-8 md:px-10 py-4 md:py-5 rounded-full font-bold flex items-center justify-center hover:bg-brand-earth/90 transition-all shadow-xl"
                   >
                     Next: Review Summary <ChevronRight className="ml-2 w-5 h-5" />
                   </button>
@@ -853,14 +853,14 @@ export default function BookingFlow() {
                 animate={{ x: 0, opacity: 1 }}
                 className="space-y-8"
               >
-                <div className="glass-card rounded-[48px] p-8 md:p-12 shadow-xl border border-brand-earth/5">
+                <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-xl border border-brand-earth/5">
                   <h2 className="font-serif text-4xl mb-4 text-center">Summary</h2>
                   <p className="text-center text-sm text-brand-earth/60 mb-12">
                     Review your journey options before final payment.
                   </p>
 
                   <div className="space-y-6">
-                    <div className="p-6 bg-brand-warm rounded-3xl flex items-center justify-between">
+                    <div className="p-4 md:p-6 bg-brand-warm rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                       <div className="flex items-center space-x-4">
                         <Sparkles className="w-6 h-6 text-brand-teal" />
                         <div>
@@ -881,7 +881,7 @@ export default function BookingFlow() {
                         return (
                           <div
                             key={driverId}
-                            className="p-6 bg-brand-warm rounded-3xl flex items-center justify-between border-l-4 border-brand-teal"
+                            className="p-4 md:p-6 bg-brand-warm rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between border-l-4 border-brand-teal gap-4"
                           >
                             <div className="flex items-center space-x-4">
                               <Car className="w-6 h-6 text-brand-teal" />
@@ -915,7 +915,7 @@ export default function BookingFlow() {
                         return (
                           <div
                             key={item.id}
-                            className="p-6 bg-brand-warm rounded-3xl flex items-center justify-between border-l-4 border-brand-coral"
+                            className="p-4 md:p-6 bg-brand-warm rounded-3xl flex flex-col sm:flex-row items-start sm:items-center justify-between border-l-4 border-brand-coral gap-4"
                           >
                             <div className="flex items-center space-x-4">
                               <Home className="w-6 h-6 text-brand-coral" />
@@ -937,7 +937,7 @@ export default function BookingFlow() {
                       })}
                   </div>
 
-                  <div className="mt-12 p-8 bg-brand-earth text-white rounded-3xl">
+                  <div className="mt-12 p-6 md:p-8 bg-brand-earth text-white rounded-3xl">
                     <div className="flex justify-between items-center mb-6">
                       <span className="text-sm font-bold opacity-40 uppercase tracking-widest">
                         Total to Pay
@@ -979,7 +979,7 @@ export default function BookingFlow() {
 
           {/* Sidebar Summary Card */}
           <div className="space-y-6">
-            <div className="glass-card rounded-[40px] p-8 border border-brand-earth/5 overflow-hidden sticky top-32">
+            <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 overflow-hidden sticky top-32">
               <img
                 src={trip.coverImage}
                 className="w-full h-40 rounded-3xl object-cover mb-6"

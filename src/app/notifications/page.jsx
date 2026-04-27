@@ -14,7 +14,7 @@ import {
 import { MOCK_NOTIFICATIONS } from '@/mockData';
 import { useRouter } from 'next/navigation';
 const Notifications = () => {
-  const navigate = useRouter();
+  const router = useRouter();
   const [notifications, setNotifications] = React.useState(MOCK_NOTIFICATIONS);
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
@@ -51,17 +51,16 @@ const Notifications = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
     >
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
           <div>
-            <div className="flex items-center gap-3 mb-2">
-              <div className="w-12 h-12 rounded-2xl bg-brand-teal flex items-center justify-center text-white shadow-lg shadow-brand-teal/20">
-                <Bell className="w-6 h-6" />
+            <div className="flex items-center gap-3 mb-3 md:mb-2">
+              <div className="w-10 h-10 md:w-12 md:h-12 rounded-2xl bg-brand-teal flex items-center justify-center text-white shadow-lg shadow-brand-teal/20">
+                <Bell className="w-5 h-5 md:w-6 md:h-6" />
               </div>
-              <h1 className="font-serif text-4xl text-brand-earth">Notifications</h1>
+              <h1 className="font-serif text-3xl md:text-4xl text-brand-earth">Notifications</h1>
             </div>
             <p className="text-brand-earth/60">
               Stay updated with your bookings, messages, and account status.
@@ -94,26 +93,26 @@ const Notifications = () => {
                 layout
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                className={`relative p-6 rounded-[32px] border transition-all cursor-pointer group ${notification.isRead ? 'border-brand-earth/5 bg-white' : 'border-brand-teal/20 bg-brand-teal/[0.02] shadow-sm ring-1 ring-brand-teal/5'}`}
+                className={`relative p-5 md:p-6 rounded-3xl md:rounded-[32px] border transition-all cursor-pointer group ${notification.isRead ? 'border-brand-earth/5 bg-white' : 'border-brand-teal/20 bg-brand-teal/[0.02] shadow-sm ring-1 ring-brand-teal/5'}`}
                 onClick={() => markAsRead(notification.id)}
               >
                 {!notification.isRead && (
-                  <div className="absolute top-8 right-8 w-2.5 h-2.5 rounded-full bg-brand-teal ring-4 ring-brand-teal/10" />
+                  <div className="absolute top-6 right-6 md:top-8 md:right-8 w-2 md:w-2.5 h-2 md:h-2.5 rounded-full bg-brand-teal ring-4 ring-brand-teal/10" />
                 )}
 
-                <div className="flex gap-6">
+                <div className="flex flex-col sm:flex-row gap-4 md:gap-6">
                   <div
-                    className={`shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center ${notification.isRead ? 'bg-brand-warm/50 text-brand-earth/40' : 'bg-brand-teal/10 text-brand-teal'}`}
+                    className={`shrink-0 w-12 h-12 md:w-14 md:h-14 rounded-2xl flex items-center justify-center ${notification.isRead ? 'bg-brand-warm/50 text-brand-earth/40' : 'bg-brand-teal/10 text-brand-teal'}`}
                   >
                     {getTypeIcon(notification.type)}
                   </div>
 
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-start justify-between mb-1">
-                      <h4 className="font-bold text-lg text-brand-earth truncate pr-8">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-2 md:mb-1 gap-1">
+                      <h4 className="font-bold text-base md:text-lg text-brand-earth pr-6 sm:pr-8">
                         {notification.title}
                       </h4>
-                      <span className="text-[10px] font-bold text-brand-earth/30 uppercase tracking-widest pt-1">
+                      <span className="text-[9px] md:text-[10px] font-bold text-brand-earth/30 uppercase tracking-widest sm:pt-1">
                         {notification.timestamp}
                       </span>
                     </div>
@@ -126,7 +125,7 @@ const Notifications = () => {
                         <button
                           onClick={(e) => {
                             e.stopPropagation();
-                            if (notification.actionUrl) navigate(notification.actionUrl);
+                            if (notification.actionUrl) router.push(notification.actionUrl);
                           }}
                           className="flex items-center text-xs font-bold text-brand-teal uppercase tracking-widest hover:underline"
                         >
@@ -139,9 +138,9 @@ const Notifications = () => {
                           e.stopPropagation();
                           deleteNotification(notification.id);
                         }}
-                        className="opacity-0 group-hover:opacity-100 ml-auto p-2 text-red-500/40 hover:text-red-500 transition-all"
+                        className="sm:opacity-0 sm:group-hover:opacity-100 ml-auto p-2 text-red-500/60 hover:text-red-500 transition-all"
                       >
-                        <Trash2 className="w-4 h-4" />
+                        <Trash2 className="w-4 h-4 md:w-4 md:h-4" />
                       </button>
                     </div>
                   </div>

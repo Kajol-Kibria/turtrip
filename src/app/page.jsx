@@ -23,7 +23,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/contexts/AuthContext';
 
 export default function Home() {
-  const navigate = useRouter();
+  const router = useRouter();
   const { isAuthenticated, openAuthModal } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedExpType, setSelectedExpType] = useState('Experience Type');
@@ -54,7 +54,7 @@ export default function Home() {
   }, [expandedTrip, selectedRide, selectedHotel, guestCount]);
 
   const handleSearch = () => {
-    navigate(
+    router.push(
       `/search?q=${searchQuery}${selectedExpType !== 'Experience Type' ? `&type=${selectedExpType}` : ''}`
     );
   };
@@ -67,7 +67,7 @@ export default function Home() {
       className="pb-20"
     >
       {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://picsum.photos/seed/safari/1920/1080"
@@ -78,7 +78,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 w-full max-w-4xl px-6 text-center text-white">
-          <h1 className="font-serif text-3xl md:text-5xl lg:text-7xl mb-6 leading-tight">
+          <h1 className="font-serif text-3xl md:text-5xl lg:text-7xl mb-4 md:mb-6 leading-tight">
             Find unforgettable experiences
           </h1>
           <p className="text-base md:text-lg lg:text-xl mb-8 md:mb-12 opacity-90 max-w-2xl mx-auto">
@@ -87,22 +87,22 @@ export default function Home() {
           </p>
 
           <div className="bg-white p-2 rounded-2xl md:rounded-full shadow-2xl flex flex-col md:flex-row items-stretch gap-2">
-            <div className="flex-1 flex items-center px-6 border-b md:border-b-0 md:border-r border-brand-earth/10">
-              <MapPin className="text-brand-earth/40 w-5 h-5 mr-3" />
+            <div className="flex-1 flex items-center px-4 md:px-6 border-b md:border-b-0 md:border-r border-brand-earth/10">
+              <MapPin className="text-brand-earth/40 w-5 h-5 mr-3 shrink-0" />
               <input
                 type="text"
                 placeholder="Where to next?"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-transparent w-full py-4 text-brand-earth outline-none font-medium"
+                className="bg-transparent w-full py-3 md:py-4 text-brand-earth outline-none font-medium text-sm md:text-base"
               />
             </div>
-            <div className="flex-1 flex items-center px-6 border-b md:border-b-0 md:border-r border-brand-earth/10">
-              <Compass className="text-brand-earth/40 w-5 h-5 mr-3" />
+            <div className="flex-1 flex items-center px-4 md:px-6 border-b md:border-b-0 md:border-r border-brand-earth/10">
+              <Compass className="text-brand-earth/40 w-5 h-5 mr-3 shrink-0" />
               <select
                 value={selectedExpType}
                 onChange={(e) => setSelectedExpType(e.target.value)}
-                className="bg-transparent w-full py-4 text-brand-earth outline-none font-medium appearance-none"
+                className="bg-transparent w-full py-3 md:py-4 text-brand-earth outline-none font-medium appearance-none text-sm md:text-base cursor-pointer"
               >
                 <option>Experience Type</option>
                 <option>Adventure</option>
@@ -114,7 +114,7 @@ export default function Home() {
                 <option>Others</option>
               </select>
             </div>
-            <button onClick={handleSearch} className="btn-primary">
+            <button onClick={handleSearch} className="btn-primary !py-3 md:!py-4">
               <Search className="w-5 h-5 mr-2" />
               Search
             </button>
@@ -218,7 +218,7 @@ export default function Home() {
           </div>
 
           {/* Regular Results */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {otherTrips.map((trip) => (
               <div
                 key={trip.id}
@@ -227,7 +227,7 @@ export default function Home() {
                   setSelectedRide(null);
                   setSelectedHotel(null);
                 }}
-                className="glass-card rounded-[40px] overflow-hidden cursor-pointer hover:shadow-xl transition-all group"
+                className="glass-card rounded-[32px] md:rounded-[40px] overflow-hidden cursor-pointer hover:shadow-xl transition-all group"
               >
                 <div className="relative h-48">
                   <img
@@ -295,27 +295,27 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-12 lg:p-24"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-6 md:p-12 lg:p-24"
           >
             <div
-              className="absolute inset-0 bg-brand-earth/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-brand-earth/80 backdrop-blur-md"
               onClick={() => setExpandedTrip(null)}
             />
             <motion.div
               initial={{ y: 50, scale: 0.95 }}
               animate={{ y: 0, scale: 1 }}
               exit={{ y: 50, scale: 0.95 }}
-              className="relative w-full max-w-6xl bg-brand-warm rounded-[50px] shadow-2xl overflow-y-auto max-h-full no-scrollbar flex flex-col md:flex-row"
+              className="relative w-full max-w-6xl bg-brand-warm rounded-3xl md:rounded-[50px] shadow-2xl overflow-y-auto max-h-[95vh] no-scrollbar flex flex-col md:flex-row"
             >
               <button
                 onClick={() => setExpandedTrip(null)}
-                className="absolute top-8 right-8 z-20 p-4 bg-white/20 hover:bg-white/40 rounded-full text-white transition-all"
+                className="absolute top-4 right-4 md:top-8 md:right-8 z-20 p-2 md:p-4 bg-white/20 md:bg-white/20 hover:bg-white/40 rounded-full text-white transition-all shadow-lg"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
               {/* Sidebar Info */}
-              <div className="md:w-1/3 bg-brand-earth text-white p-8 md:p-12">
+              <div className="md:w-1/3 bg-brand-earth text-white p-6 md:p-12">
                 <h2 className="font-serif text-3xl md:text-4xl mb-6">
                   {expandedTrip.title}
                   {expandedTrip.startDate && (
@@ -473,9 +473,9 @@ export default function Home() {
                   <button
                     onClick={() => {
                       if (!isAuthenticated) {
-                        openAuthModal(() => navigate(`/book/${expandedTrip.id}`));
+                        openAuthModal(() => router.push(`/book/${expandedTrip.id}`));
                       } else {
-                        navigate(`/book/${expandedTrip.id}`);
+                        router.push(`/book/${expandedTrip.id}`);
                       }
                     }}
                     className="w-full mt-6 bg-brand-teal text-white py-4 rounded-full font-bold shadow-lg hover:scale-105 transition-all cursor-pointer"
@@ -486,7 +486,7 @@ export default function Home() {
               </div>
 
               {/* Robust Features: Rides & Accommodation */}
-              <div className="flex-1 p-12 space-y-12 bg-[#F8FAFF]">
+              <div className="flex-1 p-6 md:p-12 space-y-8 md:space-y-12 bg-[#F8FAFF]">
                 <section>
                   <div className="flex items-center justify-between mb-6">
                     <h3 className="font-serif text-3xl">Local Rides Area</h3>
@@ -642,26 +642,26 @@ export default function Home() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-6 sm:p-24"
+            className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-12 md:p-24"
           >
             <div
-              className="absolute inset-0 bg-brand-earth/80 backdrop-blur-sm"
+              className="absolute inset-0 bg-brand-earth/80 backdrop-blur-md"
               onClick={() => setExpandedSpecialist(null)}
             />
             <motion.div
               initial={{ y: 50, scale: 0.95 }}
               animate={{ y: 0, scale: 1 }}
               exit={{ y: 50, scale: 0.95 }}
-              className="relative w-full max-w-4xl bg-brand-warm rounded-[50px] shadow-2xl overflow-y-auto max-h-full no-scrollbar flex flex-col md:flex-row"
+              className="relative w-full max-w-4xl bg-brand-warm rounded-3xl md:rounded-[50px] shadow-2xl overflow-y-auto max-h-[90vh] no-scrollbar flex flex-col md:flex-row"
             >
               <button
                 onClick={() => setExpandedSpecialist(null)}
-                className="absolute top-8 right-8 z-20 p-2 bg-brand-earth/5 hover:bg-brand-earth/20 rounded-full transition-all"
+                className="absolute top-4 right-4 md:top-8 md:right-8 z-20 p-2 bg-brand-earth/5 hover:bg-brand-earth/20 rounded-full transition-all shadow-lg"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 md:w-6 md:h-6" />
               </button>
 
-              <div className="md:w-2/5 md:border-r border-brand-earth/10 p-12">
+              <div className="md:w-2/5 md:border-r border-brand-earth/10 p-6 md:p-12">
                 <div className="relative mb-8">
                   <img
                     src={expandedSpecialist.profilePhoto}
@@ -693,7 +693,7 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="flex-1 p-12 space-y-12 bg-[#F8FAFF]">
+              <div className="flex-1 p-6 md:p-12 space-y-8 md:space-y-12 bg-[#F8FAFF]">
                 <section>
                   <h3 className="font-serif text-3xl mb-4">About Specialists</h3>
                   <p className="text-sm text-brand-earth/60 leading-relaxed italic">
@@ -736,32 +736,32 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Trust Section */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal mb-6">
-              <ShieldCheck className="w-8 h-8" />
+      <section className="py-12 md:py-20 px-6 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="flex flex-col items-center text-center p-6 bg-white/50 rounded-3xl border border-brand-earth/5">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal mb-4 md:mb-6">
+              <ShieldCheck className="w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="font-serif text-2xl mb-4">Verified Guides</h3>
-            <p className="text-sm text-brand-earth/60">
+            <h3 className="font-serif text-xl md:text-2xl mb-3 md:mb-4">Verified Guides</h3>
+            <p className="text-xs md:text-sm text-brand-earth/60">
               Every guide passes a rigorous background and certification check.
             </p>
           </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-brand-saffron/10 rounded-2xl flex items-center justify-center text-brand-saffron mb-6">
-              <CreditCard className="w-8 h-8" />
+          <div className="flex flex-col items-center text-center p-6 bg-white/50 rounded-3xl border border-brand-earth/5">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-saffron/10 rounded-2xl flex items-center justify-center text-brand-saffron mb-4 md:mb-6">
+              <CreditCard className="w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="font-serif text-2xl mb-4">Escrow Payments</h3>
-            <p className="text-sm text-brand-earth/60">
+            <h3 className="font-serif text-xl md:text-2xl mb-3 md:mb-4">Escrow Payments</h3>
+            <p className="text-xs md:text-sm text-brand-earth/60">
               Your payment is held securely and only released after the trip ends.
             </p>
           </div>
-          <div className="flex flex-col items-center text-center">
-            <div className="w-16 h-16 bg-brand-coral/10 rounded-2xl flex items-center justify-center text-brand-coral mb-6">
-              <HeartPulse className="w-8 h-8" />
+          <div className="flex flex-col items-center text-center p-6 bg-white/50 rounded-3xl border border-brand-earth/5 sm:col-span-2 md:col-span-1">
+            <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-coral/10 rounded-2xl flex items-center justify-center text-brand-coral mb-4 md:mb-6">
+              <HeartPulse className="w-6 h-6 md:w-8 md:h-8" />
             </div>
-            <h3 className="font-serif text-2xl mb-4">Emergency Support</h3>
-            <p className="text-sm text-brand-earth/60">
+            <h3 className="font-serif text-xl md:text-2xl mb-3 md:mb-4">Emergency Support</h3>
+            <p className="text-xs md:text-sm text-brand-earth/60">
               24/7 dedicated local emergency coordination and safety protocols.
             </p>
           </div>

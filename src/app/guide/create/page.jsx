@@ -26,7 +26,7 @@ import StatusModal from '@/components/StatusModal';
 
 export default function CreateExperience() {
   const { id } = useParams();
-  const navigate = useRouter();
+  const router = useRouter();
   const location = usePathname();
   const [step, setStep] = useState(1);
   const [isPromoted, setIsPromoted] = useState(false);
@@ -933,7 +933,7 @@ export default function CreateExperience() {
         isOpen={showStatus}
         onClose={() => {
           setShowStatus(false);
-          navigate('/guide/dashboard');
+          router.push('/guide/dashboard');
         }}
         type={statusConfig.type}
         title={statusConfig.title}

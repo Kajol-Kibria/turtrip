@@ -126,9 +126,9 @@ export default function StayProviderDashboard() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-7xl mx-auto px-6 py-12"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
     >
-      <div className="flex flex-col md:flex-row gap-12 text-brand-earth">
+      <div className="flex flex-col md:flex-row gap-8 md:gap-12 text-brand-earth">
         {/* Sidebar */}
         <aside className="w-full md:w-64 space-y-8">
           <div className="text-center md:text-left">
@@ -148,7 +148,7 @@ export default function StayProviderDashboard() {
             </p>
           </div>
 
-          <nav className="space-y-2">
+          <nav className="flex overflow-x-auto md:flex-col space-x-2 md:space-x-0 md:space-y-2 pb-4 md:pb-0 no-scrollbar">
             <TabButton
               active={activeTab === 'reservations'}
               icon={<Calendar className="w-4 h-4" />}
@@ -203,14 +203,14 @@ export default function StayProviderDashboard() {
                 {reservations.map((res) => (
                   <div
                     key={res.id}
-                    className="glass-card rounded-[40px] p-8 border border-brand-earth/5 flex flex-col md:flex-row justify-between items-center gap-6"
+                    className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 md:gap-6"
                   >
-                    <div className="flex items-center space-x-6">
-                      <div className="p-4 bg-brand-warm rounded-3xl">
-                        <Users className="w-8 h-8 text-brand-earth/30" />
+                    <div className="flex items-center space-x-4 md:space-x-6">
+                      <div className="p-3 md:p-4 bg-brand-warm rounded-2xl md:rounded-3xl">
+                        <Users className="w-6 h-6 md:w-8 md:h-8 text-brand-earth/30" />
                       </div>
                       <div>
-                        <h4 className="font-serif text-2xl">{res.guestName}</h4>
+                        <h4 className="font-serif text-xl md:text-2xl">{res.guestName}</h4>
                         <p className="text-[10px] text-brand-earth/40 font-bold uppercase tracking-widest">
                           {res.checkIn} to {res.checkOut}
                         </p>
@@ -230,8 +230,8 @@ export default function StayProviderDashboard() {
                         )}
                       </div>
                     </div>
-                    <div className="text-center md:text-right">
-                      <div className="text-xl font-serif text-brand-teal italic mb-2">
+                    <div className="text-left md:text-right mt-2 md:mt-0 w-full md:w-auto">
+                      <div className="text-lg md:text-xl font-serif text-brand-teal italic mb-2">
                         {res.currency} {res.totalPrice.toLocaleString()}
                       </div>
                       <span
@@ -279,14 +279,14 @@ export default function StayProviderDashboard() {
                   </div>
                   <button
                     onClick={() => setShowAddRoom(true)}
-                    className="bg-brand-earth text-white px-6 py-3 rounded-full text-xs font-bold flex items-center hover:bg-brand-earth/90 transition-all shadow-xl"
+                    className="w-full md:w-auto bg-brand-earth text-white px-6 py-3 rounded-full text-xs font-bold flex items-center justify-center hover:bg-brand-earth/90 transition-all shadow-xl"
                   >
                     <Plus className="w-4 h-4 mr-2" /> Create New Room
                   </button>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                 {rooms.map((room) => (
                   <div
                     key={room.id}
@@ -340,14 +340,14 @@ export default function StayProviderDashboard() {
           )}
 
           {activeTab === 'wallet' && (
-            <section className="space-y-12">
-              <div className="bg-brand-earth text-white p-12 rounded-[60px] relative overflow-hidden shadow-2xl">
+            <section className="space-y-8 md:space-y-12">
+              <div className="bg-brand-earth text-white p-8 md:p-12 rounded-3xl md:rounded-[60px] relative overflow-hidden shadow-2xl">
                 <div className="relative z-10">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-4">
+                  <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] opacity-50 mb-2 md:mb-4">
                     Account Balance
                   </p>
-                  <h3 className="font-serif text-6xl mb-12">USD 14,250.00</h3>
-                  <div className="flex gap-4">
+                  <h3 className="font-serif text-4xl md:text-6xl mb-8 md:mb-12">USD 14,250.00</h3>
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       className="bg-brand-teal text-white px-8 py-4 rounded-full font-bold text-sm shadow-xl"
                       onClick={() =>
@@ -373,10 +373,10 @@ export default function StayProviderDashboard() {
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[32px] p-6 flex justify-between items-center border border-brand-earth/5"
+                    className="glass-card rounded-3xl md:rounded-[32px] p-4 md:p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border border-brand-earth/5"
                   >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-brand-warm rounded-2xl flex items-center justify-center font-bold text-brand-earth/40">
+                    <div className="flex items-center space-x-3 md:space-x-4">
+                      <div className="w-8 h-8 md:w-10 md:h-10 bg-brand-warm rounded-xl md:rounded-2xl flex items-center justify-center font-bold text-brand-earth/40 text-xs md:text-base">
                         #{i}
                       </div>
                       <div>
@@ -397,19 +397,19 @@ export default function StayProviderDashboard() {
           )}
 
           {activeTab === 'calendar' && (
-            <section className="glass-card rounded-[48px] p-8 md:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden">
-              <div className="flex flex-col md:flex-row md:items-center justify-between mb-10 gap-6">
+            <section className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden">
+              <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 md:mb-10 gap-6">
                 <div>
                   <h3 className="font-serif text-3xl mb-2">Availability Calendar</h3>
                   <p className="text-xs text-brand-earth/40 font-bold uppercase tracking-widest">
                     July 2026 • Management View
                   </p>
                 </div>
-                <div className="flex bg-brand-warm rounded-full p-1 border border-brand-earth/5">
+                <div className="flex overflow-x-auto bg-brand-warm rounded-full p-1 border border-brand-earth/5 no-scrollbar">
                   {['Standard', 'Luxury', 'All'].map((t) => (
                     <button
                       key={t}
-                      className={`px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all ${t === 'All' ? 'bg-brand-earth text-white shadow-lg' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+                      className={`px-4 md:px-6 py-2 rounded-full text-[10px] font-bold uppercase tracking-widest transition-all whitespace-nowrap ${t === 'All' ? 'bg-brand-earth text-white shadow-lg' : 'text-brand-earth/40 hover:text-brand-earth'}`}
                     >
                       {t}
                     </button>
@@ -523,9 +523,9 @@ export default function StayProviderDashboard() {
                 {[1].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[40px] p-8 border border-brand-earth/5"
+                    className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5"
                   >
-                    <div className="flex justify-between items-start mb-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start mb-4 md:mb-6 gap-4">
                       <div className="flex items-center space-x-4">
                         <img
                           src="https://picsum.photos/seed/user1/100/100"
@@ -567,16 +567,16 @@ export default function StayProviderDashboard() {
                 {[1].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[40px] p-6 flex items-center justify-between border border-brand-earth/5 hover:border-brand-teal/20 transition-all"
+                    className="glass-card rounded-3xl md:rounded-[40px] p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border border-brand-earth/5 hover:border-brand-teal/20 transition-all gap-4"
                   >
-                    <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-4 md:space-x-6">
                       <img
                         src="https://picsum.photos/seed/user2/100/100"
-                        className="w-16 h-16 rounded-full"
+                        className="w-12 h-12 md:w-16 md:h-16 rounded-full"
                         alt="guest"
                       />
                       <div>
-                        <h6 className="font-bold text-lg">Sarah Jenkins</h6>
+                        <h6 className="font-bold text-base md:text-lg">Sarah Jenkins</h6>
                         <p className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest">
                           Standard Room • Checkout Today
                         </p>
@@ -849,10 +849,10 @@ function TabButton({ active, icon, label, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`w-full flex items-center space-x-3 px-6 py-3 rounded-2xl text-sm font-bold transition-all ${active ? 'bg-brand-earth text-white shadow-lg' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+      className={`w-full flex items-center space-x-2 md:space-x-3 px-4 md:px-6 py-3 md:py-4 rounded-xl md:rounded-2xl text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all whitespace-nowrap ${active ? 'bg-brand-earth text-white' : 'hover:bg-brand-earth/5 text-brand-earth/60'}`}
     >
-      <span className={active ? 'text-white' : 'text-brand-earth/20'}>{icon}</span>
-      <span>{label}</span>
+      <div className={active ? 'text-brand-teal' : ''}>{icon}</div>
+      <span className="truncate">{label}</span>
     </button>
   );
 }

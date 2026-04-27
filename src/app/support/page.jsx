@@ -43,7 +43,7 @@ export default function Support() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
     >
       <StatusModal
         isOpen={showStatusModal}
@@ -57,25 +57,27 @@ export default function Support() {
 
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <div>
-            <h1 className="font-serif text-5xl mb-4 text-brand-earth">Support Center</h1>
-            <p className="text-brand-earth/60">
+          <header className="mb-10 md:mb-16">
+            <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4 md:mb-6 leading-tight">
+              Support Center
+            </h1>
+            <p className="text-base md:text-lg text-brand-earth/60 leading-relaxed">
               Manage your inquiries, disputes, and live support chats.
             </p>
-          </div>
+          </header>
 
-          <div className="flex bg-white p-1.5 rounded-full shadow-lg border border-brand-earth/5">
+          <div className="flex bg-white p-1 rounded-full shadow-lg border border-brand-earth/5 self-start md:self-auto">
             <button
               onClick={() => setActiveTab('tickets')}
-              className={`px-8 py-3 rounded-full text-sm font-bold transition-all flex items-center ${activeTab === 'tickets' ? 'bg-brand-earth text-white shadow-md' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold transition-all flex items-center ${activeTab === 'tickets' ? 'bg-brand-earth text-white shadow-md' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
-              <LifeBuoy className="w-4 h-4 mr-2" /> My Tickets
+              <LifeBuoy className="w-3 h-3 md:w-4 md:h-4 mr-2" /> My Tickets
             </button>
             <button
               onClick={() => setActiveTab('chat')}
-              className={`px-8 py-3 rounded-full text-sm font-bold transition-all flex items-center ${activeTab === 'chat' ? 'bg-brand-earth text-white shadow-md' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-2 md:py-3 rounded-full text-xs md:text-sm font-bold transition-all flex items-center ${activeTab === 'chat' ? 'bg-brand-earth text-white shadow-md' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
-              <MessageSquare className="w-4 h-4 mr-2" /> Live Support
+              <MessageSquare className="w-3 h-3 md:w-4 md:h-4 mr-2" /> Live Support
             </button>
           </div>
         </div>
@@ -85,8 +87,8 @@ export default function Support() {
           <div className="lg:col-span-8">
             {activeTab === 'tickets' ? (
               <div className="space-y-4">
-                <div className="flex justify-between items-center mb-6">
-                  <div className="relative flex-1 max-w-md">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                  <div className="relative w-full sm:flex-1 sm:max-w-md">
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-earth/20 w-4 h-4" />
                     <input
                       type="text"
@@ -96,7 +98,7 @@ export default function Support() {
                   </div>
                   <button
                     onClick={() => setShowNewTicketModal(true)}
-                    className="ml-4 bg-brand-teal text-white px-6 py-3 rounded-2xl font-bold text-sm flex items-center shadow-lg hover:scale-105 transition-all"
+                    className="w-full sm:w-auto bg-brand-teal text-white px-6 py-3 rounded-2xl font-bold text-sm flex items-center justify-center shadow-lg hover:scale-105 transition-all"
                   >
                     <Plus className="w-4 h-4 mr-2" /> New Ticket
                   </button>
@@ -109,28 +111,28 @@ export default function Support() {
                       onClick={() => setSelectedTicketId(ticket.id)}
                       className={`p-6 rounded-[32px] bg-white border border-brand-earth/5 shadow-sm cursor-pointer hover:shadow-md transition-all group ${selectedTicketId === ticket.id ? 'ring-2 ring-brand-earth' : ''}`}
                     >
-                      <div className="flex items-center justify-between mb-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-3">
                         <div className="flex items-center space-x-3">
                           <div
                             className={`p-2 rounded-xl ${ticket.isDispute ? 'bg-brand-coral/10 text-brand-coral' : 'bg-brand-teal/10 text-brand-teal'}`}
                           >
                             {ticket.isDispute ? (
-                              <ShieldAlert className="w-5 h-5" />
+                              <ShieldAlert className="w-4 h-4 md:w-5 md:h-5" />
                             ) : (
-                              <LifeBuoy className="w-5 h-5" />
+                              <LifeBuoy className="w-4 h-4 md:w-5 md:h-5" />
                             )}
                           </div>
                           <div>
-                            <h3 className="font-bold text-brand-earth group-hover:text-brand-teal transition-colors">
+                            <h3 className="font-bold text-brand-earth group-hover:text-brand-teal transition-colors text-sm md:text-base">
                               {ticket.subject}
                             </h3>
-                            <p className="text-[10px] uppercase font-bold tracking-widest text-brand-earth/30">
+                            <p className="text-[9px] md:text-[10px] uppercase font-bold tracking-widest text-brand-earth/30">
                               ID: {ticket.id} • {ticket.category}
                             </p>
                           </div>
                         </div>
                         <div
-                          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
+                          className={`self-start sm:self-auto px-3 py-1 rounded-full text-[9px] md:text-[10px] font-bold uppercase tracking-widest ${
                             ticket.status === 'Resolved'
                               ? 'bg-green-100 text-green-700'
                               : ticket.status === 'In Progress'
@@ -155,7 +157,7 @@ export default function Support() {
                 </div>
               </div>
             ) : (
-              <div className="glass-card rounded-[48px] h-[600px] flex flex-col overflow-hidden shadow-2xl border border-brand-earth/5 bg-white">
+              <div className="glass-card rounded-3xl md:rounded-[48px] h-[500px] md:h-[600px] flex flex-col overflow-hidden shadow-2xl border border-brand-earth/5 bg-white">
                 <div className="p-6 border-b border-brand-earth/5 bg-brand-warm/30 flex items-center justify-between">
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold italic">
@@ -170,14 +172,14 @@ export default function Support() {
                   </div>
                 </div>
 
-                <div className="flex-1 p-8 overflow-y-auto space-y-6 bg-[#F8FAFF] no-scrollbar">
+                <div className="flex-1 p-4 md:p-8 overflow-y-auto space-y-4 md:space-y-6 bg-[#F8FAFF] no-scrollbar">
                   {MOCK_MESSAGES.map((msg) => (
                     <div
                       key={msg.id}
                       className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[70%] p-4 rounded-3xl text-sm ${msg.isMe ? 'bg-brand-earth text-white rounded-br-none' : 'bg-white text-brand-earth border border-brand-earth/5 rounded-bl-none shadow-sm'}`}
+                        className={`max-w-[85%] md:max-w-[70%] p-3 md:p-4 rounded-2xl md:rounded-3xl text-xs md:text-sm ${msg.isMe ? 'bg-brand-earth text-white rounded-br-none' : 'bg-white text-brand-earth border border-brand-earth/5 rounded-bl-none shadow-sm'}`}
                       >
                         {msg.text}
                         <p
@@ -190,15 +192,15 @@ export default function Support() {
                   ))}
                 </div>
 
-                <div className="p-6 bg-white border-t border-brand-earth/5">
-                  <div className="flex items-center space-x-4 bg-brand-warm rounded-2xl p-2 pl-6">
+                <div className="p-4 md:p-6 bg-white border-t border-brand-earth/5">
+                  <div className="flex items-center space-x-2 md:space-x-4 bg-brand-warm rounded-2xl p-1.5 md:p-2 pl-4 md:pl-6">
                     <input
                       type="text"
-                      placeholder="Type your message..."
-                      className="flex-1 bg-transparent border-none outline-none text-sm font-medium"
+                      placeholder="Type message..."
+                      className="flex-1 bg-transparent border-none outline-none text-xs md:text-sm font-medium"
                     />
-                    <button className="bg-brand-earth text-white p-4 rounded-xl shadow-lg hover:scale-105 transition-all">
-                      <Send className="w-5 h-5" />
+                    <button className="bg-brand-earth text-white p-3 md:p-4 rounded-xl shadow-lg hover:scale-105 transition-all">
+                      <Send className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                   </div>
                 </div>
@@ -212,7 +214,7 @@ export default function Support() {
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="glass-card rounded-[40px] p-8 border border-brand-earth/5 sticky top-32"
+                className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 lg:sticky lg:top-32"
               >
                 <h2 className="font-serif text-2xl mb-6">{selectedTicket.subject}</h2>
 
@@ -258,7 +260,7 @@ export default function Support() {
                 </div>
               </motion.div>
             ) : (
-              <div className="glass-card rounded-[40px] p-12 border border-brand-earth/5 text-center flex flex-col items-center justify-center h-full min-h-[400px]">
+              <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-16 space-y-8 md:space-y-12 border border-brand-earth/5 shadow-2xl text-brand-earth flex flex-col items-center justify-center h-full min-h-[300px] md:min-h-[400px]">
                 <div className="w-20 h-20 bg-brand-warm rounded-full flex items-center justify-center text-brand-earth/20 mb-6">
                   <Clock className="w-10 h-10" />
                 </div>

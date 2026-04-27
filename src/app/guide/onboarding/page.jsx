@@ -19,44 +19,44 @@ export default function GuideOnboarding() {
   const [specialistType, setSpecialistType] = useState('Individual');
   const [payoutMethod, setPayoutMethod] = useState(null);
   const [showStatusModal, setShowStatusModal] = useState(false);
-  const navigate = useRouter();
+  const router = useRouter();
 
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-4xl mx-auto px-6 py-20"
+      className="max-w-4xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
     >
       <StatusModal
         isOpen={showStatusModal}
-        onClose={() => navigate('/guide/dashboard')}
+        onClose={() => router.push('/guide/dashboard')}
         type="success"
         title="Application Submitted!"
         message="Your application for Manjaro Specialist verification has been received. Our compliance team will review your documents and intro video within 48-72 hours. You'll receive a notification and email once your profile is live!"
         actionLabel="Go to Specialist Dashboard"
-        onAction={() => navigate('/guide/dashboard')}
+        onAction={() => router.push('/guide/dashboard')}
       />
 
-      <div className="text-center mb-16">
-        <h1 className="font-serif text-5xl mb-4 text-brand-earth">Become a Verified Specialist</h1>
-        <p className="text-brand-earth/60">
+      <div className="text-center mb-10 md:mb-16">
+        <h1 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">Become a Verified Specialist</h1>
+        <p className="text-brand-earth/60 text-sm md:text-base">
           Join the elite network of independent guides and travel agencies across Africa and the
           Caribbean.
         </p>
       </div>
 
       {step > 0 && (
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+        <div className="flex flex-wrap md:grid md:grid-cols-4 gap-2 md:gap-4 mb-8 md:mb-12 justify-center md:justify-start">
           {['Profile', 'Identity', 'Media', 'Withdrawal'].map((s, idx) => (
-            <div key={s} className="flex items-center space-x-4">
+            <div key={s} className="flex items-center space-x-2 md:space-x-4 mb-2 md:mb-0">
               <div
-                className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold ${step > idx ? 'bg-brand-teal text-white' : step === idx + 1 ? 'bg-brand-earth text-white' : 'bg-brand-earth/10 text-brand-earth/30'}`}
+                className={`w-6 h-6 md:w-8 md:h-8 rounded-full flex items-center justify-center text-[10px] md:text-xs font-bold ${step > idx ? 'bg-brand-teal text-white' : step === idx + 1 ? 'bg-brand-earth text-white' : 'bg-brand-earth/10 text-brand-earth/30'}`}
               >
                 {step > idx + 1 ? '✓' : idx + 1}
               </div>
               <span
-                className={`text-[10px] uppercase font-bold tracking-widest ${step === idx + 1 ? 'text-brand-earth' : 'text-brand-earth/30'}`}
+                className={`text-[9px] md:text-[10px] uppercase font-bold tracking-widest ${step === idx + 1 ? 'text-brand-earth' : 'text-brand-earth/30'}`}
               >
                 {s}
               </span>
@@ -66,25 +66,25 @@ export default function GuideOnboarding() {
         </div>
       )}
 
-      <div className="glass-card rounded-[40px] p-8 md:p-12">
+      <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-12">
         {step === 0 && (
           <div className="space-y-12">
-            <h2 className="font-serif text-4xl text-center mb-12 text-brand-earth">
+            <h2 className="font-serif text-3xl md:text-4xl text-center mb-8 md:mb-12 text-brand-earth">
               How would you like to register?
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
               <button
                 onClick={() => {
                   setSpecialistType('Individual');
                   setStep(1);
                 }}
-                className="group p-10 border-2 border-brand-earth/5 rounded-[40px] text-left hover:border-brand-teal hover:bg-brand-teal/5 transition-all"
+                className="group p-6 md:p-10 border-2 border-brand-earth/5 rounded-3xl md:rounded-[40px] text-left hover:border-brand-teal hover:bg-brand-teal/5 transition-all"
               >
-                <div className="w-16 h-16 bg-brand-earth/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-teal/10">
-                  <IdCard className="w-8 h-8 text-brand-earth group-hover:text-brand-teal" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-earth/5 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-brand-teal/10">
+                  <IdCard className="w-6 h-6 md:w-8 md:h-8 text-brand-earth group-hover:text-brand-teal" />
                 </div>
-                <h3 className="font-serif text-3xl mb-2">Independent Specialist</h3>
-                <p className="text-sm text-brand-earth/60">
+                <h3 className="font-serif text-2xl md:text-3xl mb-2">Independent Specialist</h3>
+                <p className="text-xs md:text-sm text-brand-earth/60">
                   I am a solo guide working directly with travelers.
                 </p>
               </button>
@@ -94,12 +94,12 @@ export default function GuideOnboarding() {
                   setSpecialistType('Agency');
                   setStep(1);
                 }}
-                className="group p-10 border-2 border-brand-earth/5 rounded-[40px] text-left hover:border-brand-teal hover:bg-brand-teal/5 transition-all"
+                className="group p-6 md:p-10 border-2 border-brand-earth/5 rounded-3xl md:rounded-[40px] text-left hover:border-brand-teal hover:bg-brand-teal/5 transition-all"
               >
-                <div className="w-16 h-16 bg-brand-earth/5 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-brand-teal/10">
-                  <Camera className="w-8 h-8 text-brand-earth group-hover:text-brand-teal" />
+                <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-earth/5 rounded-2xl flex items-center justify-center mb-4 md:mb-6 group-hover:bg-brand-teal/10">
+                  <Camera className="w-6 h-6 md:w-8 md:h-8 text-brand-earth group-hover:text-brand-teal" />
                 </div>
-                <h3 className="font-serif text-3xl mb-2">Travel Agency</h3>
+                <h3 className="font-serif text-2xl md:text-3xl mb-2">Travel Agency</h3>
                 <p className="text-sm text-brand-earth/60">
                   I represent a network of guides and travel specialists.
                 </p>
@@ -110,7 +110,7 @@ export default function GuideOnboarding() {
 
         {step === 1 && (
           <div className="space-y-8">
-            <h2 className="font-serif text-3xl">
+            <h2 className="font-serif text-2xl md:text-3xl">
               {specialistType === 'Agency' ? 'Agency Profile' : 'Personal Information'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -186,7 +186,7 @@ export default function GuideOnboarding() {
             ) : (
               <IdCard className="w-20 h-20 mx-auto text-brand-teal" />
             )}
-            <h2 className="font-serif text-3xl">
+            <h2 className="font-serif text-2xl md:text-3xl">
               {specialistType === 'Agency' ? 'Business Registration' : 'Identity Verification'}
             </h2>
             <p className="text-sm text-brand-earth/60">
@@ -214,7 +214,7 @@ export default function GuideOnboarding() {
 
         {step === 3 && (
           <div className="space-y-8">
-            <h2 className="font-serif text-3xl">
+            <h2 className="font-serif text-2xl md:text-3xl">
               {specialistType === 'Agency' ? 'Agency Media' : 'Media & Intro'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -262,7 +262,7 @@ export default function GuideOnboarding() {
 
         {step === 4 && (
           <div className="space-y-8">
-            <h2 className="font-serif text-3xl">Banking Details</h2>
+            <h2 className="font-serif text-2xl md:text-3xl">Banking Details</h2>
             <div className="bg-brand-teal/5 p-6 rounded-2xl flex items-start space-x-4 mb-4 text-brand-earth">
               <Banknote className="w-6 h-6 text-brand-teal mt-1" />
               <p className="text-sm text-brand-teal font-medium">

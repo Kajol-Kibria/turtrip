@@ -21,7 +21,7 @@ import ChatList from '@/components/ChatList';
 import StatusModal from '@/components/StatusModal';
 
 export default function GuideDashboard() {
-  const navigate = useRouter();
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('pending');
   const [privateRequests, setPrivateRequests] = useState(MOCK_PRIVATE_REQUESTS);
   const [selectedPR, setSelectedPR] = useState(null);
@@ -71,23 +71,23 @@ export default function GuideDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-6 py-12"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
     >
-      <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8 text-brand-earth">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-12 gap-6 md:gap-8 text-brand-earth">
         <div>
-          <h1 className="font-serif text-5xl mb-2">Guide Dashboard</h1>
-          <p className="text-brand-earth/60">Manage your experiences and track your earnings.</p>
+          <h1 className="font-serif text-3xl md:text-5xl mb-2">Guide Dashboard</h1>
+          <p className="text-brand-earth/60 text-sm md:text-base">Manage your experiences and track your earnings.</p>
         </div>
         <Link
           href="/guide/create"
-          className="bg-brand-teal text-white px-8 py-4 rounded-full font-bold flex items-center shadow-xl hover:bg-brand-teal/90 transition-all cursor-pointer"
+          className="w-full md:w-auto bg-brand-teal text-white px-6 md:px-8 py-4 rounded-full font-bold flex items-center justify-center shadow-xl hover:bg-brand-teal/90 transition-all cursor-pointer"
         >
           <Plus className="w-5 h-5 mr-2" />
           Create New Experience
         </Link>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
         {/* Stats Column */}
         <div className="lg:col-span-1 space-y-6">
           <div className="bg-brand-earth text-white rounded-[40px] p-8 shadow-2xl relative overflow-hidden">
@@ -95,9 +95,9 @@ export default function GuideDashboard() {
               <p className="text-[10px] uppercase tracking-widest font-bold opacity-60 mb-2">
                 Available Balance
               </p>
-              <h2 className="text-4xl font-serif mb-4">TSh 1,240,000</h2>
-              <div className="flex gap-2">
-                <div className="flex items-center text-xs text-brand-teal font-bold bg-brand-teal/20 px-3 py-1 rounded-full w-fit">
+              <h2 className="text-3xl md:text-4xl font-serif mb-4">TSh 1,240,000</h2>
+              <div className="flex flex-wrap gap-2">
+                <div className="flex items-center text-[10px] md:text-xs text-brand-teal font-bold bg-brand-teal/20 px-3 py-1 rounded-full w-fit">
                   <Clock className="w-3 h-3 mr-1" />
                   TSh 450k Pending
                 </div>
@@ -148,8 +148,8 @@ export default function GuideDashboard() {
         </div>
 
         {/* Bookings & Messages */}
-        <div className="lg:col-span-3 space-y-8 text-brand-earth">
-          <div className="flex space-x-8 border-b border-brand-earth/10">
+        <div className="lg:col-span-3 space-y-6 md:space-y-8 text-brand-earth">
+          <div className="flex overflow-x-auto space-x-6 md:space-x-8 border-b border-brand-earth/10 no-scrollbar">
             <button
               onClick={() => setActiveTab('pending')}
               className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'pending' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
@@ -188,7 +188,7 @@ export default function GuideDashboard() {
             </button>
             <button
               onClick={() => setActiveTab('messages')}
-              className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
+              className={`py-4 text-sm font-bold relative transition-all whitespace-nowrap ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
             >
               Message Center
               {activeTab === 'messages' && (
@@ -205,14 +205,14 @@ export default function GuideDashboard() {
               {[1, 2].map((i) => (
                 <div
                   key={i}
-                  className="glass-card rounded-[40px] p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
+                  className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
                 >
-                  <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
+                  <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-4 md:gap-6">
                     <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-2">
-                        <h4 className="font-serif text-2xl">Serengeti Migration Safari</h4>
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-3 mb-2">
+                        <h4 className="font-serif text-xl md:text-2xl">Serengeti Migration Safari</h4>
                         <span
-                          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${i === 1 ? 'bg-brand-teal/10 text-brand-teal' : 'bg-brand-earth/10 text-brand-earth'}`}
+                          className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest w-fit ${i === 1 ? 'bg-brand-teal/10 text-brand-teal' : 'bg-brand-earth/10 text-brand-earth'}`}
                         >
                           {i === 1 ? 'Public Group' : 'Private Group'}
                         </span>
@@ -250,13 +250,13 @@ export default function GuideDashboard() {
                     </div>
                   </div>
 
-                  <div className="flex items-center justify-between pt-6 border-t border-brand-earth/5">
-                    <div className="flex space-x-2">
-                      <button className="px-6 py-2 bg-brand-warm text-brand-earth rounded-full text-xs font-bold hover:bg-brand-earth hover:text-white transition-all flex items-center">
-                        <MessageSquare className="w-3 h-3 mr-2" /> Chat with Group
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-6 border-t border-brand-earth/5 gap-4">
+                    <div className="flex flex-wrap gap-2 w-full sm:w-auto">
+                      <button className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-warm text-brand-earth rounded-full text-xs font-bold hover:bg-brand-earth hover:text-white transition-all flex items-center justify-center">
+                        <MessageSquare className="w-3 h-3 mr-2" /> Chat
                       </button>
-                      <button className="px-6 py-2 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:bg-brand-teal/90 transition-all">
-                        Manage Logistics
+                      <button className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:bg-brand-teal/90 transition-all justify-center text-center">
+                        Manage
                       </button>
                       <button
                         onClick={() =>
@@ -285,21 +285,21 @@ export default function GuideDashboard() {
               {privateRequests.map((req) => (
                 <div
                   key={req.id}
-                  className="glass-card rounded-[40px] p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
+                  className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
                 >
-                  <div className="flex flex-col md:flex-row justify-between gap-8 mb-6">
-                    <div className="flex items-center space-x-6">
-                      <div className="w-16 h-16 bg-brand-warm rounded-2xl flex items-center justify-center text-brand-earth/20 font-serif text-3xl">
+                  <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-8 mb-6">
+                    <div className="flex items-center space-x-4 md:space-x-6">
+                      <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-warm rounded-xl md:rounded-2xl flex items-center justify-center text-brand-earth/20 font-serif text-2xl md:text-3xl">
                         P
                       </div>
                       <div>
-                        <h4 className="font-serif text-2xl">{req.title}</h4>
+                        <h4 className="font-serif text-xl md:text-2xl">{req.title}</h4>
                         <p className="text-[10px] text-brand-earth/40 font-bold uppercase tracking-widest">
                           Requested on {req.requestedDate}
                         </p>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end">
+                    <div className="flex flex-col items-start md:items-end">
                       <span
                         className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
                           req.status === 'Pending'
@@ -318,7 +318,7 @@ export default function GuideDashboard() {
                     {req.description}
                   </p>
 
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
                     <div className="p-4 bg-brand-warm/30 rounded-2xl text-center">
                       <p className="text-[9px] font-bold text-brand-earth/30 uppercase tracking-widest mb-1">
                         Participants
@@ -394,9 +394,9 @@ export default function GuideDashboard() {
               {MOCK_TRIPS.filter((t) => !t.id.includes('old')).map((trip) => (
                 <div
                   key={trip.id}
-                  className="glass-card rounded-[40px] overflow-hidden group border border-brand-earth/5"
+                  className="glass-card rounded-3xl md:rounded-[40px] overflow-hidden group border border-brand-earth/5"
                 >
-                  <div className="relative h-40">
+                  <div className="relative h-40 md:h-48">
                     <img
                       src={trip.coverImage}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
@@ -426,7 +426,7 @@ export default function GuideDashboard() {
                         <p className="font-serif text-2xl text-brand-teal">8 of 12</p>
                       </div>
                       <button
-                        onClick={() => navigate(`/guide/edit/${trip.id}`)}
+                        onClick={() => router.push(`/guide/edit/${trip.id}`)}
                         className="px-4 py-1.5 text-[10px] font-bold text-brand-earth border border-brand-earth/10 rounded-full hover:bg-brand-earth hover:text-white transition-all ml-4"
                       >
                         Edit
@@ -465,9 +465,9 @@ export default function GuideDashboard() {
                 {MOCK_TRIPS.filter((t) => t.id.includes('old')).map((trip) => (
                   <div
                     key={trip.id}
-                    className="glass-card rounded-[40px] overflow-hidden group border border-brand-earth/5 opacity-80 hover:opacity-100 transition-opacity"
+                    className="glass-card rounded-3xl md:rounded-[40px] overflow-hidden group border border-brand-earth/5 opacity-80 hover:opacity-100 transition-opacity"
                   >
-                    <div className="relative h-40 grayscale group-hover:grayscale-0 transition-all duration-500">
+                    <div className="relative h-40 md:h-48 grayscale group-hover:grayscale-0 transition-all duration-500">
                       <img src={trip.coverImage} className="w-full h-full object-cover" alt="exp" />
                       <div className="absolute inset-0 bg-black/40" />
                       <div className="absolute bottom-4 left-4 text-white">
@@ -492,7 +492,7 @@ export default function GuideDashboard() {
                         </div>
                       </div>
                       <button
-                        onClick={() => navigate('/guide/create', { state: { relaunchData: trip } })}
+                        onClick={() => router.push('/guide/create')}
                         className="flex items-center px-6 py-3 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:scale-105 transition-all"
                       >
                         <RotateCcw className="w-3 h-3 mr-2" /> Relaunch
@@ -520,9 +520,9 @@ export default function GuideDashboard() {
                 {[1].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[40px] p-8 border border-brand-earth/5"
+                    className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5"
                   >
-                    <div className="flex justify-between items-start mb-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start mb-4 md:mb-6 gap-4">
                       <div className="flex items-center space-x-4">
                         <img
                           src="https://picsum.photos/seed/user1/100/100"
@@ -567,16 +567,16 @@ export default function GuideDashboard() {
                 {[1].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[40px] p-6 flex items-center justify-between border border-brand-earth/5"
+                    className="glass-card rounded-3xl md:rounded-[40px] p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border border-brand-earth/5 gap-4"
                   >
                     <div className="flex items-center space-x-4">
                       <img
                         src="https://picsum.photos/seed/user2/100/100"
-                        className="w-12 h-12 rounded-full"
+                        className="w-10 h-10 md:w-12 md:h-12 rounded-full"
                         alt="traveler"
                       />
                       <div>
-                        <h6 className="font-bold">Jane Smith</h6>
+                        <h6 className="font-bold text-sm md:text-base">Jane Smith</h6>
                         <p className="text-[10px] text-brand-earth/40">
                           Kilimanjaro Trek • Fully Funded
                         </p>

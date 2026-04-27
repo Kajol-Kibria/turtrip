@@ -22,7 +22,7 @@ import { useState } from 'react';
 
 export default function TripDetails() {
   const { id } = useParams();
-  const navigate = useRouter();
+  const router = useRouter();
   const trip = MOCK_TRIPS.find((t) => t.id === id) || MOCK_TRIPS[0];
   const [guestCount, setGuestCount] = useState(1);
   const [isWishlisted, setIsWishlisted] = useState(false);
@@ -34,30 +34,30 @@ export default function TripDetails() {
       exit={{ opacity: 0 }}
       className="pb-20"
     >
-      <div className="max-w-7xl mx-auto px-6 py-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-6 md:pb-12">
         <Link
           href="/"
-          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-8"
+          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-6 md:mb-8"
         >
           <ArrowLeft className="w-4 h-4 mr-2" />
           Back to Experiences
         </Link>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-16">
           {/* Media Section */}
           <div className="space-y-6">
-            <div className="relative aspect-[4/3] rounded-[40px] overflow-hidden shadow-2xl">
+            <div className="relative aspect-[4/3] rounded-3xl md:rounded-[40px] overflow-hidden shadow-2xl">
               <img src={trip.coverImage} className="w-full h-full object-cover" alt={trip.title} />
-              <button className="absolute bottom-6 right-6 bg-white/90 backdrop-blur px-6 py-3 rounded-full font-bold flex items-center text-sm">
+              <button className="absolute bottom-4 right-4 md:bottom-6 md:right-6 bg-white/90 backdrop-blur px-4 md:px-6 py-2 md:py-3 rounded-full font-bold flex items-center text-xs md:text-sm">
                 <Video className="w-4 h-4 mr-2" />
                 Play Intro Video
               </button>
             </div>
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map((i) => (
                 <div
                   key={i}
-                  className="aspect-square rounded-2xl overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
+                  className="aspect-square rounded-xl md:rounded-2xl overflow-hidden cursor-pointer hover:opacity-80 transition-opacity"
                 >
                   <img
                     src={`https://picsum.photos/seed/gallery${i}/400/400`}
@@ -199,8 +199,8 @@ export default function TripDetails() {
             </div>
 
             {trip.activities && trip.activities.length > 0 && (
-              <div className="mb-12 p-8 bg-brand-teal/5 rounded-[32px] border border-brand-teal/20">
-                <div className="flex items-center space-x-3 mb-6">
+              <div className="mb-12 p-6 md:p-8 bg-brand-teal/5 rounded-3xl md:rounded-[32px] border border-brand-teal/20">
+                <div className="flex items-center space-x-3 mb-4 md:mb-6">
                   <Star className="w-5 h-5 md:w-6 md:h-6 text-brand-teal" />
                   <h3 className="font-serif text-2xl md:text-3xl">Planned Activities</h3>
                 </div>
@@ -224,8 +224,8 @@ export default function TripDetails() {
             )}
 
             {trip.requiredEquipment && trip.requiredEquipment.length > 0 && (
-              <div className="mb-12 p-8 bg-brand-saffron/5 rounded-[32px] border border-brand-saffron/20">
-                <div className="flex items-center space-x-3 mb-6">
+              <div className="mb-12 p-6 md:p-8 bg-brand-saffron/5 rounded-3xl md:rounded-[32px] border border-brand-saffron/20">
+                <div className="flex items-center space-x-3 mb-4 md:mb-6">
                   <ShieldCheck className="w-5 h-5 md:w-6 md:h-6 text-brand-saffron" />
                   <h3 className="font-serif text-2xl md:text-3xl">Required Equipment</h3>
                 </div>
@@ -275,13 +275,13 @@ export default function TripDetails() {
               </div>
             </div>
 
-            <div className="bg-brand-earth text-white rounded-[32px] p-8">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-8">
+            <div className="bg-brand-earth text-white rounded-3xl md:rounded-[32px] p-6 md:p-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 md:gap-8 mb-8">
                 <div>
                   <p className="text-xs opacity-50 uppercase tracking-widest font-bold mb-2">
                     Price for {guestCount} travelers
                   </p>
-                  <div className="text-3xl font-serif">
+                  <div className="text-2xl md:text-3xl font-serif">
                     {trip.price.currency} {(trip.price.local * guestCount).toLocaleString()}
                   </div>
                   <p className="text-[10px] opacity-40">

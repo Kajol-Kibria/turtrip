@@ -5,7 +5,7 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 export default function PrivacyPolicy() {
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/"
@@ -14,15 +14,15 @@ export default function PrivacyPolicy() {
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
         </Link>
 
-        <header className="mb-16">
-          <h1 className="font-serif text-5xl text-brand-earth mb-6">Privacy Policy</h1>
+        <header className="mb-10 md:mb-16">
+          <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4 md:mb-6">Privacy Policy</h1>
           <p className="text-brand-earth/60 text-lg leading-relaxed">
             Effective Date: April 25, 2026. This Privacy Policy explains how <b>Manjaro Global</b>{' '}
             handling your data. We reserve the right to modify this policy at any time.
           </p>
         </header>
 
-        <div className="glass-card rounded-[48px] p-8 md:p-16 space-y-12 border border-brand-earth/5 shadow-2xl text-brand-earth">
+        <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-16 space-y-8 md:space-y-12 border border-brand-earth/5 shadow-2xl text-brand-earth">
           <section className="space-y-6 text-sm text-brand-earth/70 leading-relaxed">
             <h2 className="font-serif text-2xl text-brand-teal">1. Introduction</h2>
             <p>

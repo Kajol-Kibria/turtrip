@@ -13,7 +13,7 @@ export default function EmergencySupport() {
     title: '',
     message: '',
   });
-  const navigate = useRouter();
+  const router = useRouter();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,7 +32,7 @@ export default function EmergencySupport() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
     >
       <StatusModal
         isOpen={showStatusModal}
@@ -42,23 +42,23 @@ export default function EmergencySupport() {
         message={statusConfig.message}
         actionLabel={formType === 'Immediate' ? "I'm Safe Now" : 'Back to Dashboard'}
         onAction={() =>
-          formType === 'Immediate' ? setShowStatusModal(false) : navigate('/dashboard')
+          formType === 'Immediate' ? setShowStatusModal(false) : router.push('/dashboard')
         }
       />
 
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-20 text-brand-coral">
-          <div className="w-20 h-20 bg-brand-coral/10 rounded-[30px] flex items-center justify-center mx-auto mb-8">
-            <ShieldAlert className="w-10 h-10" />
+        <header className="text-center mb-12 md:mb-20 text-brand-coral">
+          <div className="w-16 h-16 md:w-20 md:h-20 bg-brand-coral/10 rounded-2xl md:rounded-[30px] flex items-center justify-center mx-auto mb-6 md:mb-8">
+            <ShieldAlert className="w-8 h-8 md:w-10 md:h-10" />
           </div>
-          <h1 className="font-serif text-5xl text-brand-earth mb-6">Emergency & Rapid Response</h1>
+          <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4 md:mb-6 leading-tight">Emergency & Rapid Response</h1>
           <p className="text-lg text-brand-earth/60 leading-relaxed max-w-2xl mx-auto">
             Your first line of defense is your local Guide. For platform-level emergencies or when
             your guide is unreachable, our rapid response team is available 24/7.
           </p>
         </header>
 
-        <div className="bg-white p-10 rounded-[48px] shadow-xl border border-brand-coral/20 mb-12 relative overflow-hidden">
+        <div className="bg-white p-6 md:p-10 rounded-3xl md:rounded-[48px] shadow-xl border border-brand-coral/20 mb-8 md:mb-12 relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 opacity-5">
             <ShieldAlert className="w-32 h-32 text-brand-coral" />
           </div>
@@ -72,42 +72,42 @@ export default function EmergencySupport() {
               police stations, hospitals, and specialized local rescue services relevant to your
               itinerary.
             </p>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/messages"
-                className="bg-brand-earth text-white px-8 py-4 rounded-full font-bold text-sm shadow-lg hover:scale-[1.02] transition-all"
+                className="bg-brand-earth text-white px-8 py-4 rounded-full font-bold text-sm shadow-lg hover:scale-[1.02] transition-all text-center"
               >
                 Message My Guide
               </Link>
-              <button className="bg-brand-warm text-brand-earth px-8 py-4 rounded-full font-bold text-sm hover:bg-brand-earth/5 transition-all">
+              <button className="bg-brand-warm text-brand-earth px-8 py-4 rounded-full font-bold text-sm hover:bg-brand-earth/5 transition-all text-center">
                 View Guide Profile
               </button>
             </div>
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <div className="bg-white p-8 rounded-[32px] shadow-lg border border-brand-earth/5 text-center">
-            <Phone className="w-8 h-8 text-brand-teal mx-auto mb-4" />
-            <h3 className="font-bold mb-2">Voice Support</h3>
-            <p className="text-xs text-brand-earth/60 mb-2">+255 000 000 000</p>
-            <p className="text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-12 md:mb-20">
+          <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-[32px] shadow-lg border border-brand-earth/5 text-center">
+            <Phone className="w-6 h-6 md:w-8 md:h-8 text-brand-teal mx-auto mb-3 md:mb-4" />
+            <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">Voice Support</h3>
+            <p className="text-[10px] md:text-xs text-brand-earth/60 mb-1 md:mb-2">+255 000 000 000</p>
+            <p className="text-[8px] md:text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
               East Africa Hub
             </p>
           </div>
-          <div className="bg-white p-8 rounded-[32px] shadow-lg border border-brand-earth/5 text-center">
-            <Phone className="w-8 h-8 text-brand-teal mx-auto mb-4" />
-            <h3 className="font-bold mb-2">Voice Support</h3>
-            <p className="text-xs text-brand-earth/60 mb-2">+1 876 000 0000</p>
-            <p className="text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
+          <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-[32px] shadow-lg border border-brand-earth/5 text-center">
+            <Phone className="w-6 h-6 md:w-8 md:h-8 text-brand-teal mx-auto mb-3 md:mb-4" />
+            <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">Voice Support</h3>
+            <p className="text-[10px] md:text-xs text-brand-earth/60 mb-1 md:mb-2">+1 876 000 0000</p>
+            <p className="text-[8px] md:text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
               Caribbean Hub
             </p>
           </div>
-          <div className="bg-white p-8 rounded-[32px] shadow-lg border border-brand-earth/5 text-center">
-            <MessageCircle className="w-8 h-8 text-brand-teal mx-auto mb-4" />
-            <h3 className="font-bold mb-2">WhatsApp Rapid</h3>
-            <p className="text-xs text-brand-earth/60 mb-2">Live Chat Response</p>
-            <p className="text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
+          <div className="bg-white p-6 md:p-8 rounded-2xl md:rounded-[32px] shadow-lg border border-brand-earth/5 text-center sm:col-span-2 md:col-span-1">
+            <MessageCircle className="w-6 h-6 md:w-8 md:h-8 text-brand-teal mx-auto mb-3 md:mb-4" />
+            <h3 className="font-bold mb-1 md:mb-2 text-sm md:text-base">WhatsApp Rapid</h3>
+            <p className="text-[10px] md:text-xs text-brand-earth/60 mb-1 md:mb-2">Live Chat Response</p>
+            <p className="text-[8px] md:text-[10px] text-brand-earth/30 uppercase font-black tracking-widest">
               Global Dispatch
             </p>
           </div>
@@ -138,10 +138,10 @@ export default function EmergencySupport() {
               </div>
             </section>
 
-            <section className="bg-brand-earth text-white p-8 rounded-[40px] shadow-xl">
-              <Ambulance className="w-8 h-8 text-brand-teal mb-4" />
-              <h2 className="font-serif text-xl mb-4">Medical Assistance</h2>
-              <p className="text-xs text-white/60 leading-relaxed italic">
+            <section className="bg-brand-earth text-white p-6 md:p-8 rounded-3xl md:rounded-[40px] shadow-xl">
+              <Ambulance className="w-6 h-6 md:w-8 md:h-8 text-brand-teal mb-3 md:mb-4" />
+              <h2 className="font-serif text-lg md:text-xl mb-3 md:mb-4">Medical Assistance</h2>
+              <p className="text-[10px] md:text-xs text-white/60 leading-relaxed italic">
                 If you require immediate medical evacuation or hospital support, please use the{' '}
                 <b>Panic Button</b> in your active booking view first. This automatically sends your
                 GPS coordinates to local paramedics.
@@ -149,7 +149,7 @@ export default function EmergencySupport() {
             </section>
           </div>
 
-          <div className="lg:col-span-8 bg-white p-10 rounded-[48px] shadow-xl border border-brand-earth/5">
+          <div className="lg:col-span-8 bg-white p-6 md:p-10 rounded-3xl md:rounded-[48px] shadow-xl border border-brand-earth/5">
             <div className="flex items-center space-x-4 mb-10">
               <button
                 onClick={() => setFormType('General')}
@@ -210,7 +210,7 @@ export default function EmergencySupport() {
 
               <button
                 type="submit"
-                className={`w-full flex items-center justify-center py-6 rounded-full font-bold text-lg shadow-2xl transition-all ${formType === 'Immediate' ? 'bg-brand-coral text-white hover:scale-[1.02]' : 'bg-brand-earth text-white hover:bg-brand-earth/90'}`}
+                className={`w-full flex items-center justify-center py-4 md:py-6 rounded-full font-bold text-base md:text-lg shadow-2xl transition-all ${formType === 'Immediate' ? 'bg-brand-coral text-white hover:scale-[1.02]' : 'bg-brand-earth text-white hover:bg-brand-earth/90'}`}
               >
                 <Send className="w-5 h-5 mr-3" />{' '}
                 {formType === 'Immediate' ? 'Send Emergency Alert' : 'Submit Support Ticket'}

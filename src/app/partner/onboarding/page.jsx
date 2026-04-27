@@ -20,7 +20,7 @@ import { useRouter } from 'next/navigation';
 import StatusModal from '@/components/StatusModal';
 
 export default function PartnerOnboarding() {
-  const navigate = useRouter();
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [isLogin, setIsLogin] = useState(true);
   const [loginStep, setLoginStep] = useState(1); // 1: Email/Cat, 2: OTP
@@ -98,9 +98,9 @@ export default function PartnerOnboarding() {
         `Welcome back! You have successfully authenticated as a ${loginForm.category}. Redirecting to your dashboard...`
       );
       setTimeout(() => {
-        if (loginForm.category === 'Guide') navigate('/guide/dashboard');
-        else if (loginForm.category === 'Driver') navigate('/driver/dashboard');
-        else if (loginForm.category === 'StayProvider') navigate('/stay-provider/dashboard');
+        if (loginForm.category === 'Guide') router.push('/guide/dashboard');
+        else if (loginForm.category === 'Driver') router.push('/driver/dashboard');
+        else if (loginForm.category === 'StayProvider') router.push('/stay-provider/dashboard');
       }, 1500);
     } else {
       triggerStatus(
@@ -112,13 +112,13 @@ export default function PartnerOnboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-16">
-          <h1 className="font-serif text-5xl text-brand-earth mb-4">
+        <header className="text-center mb-10 md:mb-16">
+          <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4">
             {isLogin ? 'Partner Login' : 'Become a Partner'}
           </h1>
-          <p className="text-brand-earth/60 text-lg">
+          <p className="text-brand-earth/60 text-base md:text-lg">
             {isLogin
               ? 'Access your dashboard and manage your services.'
               : "Join the world's most authentic travel marketplace."}
@@ -159,14 +159,14 @@ export default function PartnerOnboarding() {
                     title="Guide"
                     icon={<Users className="w-8 h-8" />}
                     desc="Lead unique experiences and share your local culture."
-                    onClick={() => navigate('/guide/onboarding')}
+                    onClick={() => router.push('/guide/onboarding')}
                   />
 
                   <PartnerTypeCard
                     title="Driver"
                     icon={<Truck className="w-8 h-8" />}
                     desc="Provide safe, reliable transport for travelers."
-                    onClick={() => navigate('/driver/onboarding')}
+                    onClick={() => router.push('/driver/onboarding')}
                   />
 
                   <PartnerTypeCard
@@ -185,16 +185,16 @@ export default function PartnerOnboarding() {
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="glass-card rounded-[48px] p-8 md:p-12 shadow-2xl border border-brand-earth/5"
+                  className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-2xl border border-brand-earth/5"
                 >
                   <button
                     onClick={handleBack}
-                    className="flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-8"
+                    className="flex items-center text-xs md:text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-6 md:mb-8"
                   >
                     <ArrowLeft className="w-4 h-4 mr-2" /> Change Partner Type
                   </button>
 
-                  <h2 className="font-serif text-3xl mb-8">{partnerType} Registration</h2>
+                  <h2 className="font-serif text-2xl md:text-3xl mb-6 md:mb-8">{partnerType} Registration</h2>
 
                   <form onSubmit={handleSubmit} className="space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -325,7 +325,7 @@ export default function PartnerOnboarding() {
                       </div>
                     </div>
 
-                    <div className="flex items-start space-x-4 p-6 bg-brand-teal/5 rounded-[32px] border border-brand-teal/10">
+                    <div className="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-4 p-5 md:p-6 bg-brand-teal/5 rounded-3xl md:rounded-[32px] border border-brand-teal/10">
                       <Shield className="w-6 h-6 text-brand-teal shrink-0 mt-1" />
                       <div className="text-xs text-brand-earth/60 leading-relaxed">
                         <p className="font-bold text-brand-earth mb-1 uppercase tracking-widest">
@@ -351,16 +351,16 @@ export default function PartnerOnboarding() {
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="glass-card rounded-[48px] p-8 md:p-12 shadow-2xl border border-brand-earth/5"
+                  className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-2xl border border-brand-earth/5"
                 >
-                  <div className="flex items-center space-x-4 mb-8">
-                    <div className="p-4 bg-brand-warm rounded-2xl text-brand-earth">
-                      <Banknote className="w-8 h-8" />
+                  <div className="flex items-center space-x-4 mb-6 md:mb-8">
+                    <div className="p-3 md:p-4 bg-brand-warm rounded-xl md:rounded-2xl text-brand-earth">
+                      <Banknote className="w-6 h-6 md:w-8 md:h-8" />
                     </div>
-                    <h2 className="font-serif text-3xl">Banking Details</h2>
+                    <h2 className="font-serif text-2xl md:text-3xl">Banking Details</h2>
                   </div>
 
-                  <p className="text-sm text-brand-earth/60 mb-8">
+                  <p className="text-xs md:text-sm text-brand-earth/60 mb-8">
                     Choose your preferred method for receiving payments for your{' '}
                     {partnerType === 'StayProvider'
                       ? 'stay'
@@ -432,7 +432,7 @@ export default function PartnerOnboarding() {
                     </motion.div>
                   )}
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       type="button"
                       onClick={handleBack}
@@ -464,7 +464,7 @@ export default function PartnerOnboarding() {
               animate={{ opacity: 1, y: 0 }}
               className="max-w-md mx-auto"
             >
-              <div className="glass-card rounded-[48px] p-8 md:p-12 shadow-2xl border border-brand-earth/5">
+              <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 shadow-2xl border border-brand-earth/5">
                 {loginStep === 1 ? (
                   <form onSubmit={handleLoginSubmit} className="space-y-8">
                     <div className="text-center mb-8">
@@ -545,7 +545,7 @@ export default function PartnerOnboarding() {
                           maxLength={1}
                           value={digit}
                           onChange={(e) => handleOtpChange(idx, e.target.value)}
-                          className="w-12 h-16 text-center text-2xl font-bold bg-brand-earth/5 border border-brand-earth/10 rounded-2xl outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all"
+                          className="w-10 h-14 md:w-12 md:h-16 text-center text-xl md:text-2xl font-bold bg-brand-earth/5 border border-brand-earth/10 rounded-xl md:rounded-2xl outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal transition-all"
                         />
                       ))}
                     </div>
@@ -572,7 +572,7 @@ export default function PartnerOnboarding() {
         isOpen={showStatus}
         onClose={() => {
           setShowStatus(false);
-          navigate('/');
+          router.push('/');
         }}
         type={statusConfig.type}
         title={statusConfig.title}
@@ -587,7 +587,7 @@ function PartnerTypeCard({ title, icon, desc, onClick }) {
   return (
     <motion.div
       whileHover={{ y: -10, scale: 1.02 }}
-      className="glass-card rounded-[48px] p-8 text-center border border-brand-earth/5 hover:border-brand-teal transition-all cursor-pointer shadow-xl group"
+      className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-8 text-center border border-brand-earth/5 hover:border-brand-teal transition-all cursor-pointer shadow-xl group"
       onClick={onClick}
     >
       <div className="w-20 h-20 bg-brand-teal/5 text-brand-teal rounded-[32px] flex items-center justify-center mx-auto mb-6 group-hover:bg-brand-teal group-hover:text-white transition-all shadow-sm">

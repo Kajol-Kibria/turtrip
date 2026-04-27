@@ -35,9 +35,9 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
         <Link
           href="/"
-          className="flex items-center space-x-2 font-serif text-3xl font-bold text-brand-earth tracking-tighter hover:opacity-80 transition-opacity"
+          className="flex items-center space-x-2 font-serif text-2xl md:text-3xl font-bold text-brand-earth tracking-tighter hover:opacity-80 transition-opacity"
         >
-          <Mountain className="w-8 h-8 text-brand-teal" />
+          <Mountain className="w-6 h-6 md:w-8 md:h-8 text-brand-teal" />
           <span>Manjaro</span>
         </Link>
 
@@ -206,10 +206,10 @@ export default function Navbar() {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            className="md:hidden bg-brand-warm border-t border-brand-earth/10 overflow-hidden"
+            className="md:hidden bg-brand-warm border-t border-brand-earth/10 overflow-hidden shadow-xl"
           >
-            <div className="px-6 py-8 flex flex-col space-y-6">
-              <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-serif">
+            <div className="px-6 py-8 flex flex-col space-y-4">
+              <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-serif py-2 border-b border-brand-earth/5">
                 Home
               </Link>
               {isAuthenticated ? (

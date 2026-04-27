@@ -14,7 +14,7 @@ import {
 import { MOCK_NOTIFICATIONS } from '../mockData';
 import { useRouter } from 'next/navigation';
 const NotificationCenter = ({ isOpen, onClose }) => {
-  const navigate = useRouter();
+  const router = useRouter();
   const [notifications, setNotifications] = React.useState(MOCK_NOTIFICATIONS);
 
   const unreadCount = notifications.filter((n) => !n.isRead).length;
@@ -139,7 +139,7 @@ const NotificationCenter = ({ isOpen, onClose }) => {
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
-                                if (notification.actionUrl) navigate(notification.actionUrl);
+                                if (notification.actionUrl) router.push(notification.actionUrl);
                               }}
                               className="flex items-center text-[10px] font-bold text-brand-teal uppercase tracking-widest hover:underline"
                             >

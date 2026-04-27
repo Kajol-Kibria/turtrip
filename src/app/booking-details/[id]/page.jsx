@@ -46,7 +46,7 @@ export default function MyBookingDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Link
           href="/dashboard"
@@ -59,7 +59,7 @@ export default function MyBookingDetails() {
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="flex-1 space-y-8">
             {/* Header Header */}
-            <div className="glass-card rounded-[48px] p-8 md:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden relative">
+            <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden relative">
               <div className="absolute top-0 right-0 w-64 h-64 bg-brand-teal/5 rounded-full -mr-32 -mt-32 blur-3xl animate-pulse" />
 
               <div className="relative">
@@ -79,10 +79,10 @@ export default function MyBookingDetails() {
                   </span>
                 </div>
 
-                <h1 className="font-serif text-4xl mb-4 text-brand-earth leading-tight">
+                <h1 className="font-serif text-3xl md:text-4xl mb-4 text-brand-earth leading-tight">
                   {trip.title}
                 </h1>
-                <div className="flex flex-wrap items-center gap-6 text-sm text-brand-earth/60">
+                <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6 text-xs md:text-sm text-brand-earth/60">
                   <div className="flex items-center">
                     <Calendar className="w-4 h-4 mr-2 text-brand-teal" />
                     {booking.startDate} — {booking.endDate}
@@ -96,12 +96,12 @@ export default function MyBookingDetails() {
             </div>
 
             {/* Tab Navigation */}
-            <div className="flex space-x-1 bg-white/50 backdrop-blur-md p-1.5 rounded-full border border-brand-earth/10 w-fit">
+            <div className="flex overflow-x-auto space-x-1 bg-white/50 backdrop-blur-md p-1.5 rounded-full border border-brand-earth/10 w-full sm:w-fit no-scrollbar">
               {['overview', 'itinerary', 'logistics'].map((tab) => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-8 py-2.5 rounded-full text-xs font-bold transition-all capitalize ${
+                  className={`px-6 md:px-8 py-2 md:py-2.5 rounded-full text-[10px] md:text-xs font-bold transition-all capitalize whitespace-nowrap ${
                     activeTab === tab
                       ? 'bg-brand-earth text-white shadow-lg'
                       : 'text-brand-earth/60 hover:text-brand-earth'
@@ -122,7 +122,7 @@ export default function MyBookingDetails() {
                   className="space-y-8"
                 >
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div className="glass-card rounded-[40px] p-8 border border-white/50">
+                    <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-white/50">
                       <h3 className="font-serif text-xl mb-6">Payment Summary</h3>
                       <div className="space-y-4">
                         <div className="flex justify-between items-end">
@@ -157,7 +157,7 @@ export default function MyBookingDetails() {
                       </div>
                     </div>
 
-                    <div className="glass-card rounded-[40px] p-8 border border-white/50">
+                    <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-white/50">
                       <h3 className="font-serif text-xl mb-6">Experience Highlights</h3>
                       <div className="space-y-4">
                         {trip.requiredEquipment?.map((item, i) => (
@@ -177,7 +177,7 @@ export default function MyBookingDetails() {
                   key="itinerary"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="glass-card rounded-[40px] p-8 border border-white/50"
+                  className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-white/50"
                 >
                   <h3 className="font-serif text-2xl mb-8 text-brand-earth">Daily Itinerary</h3>
                   <div className="space-y-12">
@@ -213,7 +213,7 @@ export default function MyBookingDetails() {
                   className="space-y-6"
                 >
                   {/* Fulfillment Status */}
-                  <div className="glass-card rounded-[40px] p-8 border border-white/50">
+                  <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-white/50">
                     <h3 className="font-serif text-2xl mb-8">Service Partners</h3>
                     <div className="space-y-6">
                       {booking.fulfillment.map((f, i) => (
@@ -237,7 +237,7 @@ export default function MyBookingDetails() {
                             </div>
                           </div>
 
-                          <div className="flex items-center space-x-4">
+                          <div className="flex flex-col sm:flex-row gap-2 items-center justify-center sm:justify-normal" >
                             {f.isFulfilled && (
                               <span className="flex items-center text-[10px] font-bold text-brand-teal uppercase tracking-widest bg-brand-teal/5 px-3 py-1 rounded-full">
                                 <CheckCircle className="w-3 h-3 mr-1" /> Ready
@@ -261,7 +261,7 @@ export default function MyBookingDetails() {
 
           {/* Sidebar Actions */}
           <div className="lg:w-80 space-y-6">
-            <div className="glass-card rounded-[48px] p-8 border border-brand-earth/10 sticky top-32 bg-brand-earth/5 backdrop-blur-xl shadow-2xl">
+            <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-8 border border-brand-earth/10 lg:sticky lg:top-32 bg-brand-earth/5 backdrop-blur-xl shadow-2xl">
               <h3 className="font-serif text-2xl mb-8 text-brand-earth">Quick Actions</h3>
 
               <div className="space-y-4">
@@ -345,7 +345,7 @@ export default function MyBookingDetails() {
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
-              className="relative w-full max-w-lg bg-white rounded-[40px] shadow-2xl overflow-hidden"
+              className="relative w-full max-w-lg bg-white rounded-3xl md:rounded-[40px] shadow-2xl overflow-hidden"
             >
               <button
                 onClick={() => setShowDisputeModal(false)}
@@ -354,7 +354,7 @@ export default function MyBookingDetails() {
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="p-8 md:p-10">
+              <div className="p-6 md:p-10">
                 {disputeStep === 'form' ? (
                   <>
                     <div className="flex items-center space-x-4 mb-6">

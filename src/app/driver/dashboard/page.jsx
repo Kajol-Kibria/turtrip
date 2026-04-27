@@ -102,7 +102,7 @@ export default function DriverDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-6 py-12"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
     >
       <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-8 text-brand-earth">
         <div>
@@ -112,7 +112,7 @@ export default function DriverDashboard() {
           </p>
         </div>
 
-        <div className="flex items-center space-x-4 bg-white p-2 rounded-full shadow-lg border border-brand-earth/5">
+        <div className="flex items-center space-x-2 md:space-x-4 bg-white p-2 rounded-full shadow-lg border border-brand-earth/5">
           <span
             className={`text-[10px] uppercase font-bold tracking-widest pl-4 ${isOnline ? 'text-brand-teal' : 'text-brand-earth/40'}`}
           >
@@ -127,7 +127,7 @@ export default function DriverDashboard() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 md:gap-8">
         {/* Quick Stats */}
         <div className="lg:col-span-1 space-y-6">
           <div className="bg-brand-earth text-white rounded-[40px] p-8 shadow-2xl relative overflow-hidden">
@@ -136,7 +136,7 @@ export default function DriverDashboard() {
                 Total Wallet
               </p>
               <h2 className="text-4xl font-serif mb-4">TSh 452,000</h2>
-              <div className="flex gap-2">
+              <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() =>
                     triggerStatus(
@@ -190,11 +190,11 @@ export default function DriverDashboard() {
         </div>
 
         {/* Main Content Area */}
-        <div className="lg:col-span-3 space-y-8">
-          <div className="flex border-b border-brand-earth/10 overflow-x-auto whitespace-nowrap">
+        <div className="lg:col-span-3 space-y-6 md:space-y-8">
+          <div className="flex border-b border-brand-earth/10 overflow-x-auto whitespace-nowrap no-scrollbar">
             <button
               onClick={() => setActiveTab('requests')}
-              className={`px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'requests' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'requests' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
               Ride Requests
               {activeTab === 'requests' && (
@@ -206,7 +206,7 @@ export default function DriverDashboard() {
             </button>
             <button
               onClick={() => setActiveTab('history')}
-              className={`px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'history' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'history' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
               Ride History
               {activeTab === 'history' && (
@@ -218,7 +218,7 @@ export default function DriverDashboard() {
             </button>
             <button
               onClick={() => setActiveTab('messages')}
-              className={`px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
               Message Center
               {activeTab === 'messages' && (
@@ -230,7 +230,7 @@ export default function DriverDashboard() {
             </button>
             <button
               onClick={() => setActiveTab('settings')}
-              className={`px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'settings' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'settings' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
               Trip Settings
               {activeTab === 'settings' && (
@@ -242,7 +242,7 @@ export default function DriverDashboard() {
             </button>
             <button
               onClick={() => setActiveTab('completed')}
-              className={`px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'completed' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
+              className={`px-4 md:px-8 py-4 text-sm font-bold transition-all relative ${activeTab === 'completed' ? 'text-brand-earth' : 'text-brand-earth/40 hover:text-brand-earth'}`}
             >
               Completed
               {activeTab === 'completed' && (
@@ -269,9 +269,9 @@ export default function DriverDashboard() {
                   requests.map((req) => (
                     <div
                       key={req.id}
-                      className="glass-card rounded-[40px] p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
+                      className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 hover:border-brand-teal/30 transition-all group"
                     >
-                      <div className="flex flex-col md:flex-row justify-between gap-8">
+                      <div className="flex flex-col md:flex-row justify-between gap-6 md:gap-8">
                         <div className="space-y-6 flex-1 text-brand-earth">
                           <div className="flex items-center space-x-4">
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-brand-warm">
@@ -315,7 +315,7 @@ export default function DriverDashboard() {
                           </div>
                         </div>
 
-                        <div className="md:w-64 flex flex-col justify-between border-l border-brand-earth/5 pl-8 text-brand-earth">
+                        <div className="md:w-64 flex flex-col justify-between md:border-l border-brand-earth/5 md:pl-8 pt-6 md:pt-0 mt-6 md:mt-0 border-t md:border-t-0 text-brand-earth">
                           <div className="flex justify-between items-start">
                             <div>
                               <p className="text-[10px] uppercase font-bold opacity-40 mb-1">
@@ -376,9 +376,9 @@ export default function DriverDashboard() {
                 {[1, 2, 3].map((i) => (
                   <div
                     key={i}
-                    className="glass-card rounded-[32px] p-6 flex flex-col sm:flex-row items-center justify-between border border-brand-earth/5 opacity-70 hover:opacity-100 transition-all text-brand-earth"
+                    className="glass-card rounded-3xl md:rounded-[32px] p-4 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border border-brand-earth/5 opacity-70 hover:opacity-100 transition-all text-brand-earth gap-4"
                   >
-                    <div className="flex items-center space-x-6">
+                    <div className="flex items-center space-x-4 md:space-x-6">
                       <img
                         src={`https://picsum.photos/seed/hist${i}/100/100`}
                         className="w-12 h-12 rounded-full"
@@ -391,9 +391,9 @@ export default function DriverDashboard() {
                         </p>
                       </div>
                     </div>
-                    <div className="text-right mt-4 sm:mt-0">
-                      <p className="font-serif text-xl text-brand-teal">+TSh 65,000</p>
-                      <div className="flex items-center text-[10px] font-bold text-brand-earth/40 uppercase tracking-widest justify-end">
+                    <div className="text-left sm:text-right mt-2 sm:mt-0 w-full sm:w-auto">
+                      <p className="font-serif text-lg md:text-xl text-brand-teal">+TSh 65,000</p>
+                      <div className="flex items-center text-[10px] font-bold text-brand-earth/40 uppercase tracking-widest sm:justify-end mt-1 sm:mt-0">
                         <Star className="w-3 h-3 fill-current text-brand-saffron mr-1" /> 5.0 Rating
                       </div>
                     </div>
@@ -406,8 +406,8 @@ export default function DriverDashboard() {
 
             {activeTab === 'settings' && (
               <div className="space-y-8">
-                <div className="glass-card rounded-[40px] p-10 space-y-10 border border-brand-earth/5 text-brand-earth">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-10 space-y-10 border border-brand-earth/5 text-brand-earth">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-10">
                     <div className="space-y-6">
                       <h3 className="font-serif text-2xl">Pricing Strategy</h3>
                       <div>
@@ -463,7 +463,7 @@ export default function DriverDashboard() {
                 </div>
 
                 {/* Vehicle Settings */}
-                <div className="glass-card rounded-[40px] p-10 space-y-10 border border-brand-earth/5 text-brand-earth">
+                <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-10 space-y-10 border border-brand-earth/5 text-brand-earth">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <Car className="w-6 h-6 text-brand-teal" />
@@ -486,7 +486,7 @@ export default function DriverDashboard() {
 
                   {!isEditingVehicle ? (
                     <div className="flex flex-col md:flex-row gap-8">
-                      <div className="w-full md:w-64 h-48 rounded-[32px] overflow-hidden bg-brand-warm border border-brand-earth/10">
+                      <div className="w-full md:w-64 h-48 rounded-2xl md:rounded-[32px] overflow-hidden bg-brand-warm border border-brand-earth/10">
                         <img
                           src={vehicle.picture}
                           alt="vehicle"
@@ -603,7 +603,7 @@ export default function DriverDashboard() {
                   )}
                 </div>
 
-                <div className="glass-card rounded-[40px] p-10 space-y-10 border border-brand-earth/5 text-brand-earth">
+                <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-10 space-y-8 md:space-y-10 border border-brand-earth/5 text-brand-earth">
                   <div className="flex items-center space-x-3">
                     <DollarSign className="w-6 h-6 text-brand-teal" />
                     <h3 className="font-serif text-2xl">Payout Details</h3>
@@ -665,7 +665,7 @@ export default function DriverDashboard() {
                           'Your updated payout details have been submitted for admin verification. This process usually takes 24 hours.'
                         )
                       }
-                      className="btn-primary px-12 !py-4 shadow-xl text-white"
+                      className="btn-primary w-full md:w-auto px-8 md:px-12 py-3 md:!py-4 shadow-xl text-white"
                     >
                       Update and Submit for Review
                     </button>
@@ -690,9 +690,9 @@ export default function DriverDashboard() {
                   {[1].map((i) => (
                     <div
                       key={i}
-                      className="glass-card rounded-[40px] p-8 border border-brand-earth/5 text-brand-earth"
+                      className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 text-brand-earth"
                     >
-                      <div className="flex justify-between items-start mb-6">
+                      <div className="flex flex-col sm:flex-row justify-between items-start mb-4 md:mb-6 gap-4">
                         <div className="flex items-center space-x-4">
                           <img
                             src="https://picsum.photos/seed/user1/100/100"
@@ -735,7 +735,7 @@ export default function DriverDashboard() {
                   {[1].map((i) => (
                     <div
                       key={i}
-                      className="glass-card rounded-[40px] p-6 flex items-center justify-between border border-brand-earth/5 text-brand-earth"
+                      className="glass-card rounded-3xl md:rounded-[40px] p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border border-brand-earth/5 text-brand-earth gap-4"
                     >
                       <div className="flex items-center space-x-4">
                         <img

@@ -102,11 +102,10 @@ export default function SearchResults() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-8">
-          <div>
-            <h1 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">
+          <div className="mb-8 md:mb-12">
+            <h1 className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-brand-earth leading-tight">
               Explore Adventures
             </h1>
             <p className="text-brand-earth/60 font-medium text-sm md:text-base">
@@ -114,32 +113,31 @@ export default function SearchResults() {
             </p>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex flex-row items-center justify-between gap-4 mb-8">
             <button
               onClick={() => setShowMobileFilters(true)}
-              className="lg:hidden flex items-center space-x-2 px-4 md:px-6 py-2.5 md:py-3 bg-white border border-brand-earth/10 rounded-full text-brand-earth text-sm font-bold shadow-sm"
+              className="lg:hidden flex items-center space-x-2 px-4 py-2.5 bg-white border border-brand-earth/10 rounded-full text-brand-earth text-xs font-bold shadow-sm"
             >
               <Filter className="w-4 h-4" />
               <span>Filters</span>
             </button>
-            <div className="flex bg-white rounded-full p-1 border border-brand-earth/10">
+            <div className="flex bg-white rounded-full p-1 border border-brand-earth/10 ml-auto">
               <button
                 onClick={() => setView('grid')}
-                className={`p-2 rounded-full transition-all ${view === 'grid' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
+                className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'grid' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
               >
-                <Grid className="w-5 h-5" />
+                <Grid className="w-4 h-4 md:w-5 md:h-5" />
               </button>
               <button
                 onClick={() => setView('list')}
-                className={`p-2 rounded-full transition-all ${view === 'list' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
+                className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'list' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
               >
-                <ListIcon className="w-5 h-5" />
+                <ListIcon className="w-4 h-4 md:w-5 md:h-5" />
               </button>
             </div>
           </div>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 md:gap-12">
           {/* Desktop Sidebar Filters */}
           <aside className="hidden lg:block space-y-10">
             <div className="glass-card rounded-[40px] p-8 space-y-10 border border-brand-earth/5">
@@ -304,7 +302,7 @@ export default function SearchResults() {
                 <Link
                   key={trip.id}
                   href={`/trip/${trip.id}`}
-                  className={`glass-card rounded-[40px] overflow-hidden hover:shadow-2xl transition-all border border-brand-earth/5 group ${view === 'list' ? 'flex flex-col sm:flex-row' : ''}`}
+                  className={`glass-card rounded-3xl md:rounded-[40px] overflow-hidden hover:shadow-2xl transition-all border border-brand-earth/5 group ${view === 'list' ? 'flex flex-col sm:flex-row' : ''}`}
                 >
                   <div
                     className={`relative ${view === 'list' ? 'sm:w-1/3 min-w-[280px] h-[300px] sm:h-auto' : 'h-[300px]'}`}
@@ -320,9 +318,9 @@ export default function SearchResults() {
                         e.preventDefault();
                         e.stopPropagation();
                       }}
-                      className="absolute top-6 right-6 p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-brand-coral transition-all"
+                      className="absolute top-4 md:top-6 right-4 md:right-6 p-2 md:p-3 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-white hover:text-brand-coral transition-all"
                     >
-                      <Heart className="w-5 h-5" />
+                      <Heart className="w-4 h-4 md:w-5 md:h-5" />
                     </button>
                     <div className="absolute bottom-6 left-6 flex space-x-2">
                       <span className="bg-brand-teal/80 backdrop-blur-md text-white text-[10px] font-bold uppercase py-1 px-3 rounded-full tracking-widest">
@@ -330,7 +328,7 @@ export default function SearchResults() {
                       </span>
                     </div>
                   </div>
-                  <div className="p-8 flex-1 flex flex-col justify-between">
+                  <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
                     <div>
                       <div className="flex items-center space-x-1 text-brand-saffron mb-3">
                         <Star className="w-4 h-4 fill-current" />

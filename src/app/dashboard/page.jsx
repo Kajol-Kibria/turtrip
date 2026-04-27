@@ -226,54 +226,56 @@ function DashboardContent() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-6 py-12"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
     >
-      <div className="flex flex-col md:flex-row gap-12">
+      <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
         {/* Sidebar */}
-        <aside className="w-full md:w-64 space-y-8">
-          <div className="text-center md:text-left">
-            <div className="relative inline-block mb-4">
+        <aside className="w-full lg:w-64 space-y-6 md:space-y-8">
+          <div className="flex flex-row lg:flex-col items-center lg:items-start text-left gap-4 lg:gap-0">
+            <div className="relative inline-block lg:mb-4">
               <img
                 src="https://picsum.photos/seed/user1/200/200"
-                className="w-32 h-32 rounded-full border-4 border-white shadow-xl"
+                className="w-20 h-20 lg:w-32 lg:h-32 rounded-full border-4 border-white shadow-xl"
                 alt="profile"
               />
-              <div className="absolute bottom-1 right-1 w-6 h-6 bg-brand-teal rounded-full border-2 border-white" />
+              <div className="absolute bottom-1 right-1 w-4 h-4 lg:w-6 lg:h-6 bg-brand-teal rounded-full border-2 border-white" />
             </div>
-            <h2 className="font-serif text-3xl text-brand-earth">Pelu Yusuf</h2>
-            <p className="text-xs text-brand-earth/40 font-bold uppercase tracking-widest mt-1">
-              Lagos, Nigeria
-            </p>
+            <div>
+              <h2 className="font-serif text-2xl lg:text-3xl text-brand-earth leading-tight">Pelu Yusuf</h2>
+              <p className="text-[10px] text-brand-earth/40 font-bold uppercase tracking-widest mt-1">
+                Lagos, Nigeria
+              </p>
+            </div>
           </div>
 
-          <nav className="space-y-4">
+          <nav className="grid grid-cols-2 lg:grid-cols-1 gap-3 lg:gap-4">
             <button
               onClick={() => handleTabChange('trips')}
-              className={`block w-full text-left px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeDashTab === 'trips' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+              className={`block w-full text-left px-4 lg:px-6 py-3 rounded-xl text-xs lg:text-sm font-bold transition-all ${activeDashTab === 'trips' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
             >
               My Trips
             </button>
             <button
               onClick={() => handleTabChange('private')}
-              className={`block w-full text-left px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeDashTab === 'private' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+              className={`block w-full text-left px-4 lg:px-6 py-3 rounded-xl text-xs lg:text-sm font-bold transition-all ${activeDashTab === 'private' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
             >
               Private Requests
             </button>
             <button
               onClick={() => handleTabChange('messages')}
-              className={`block w-full text-left px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeDashTab === 'messages' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+              className={`block w-full text-left px-4 lg:px-6 py-3 rounded-xl text-xs lg:text-sm font-bold transition-all ${activeDashTab === 'messages' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
             >
-              Message Center
+              Messages
             </button>
             <button
               onClick={() => handleTabChange('wishlist')}
-              className={`block w-full text-left px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeDashTab === 'wishlist' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+              className={`block w-full text-left px-4 lg:px-6 py-3 rounded-xl text-xs lg:text-sm font-bold transition-all ${activeDashTab === 'wishlist' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
             >
               Wishlist
             </button>
             <button
               onClick={() => handleTabChange('settings')}
-              className={`block w-full text-left px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeDashTab === 'settings' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
+              className={`block w-full text-left px-4 lg:px-6 py-3 rounded-xl text-xs lg:text-sm font-bold transition-all ${activeDashTab === 'settings' ? 'bg-brand-earth text-white' : 'text-brand-earth/60 hover:bg-brand-earth/5'}`}
             >
               Settings
             </button>
@@ -294,14 +296,14 @@ function DashboardContent() {
                     <h3 className="font-serif text-3xl text-brand-earth">Ongoing Adventure</h3>
                   </div>
 
-                  <div className="glass-card rounded-[48px] p-8 md:p-12 border-2 border-brand-teal/20 relative overflow-hidden">
+                  <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 border-2 border-brand-teal/20 relative overflow-hidden">
                     <div className="absolute top-0 right-0 w-32 h-32 bg-brand-teal/5 rounded-full -mr-16 -mt-16 blur-2xl" />
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 relative">
                       <div className="space-y-6 text-brand-earth">
                         <div>
-                          <h4 className="font-serif text-4xl mb-2">{activeTrip.title}</h4>
-                          <p className="text-sm text-brand-earth/60 font-medium">
+                          <h4 className="font-serif text-3xl md:text-4xl mb-2">{activeTrip.title}</h4>
+                          <p className="text-xs md:text-sm text-brand-earth/60 font-medium">
                             Landed at {activeBooking.startDate} • Kilimanjaro Region
                           </p>
                         </div>
@@ -458,7 +460,7 @@ function DashboardContent() {
                   </span>
                 </div>
 
-                <div className="glass-card rounded-[40px] p-8 flex flex-col items-stretch text-brand-earth">
+                <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 flex flex-col items-stretch text-brand-earth">
                   <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-6">
                     <img
                       src={MOCK_TRIPS[1].coverImage}

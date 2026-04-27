@@ -27,7 +27,7 @@ export default function Messages() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-4xl mx-auto h-[calc(100vh-80px)] flex flex-col bg-white border-x border-brand-earth/10 shadow-2xl"
+      className="max-w-4xl mx-auto h-screen md:h-[calc(100vh-80px)] flex flex-col bg-white md:border-x border-brand-earth/10 shadow-2xl pt-16 md:pt-0"
     >
       {/* Header */}
       <div className="p-4 border-b border-brand-earth/10 flex items-center justify-between bg-brand-warm/30">
@@ -60,11 +60,11 @@ export default function Messages() {
       </div>
 
       {/* Messages list */}
-      <div className="flex-1 overflow-y-auto p-6 space-y-6 bg-[#F8FAFF]">
+      <div className="flex-1 overflow-y-auto p-4 md:p-6 space-y-4 md:space-y-6 bg-[#F8FAFF]">
         {messages.map((msg) => (
           <div key={msg.id} className={`flex ${msg.isMe ? 'justify-end' : 'justify-start'}`}>
             <div
-              className={`max-w-[70%] px-4 py-3 rounded-2xl shadow-sm ${msg.isMe ? 'bg-brand-earth text-white rounded-tr-none' : 'bg-white text-brand-earth rounded-tl-none'}`}
+              className={`max-w-[85%] md:max-w-[70%] px-4 py-3 rounded-2xl shadow-sm ${msg.isMe ? 'bg-brand-earth text-white rounded-tr-none' : 'bg-white text-brand-earth rounded-tl-none'}`}
             >
               <p className="text-sm">{msg.text}</p>
               <p

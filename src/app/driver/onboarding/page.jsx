@@ -15,7 +15,7 @@ import { useRouter } from 'next/navigation';
 import StatusModal from '@/components/StatusModal';
 
 export default function DriverOnboarding() {
-  const navigate = useRouter();
+  const router = useRouter();
   const [step, setStep] = useState(1);
   const [showSuccess, setShowSuccess] = useState(false);
   const [payoutMethod, setPayoutMethod] = useState(null);
@@ -41,12 +41,12 @@ export default function DriverOnboarding() {
     >
       <StatusModal
         isOpen={showSuccess}
-        onClose={() => navigate('/driver/dashboard')}
+        onClose={() => router.push('/driver/dashboard')}
         type="success"
         title="Application Submitted!"
         message="Your driver onboarding request has been successfully submitted. Our team will review your documents within 24-48 hours. You will receive a notification once your profile is approved."
         actionLabel="Go to Dashboard"
-        onAction={() => navigate('/driver/dashboard')}
+        onAction={() => router.push('/driver/dashboard')}
       />
 
       <div className="max-w-4xl mx-auto">
