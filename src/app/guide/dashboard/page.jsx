@@ -255,9 +255,9 @@ export default function GuideDashboard() {
                       <button className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-warm text-brand-earth rounded-full text-xs font-bold hover:bg-brand-earth hover:text-white transition-all flex items-center justify-center">
                         <MessageSquare className="w-3 h-3 mr-2" /> Chat
                       </button>
-                      <button className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:bg-brand-teal/90 transition-all justify-center text-center">
-                        Manage
-                      </button>
+                      <Link href="/guide/logistics/b1" className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:bg-brand-teal/90 transition-all justify-center text-center">
+                        Logistics
+                      </Link>
                       <button
                         onClick={() =>
                           triggerStatus(
