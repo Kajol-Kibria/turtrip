@@ -26,7 +26,7 @@ export default function GuideOnboarding() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-4xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
+      className="max-w-4xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-12 md:pb-20"
     >
       <StatusModal
         isOpen={showStatusModal}

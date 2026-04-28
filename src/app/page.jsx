@@ -33,6 +33,14 @@ export default function Home() {
   const [selectedRide, setSelectedRide] = useState(null);
   const [selectedHotel, setSelectedHotel] = useState(null);
   const [guestCount, setGuestCount] = useState(1);
+  const [activeLiveTripIndex, setActiveLiveTripIndex] = useState(0);
+
+  const handleLiveTripsScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const itemWidth = e.target.scrollWidth / 3; // roughly for 3 items
+    const index = Math.round(scrollLeft / itemWidth);
+    setActiveLiveTripIndex(index);
+  };
 
   const sponsoredTrips = useMemo(() => MOCK_TRIPS.filter((t) => t.isSponsored), []);
   const otherTrips = useMemo(() => MOCK_TRIPS.filter((t) => !t.isSponsored), []);
@@ -67,7 +75,7 @@ export default function Home() {
       className="pb-20"
     >
       {/* Hero Section */}
-      <section className="relative h-[60vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
+      <section className="relative h-[75vh] md:h-[80vh] flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img
             src="https://picsum.photos/seed/safari/1920/1080"
@@ -123,7 +131,7 @@ export default function Home() {
       </section>
 
       {isSearching && (
-        <section className="py-20 px-6 max-w-7xl mx-auto">
+        <section className="py-10 md:py-20 px-6 max-w-7xl mx-auto">
           <div className="flex items-center justify-between mb-8 md:mb-12">
             <h2 className="text-2xl md:text-4xl text-brand-earth">Search Results</h2>
             <button
@@ -736,7 +744,7 @@ export default function Home() {
       </AnimatePresence>
 
       {/* Trust Section */}
-      <section className="py-12 md:py-20 px-6 max-w-7xl mx-auto">
+      <section className="py-10 md:py-20 px-6 max-w-7xl mx-auto">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
           <div className="flex flex-col items-center text-center p-6 bg-white/50 rounded-3xl border border-brand-earth/5">
             <div className="w-12 h-12 md:w-16 md:h-16 bg-brand-teal/10 rounded-2xl flex items-center justify-center text-brand-teal mb-4 md:mb-6">
@@ -769,11 +777,11 @@ export default function Home() {
       </section>
 
       {/* Featured Trips */}
-      <section className="py-20 bg-brand-warm/50">
+      <section className="py-8 md:py-20 bg-brand-warm/50">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-end mb-12">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12">
             <div>
-              <h2 className="font-serif text-4xl mb-2 text-brand-earth">Featured Experiences</h2>
+              <h2 className="font-serif text-3xl md:text-5xl mb-2 text-brand-earth">Featured Experiences</h2>
               <p className="text-brand-earth/50">
                 Hand-picked adventures from our top-rated guides.
               </p>
@@ -805,7 +813,7 @@ export default function Home() {
                     )}
                   </div>
                   <div className="p-8">
-                    <div className="flex justify-between items-start mb-4">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-4 gap-2 md:gap-0">
                       <div>
                         <h4 className="font-serif text-2xl text-brand-earth mb-1">{trip.title}</h4>
                         <div className="flex items-center text-xs text-brand-earth/40 uppercase tracking-wider font-bold">
@@ -813,7 +821,7 @@ export default function Home() {
                           {trip.location.city}, {trip.location.country}
                         </div>
                       </div>
-                      <div className="text-right">
+                      <div className="text-left md:text-right">
                         <div className="text-brand-teal font-serif text-2xl font-bold">
                           {trip.price.currency} {trip.price.local.toLocaleString()}
                         </div>
@@ -855,8 +863,8 @@ export default function Home() {
       </section>
 
       {/* Verified Guides Section */}
-      <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+      <section className="py-8 md:py-20 px-6 max-w-7xl mx-auto">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-end mb-16 gap-6">
           <div className="max-w-2xl">
             <h2 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">
               Our Verified Local Specialists
@@ -944,14 +952,17 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex overflow-x-auto pb-8 gap-8 no-scrollbar">
+          <div
+            className="flex lg:grid lg:grid-cols-3 overflow-x-auto lg:overflow-x-visible pb-8 gap-6 md:gap-8 no-scrollbar snap-x snap-mandatory"
+            onScroll={handleLiveTripsScroll}
+          >
             {MOCK_TRIPS.slice(1, 4).map((trip, i) => (
               <Link
                 key={trip.id}
                 href={`/trip/${trip.id}`}
-                className="min-w-[300px] md:min-w-[400px] bg-white/10 backdrop-blur rounded-[40px] p-6 border border-white/10 hover:bg-white/20 transition-all cursor-pointer"
+                className="min-w-[85vw] md:min-w-[400px] lg:min-w-0 bg-white/10 backdrop-blur rounded-[32px] md:rounded-[40px] p-6 md:p-8 border border-white/10 hover:bg-white/20 transition-all cursor-pointer snap-center"
               >
-                <div className="flex items-start justify-between mb-8">
+                <div className="flex flex-col md:flex-row items-start gap-3 md:gap-0 justify-between mb-8">
                   <div>
                     <h4 className="font-serif text-2xl mb-1">{trip.title}</h4>
                     <p className="text-xs text-white/50 font-bold uppercase tracking-widest flex items-center">
@@ -963,8 +974,8 @@ export default function Home() {
                     {i + 2} Seats Left
                   </div>
                 </div>
-                <div className="flex items-center justify-between">
-                  <div className="flex -space-x-3">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between">
+                  <div className="flex -space-x-3 mb-2 md:mb-0">
                     {[1, 2, 3].map((u) => (
                       <img
                         key={u}
@@ -983,6 +994,15 @@ export default function Home() {
                   </div>
                 </div>
               </Link>
+            ))}
+          </div>
+
+          <div className="flex lg:hidden justify-center space-x-2 mt-4">
+            {[0, 1, 2].map((i) => (
+              <div
+                key={i}
+                className={`h-1 rounded-full transition-all duration-300 ${activeLiveTripIndex === i ? 'w-8 bg-brand-coral' : 'w-2 bg-white/20'}`}
+              />
             ))}
           </div>
         </div>

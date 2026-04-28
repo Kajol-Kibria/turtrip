@@ -1,5 +1,5 @@
 'use client';
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   CreditCard,
@@ -77,6 +77,35 @@ export default function BookingFlow() {
   const [selectedStays, setSelectedStays] = useState([]);
   const [stayImageIndices, setStayImageIndices] = useState({});
   const [activeGallery, setActiveGallery] = useState(null);
+  const [activeStayIndex, setActiveStayIndex] = useState(0);
+  const [activeDriverIndex, setActiveDriverIndex] = useState(0);
+
+  const stayScrollRef = useRef(null);
+  const driverScrollRef = useRef(null);
+
+  const scrollContainer = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = ref.current.offsetWidth;
+      ref.current.scrollBy({
+        left: direction === 'next' ? scrollAmount : -scrollAmount,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  const handleStayScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const itemWidth = e.target.scrollWidth / (trip.accommodations?.length || 1);
+    const index = Math.round(scrollLeft / itemWidth);
+    setActiveStayIndex(index);
+  };
+
+  const handleDriverScroll = (e) => {
+    const scrollLeft = e.target.scrollLeft;
+    const itemWidth = e.target.scrollWidth / (MOCK_DRIVERS.length || 1);
+    const index = Math.round(scrollLeft / itemWidth);
+    setActiveDriverIndex(index);
+  };
 
   const roomsNeeded = useMemo(() => Math.ceil(guestCount / 1.5), [guestCount]); // 1.5 travelers per room average
   const roomsSelected = useMemo(
@@ -115,7 +144,7 @@ export default function BookingFlow() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <AnimatePresence>
         {activeGallery && (
@@ -462,7 +491,12 @@ export default function BookingFlow() {
                     </div>
                   </div>
 
-                  <div className="flex overflow-x-auto gap-6 pb-8 no-scrollbar scroll-smooth">
+                  <div className="relative group">
+                    <div
+                      ref={stayScrollRef}
+                      className="flex overflow-x-auto gap-6 pb-8 no-scrollbar scroll-smooth snap-x snap-mandatory"
+                      onScroll={handleStayScroll}
+                    >
                     {trip.accommodations?.map((hotel) => {
                       const selected = selectedStays.find((s) => s.id === hotel.id);
                       const currentIdx = stayImageIndices[hotel.id] || 0;
@@ -486,7 +520,7 @@ export default function BookingFlow() {
                       return (
                         <div
                           key={hotel.id}
-                          className={`min-w-[320px] md:min-w-[400px] p-6 rounded-[40px] border-2 transition-all ${selected ? 'border-brand-teal bg-brand-teal/5 shadow-xl' : 'border-brand-earth/5 bg-white hover:border-brand-earth/10'}`}
+                          className={`min-w-full md:min-w-[400px] p-5 rounded-[40px] border-2 transition-all snap-center ${selected ? 'border-brand-teal bg-brand-teal/5 shadow-xl' : 'border-brand-earth/5 bg-white hover:border-brand-earth/10'}`}
                         >
                           <div
                             className="relative mb-6 group/img cursor-zoom-in"
@@ -616,6 +650,30 @@ export default function BookingFlow() {
                         </div>
                       );
                     })}
+                    </div>
+
+                    {/* Navigation Buttons */}
+                    <button
+                      onClick={() => scrollContainer(stayScrollRef, 'prev')}
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center z-10 -ml-5 border border-brand-earth/5 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex"
+                    >
+                      <ChevronLeft className="w-5 h-5 text-brand-earth" />
+                    </button>
+                    <button
+                      onClick={() => scrollContainer(stayScrollRef, 'next')}
+                      className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center z-10 -mr-5 border border-brand-earth/5 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex"
+                    >
+                      <ChevronRight className="w-5 h-5 text-brand-earth" />
+                    </button>
+                  </div>
+
+                  <div className="flex md:hidden justify-center space-x-2 mt-4">
+                    {trip.accommodations?.map((_, i) => (
+                      <div
+                        key={i}
+                        className={`h-1 rounded-full transition-all duration-300 ${activeStayIndex === i ? 'w-8 bg-brand-teal' : 'w-2 bg-brand-earth/10'}`}
+                      />
+                    ))}
                   </div>
                 </div>
 
@@ -747,7 +805,12 @@ export default function BookingFlow() {
                     <h3 className="font-bold text-sm uppercase tracking-widest text-brand-earth/40">
                       Available Drivers Near You
                     </h3>
-                    <div className="flex overflow-x-auto gap-6 pb-6 no-scrollbar">
+                    <div className="relative group">
+                      <div
+                        ref={driverScrollRef}
+                        className="flex overflow-x-auto gap-6 pb-6 no-scrollbar snap-x snap-mandatory"
+                        onScroll={handleDriverScroll}
+                      >
                       {MOCK_DRIVERS.map((driver) => {
                         const isSelected = selectedDriverIds.includes(driver.id);
                         return (
@@ -762,7 +825,7 @@ export default function BookingFlow() {
                                 setSelectedDriverIds([...selectedDriverIds, driver.id]);
                               }
                             }}
-                            className={`min-w-[320px] p-6 rounded-[32px] border-2 transition-all cursor-pointer relative ${isSelected ? 'border-brand-teal bg-brand-teal/5 shadow-lg' : 'border-brand-earth/5 bg-white hover:border-brand-earth/10'}`}
+                            className={`min-w-full md:min-w-[320px] p-6 rounded-[32px] border-2 transition-all cursor-pointer relative snap-center ${isSelected ? 'border-brand-teal bg-brand-teal/5 shadow-lg' : 'border-brand-earth/5 bg-white hover:border-brand-earth/10'}`}
                           >
                             {isSelected && (
                               <div className="absolute top-4 right-4 bg-brand-teal text-white p-1 rounded-full shadow-lg z-10">
@@ -826,6 +889,30 @@ export default function BookingFlow() {
                           </div>
                         );
                       })}
+                      </div>
+
+                      {/* Navigation Buttons */}
+                      <button
+                        onClick={() => scrollContainer(driverScrollRef, 'prev')}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center z-10 -ml-5 border border-brand-earth/5 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex"
+                      >
+                        <ChevronLeft className="w-5 h-5 text-brand-earth" />
+                      </button>
+                      <button
+                        onClick={() => scrollContainer(driverScrollRef, 'next')}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center z-10 -mr-5 border border-brand-earth/5 opacity-0 group-hover:opacity-100 transition-opacity hidden md:flex"
+                      >
+                        <ChevronRight className="w-5 h-5 text-brand-earth" />
+                      </button>
+                    </div>
+
+                    <div className="flex md:hidden justify-center space-x-2 mt-4">
+                      {MOCK_DRIVERS.map((_, i) => (
+                        <div
+                          key={i}
+                          className={`h-1 rounded-full transition-all duration-300 ${activeDriverIndex === i ? 'w-8 bg-brand-teal' : 'w-2 bg-brand-earth/10'}`}
+                        />
+                      ))}
                     </div>
                   </div>
                 </div>
@@ -938,7 +1025,7 @@ export default function BookingFlow() {
                   </div>
 
                   <div className="mt-12 p-6 md:p-8 bg-brand-earth text-white rounded-3xl">
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-2 md:gap-0 mb-6">
                       <span className="text-sm font-bold opacity-40 uppercase tracking-widest">
                         Total to Pay
                       </span>
@@ -967,9 +1054,9 @@ export default function BookingFlow() {
                       onClick={() => {
                         setShowPaymentSuccess(true);
                       }}
-                      className="w-full mt-10 bg-brand-teal text-white py-6 rounded-full font-bold text-xl shadow-2xl hover:scale-105 transition-all"
+                      className="w-full sm:width-auto mt-10 bg-brand-teal text-white py-4 md:py-5 rounded-full font-bold shadow-2xl hover:scale-105 transition-all"
                     >
-                      Secure Payment & Launch
+                      Secure Payment
                     </button>
                   </div>
                 </div>
@@ -978,8 +1065,9 @@ export default function BookingFlow() {
           </div>
 
           {/* Sidebar Summary Card */}
-          <div className="space-y-6">
-            <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5 overflow-hidden sticky top-32">
+          <div className="">
+            <div className="overflow-hidden sticky top-32 space-y-6">
+            <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5">
               <img
                 src={trip.coverImage}
                 className="w-full h-40 rounded-3xl object-cover mb-6"
@@ -1037,7 +1125,6 @@ export default function BookingFlow() {
                 </motion.div>
               )}
             </div>
-
             <div className="p-6 bg-brand-coral/5 rounded-3xl border border-brand-coral/10">
               <div className="flex items-start space-x-3">
                 <ShieldCheck className="w-5 h-5 text-brand-coral" />
@@ -1050,6 +1137,9 @@ export default function BookingFlow() {
                 </div>
               </div>
             </div>
+            </div>
+            
+
           </div>
         </div>
       </div>

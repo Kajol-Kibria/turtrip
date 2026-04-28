@@ -32,9 +32,9 @@ export default function TripDetails() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="pb-20"
+      className="pb-6 md:pb-20"
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-6 md:pb-12">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-6 md:pb-12">
         <Link
           href="/"
           className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-6 md:mb-8"
@@ -311,7 +311,7 @@ export default function TripDetails() {
                   href={`/book/${trip.id}?guests=${guestCount}`}
                   className="flex-[3] bg-brand-teal hover:bg-brand-teal/90 text-white py-5 rounded-full font-bold transition-all shadow-xl flex items-center justify-center"
                 >
-                  Proceed to Ride Booking <ChevronRight className="ml-2 w-5 h-5" />
+                  Proceed<ChevronRight className="ml-2 w-5 h-5" />
                 </Link>
                 <button
                   onClick={() => setIsWishlisted(!isWishlisted)}

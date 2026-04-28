@@ -51,7 +51,7 @@ const Notifications = () => {
   return (
     <motion.div
       initial={{ opacity: 0 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <div className="max-w-4xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">

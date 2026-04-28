@@ -27,7 +27,7 @@ export default function Messages() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-4xl mx-auto h-screen md:h-[calc(100vh-80px)] flex flex-col bg-white md:border-x border-brand-earth/10 shadow-2xl pt-16 md:pt-0"
+      className="max-w-4xl mx-auto h-screen md:h-[calc(100vh-80px)] flex flex-col bg-white md:border-x border-brand-earth/10 shadow-2xl md:pt-0"
     >
       {/* Header */}
       <div className="p-4 border-b border-brand-earth/10 flex items-center justify-between bg-brand-warm/30">

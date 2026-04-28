@@ -102,7 +102,7 @@ export default function SearchResults() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
           <div className="mb-8 md:mb-12">
             <h1 className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-brand-earth leading-tight">

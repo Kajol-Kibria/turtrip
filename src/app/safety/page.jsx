@@ -7,10 +7,10 @@ export default function Safety() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <div className="max-w-4xl mx-auto">
-        <header className="text-center mb-12 md:mb-20">
+        <header className="text-center mb-6 md:mb-10">
           <div className="w-16 h-16 md:w-20 md:h-20 bg-brand-teal/10 rounded-2xl md:rounded-[30px] flex items-center justify-center mx-auto mb-6 md:mb-8">
             <ShieldCheck className="w-8 h-8 md:w-10 md:h-10 text-brand-teal" />
           </div>
@@ -21,7 +21,7 @@ export default function Safety() {
           </p>
         </header>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 md:mb-20">
           <section className="bg-white p-6 md:p-10 rounded-3xl md:rounded-[40px] shadow-xl border border-brand-earth/5">
             <div className="flex items-center space-x-4 mb-6">
               <div className="p-3 bg-brand-earth/5 rounded-2xl">

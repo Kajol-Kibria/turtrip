@@ -46,7 +46,7 @@ export default function MyBookingDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-5xl mx-auto">
         <Link
           href="/dashboard"

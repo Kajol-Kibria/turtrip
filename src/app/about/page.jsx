@@ -7,11 +7,11 @@ export default function AboutUs() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-20">
-          <h1 className="font-serif text-4xl md:text-6xl text-brand-earth mb-4 md:mb-6">
+          <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4 md:mb-6">
             Connecting Worlds, <br className="hidden md:block" />
             One Story at a Time.
           </h1>

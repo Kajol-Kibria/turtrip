@@ -20,7 +20,7 @@ export default function ChatList({ onSelectChat }) {
           <Link key={chat.id} href={`/messages?chatId=${chat.id}`} className="block">
             <motion.div
               whileHover={{ x: 4 }}
-              className="bg-white/50 backdrop-blur-sm p-4 rounded-3xl border border-brand-earth/5 hover:border-brand-teal/30 hover:bg-white transition-all group"
+              className="bg-white/50 backdrop-blur-sm p-2 md:p-4 rounded-3xl border border-brand-earth/5 hover:border-brand-teal/30 hover:bg-white transition-all group"
             >
               <div className="flex items-center space-x-4">
                 <div className="relative">
@@ -38,7 +38,7 @@ export default function ChatList({ onSelectChat }) {
                 </div>
 
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between mb-1">
+                  <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-1">
                     <h4 className="font-bold text-sm text-brand-earth truncate">
                       {chat.participantName}
                     </h4>

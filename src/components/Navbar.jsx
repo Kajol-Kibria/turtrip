@@ -208,7 +208,7 @@ export default function Navbar() {
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden bg-brand-warm border-t border-brand-earth/10 overflow-hidden shadow-xl"
           >
-            <div className="px-6 py-8 flex flex-col space-y-4">
+            <div className="px-6 py-3 flex flex-col space-y-4">
               <Link href="/" onClick={() => setIsOpen(false)} className="text-xl font-serif py-2 border-b border-brand-earth/5">
                 Home
               </Link>

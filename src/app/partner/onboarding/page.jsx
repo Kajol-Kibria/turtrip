@@ -112,7 +112,7 @@ export default function PartnerOnboarding() {
   };
 
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
         <header className="text-center mb-10 md:mb-16">
           <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4">

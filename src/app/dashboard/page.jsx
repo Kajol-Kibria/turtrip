@@ -226,7 +226,7 @@ function DashboardContent() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-12 md:pb-20"
     >
       <div className="flex flex-col lg:flex-row gap-8 md:gap-12">
         {/* Sidebar */}
@@ -461,7 +461,7 @@ function DashboardContent() {
                 </div>
 
                 <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 flex flex-col items-stretch text-brand-earth">
-                  <div className="flex flex-col md:flex-row gap-8 items-center md:items-start mb-6">
+                  <div className="flex flex-col md:flex-row gap-8 items-center md:items-start">
                     <img
                       src={MOCK_TRIPS[1].coverImage}
                       className="w-full md:w-48 h-48 rounded-[32px] object-cover"
@@ -481,7 +481,7 @@ function DashboardContent() {
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-brand-earth/10">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pt-6 border-t border-brand-earth/10">
                         <div className="flex flex-col">
                           <span className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest mb-1 font-sans">
                             Date
@@ -491,26 +491,28 @@ function DashboardContent() {
                             June 12, 2026
                           </div>
                         </div>
-                        <div className="flex flex-col">
-                          <span className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest mb-1">
-                            Guide
-                          </span>
-                          <div className="flex items-center text-sm font-medium">
-                            <img
-                              src={MOCK_SPECIALISTS[0].profilePhoto}
-                              className="w-5 h-5 rounded-full mr-2"
-                              alt="guide"
-                            />
-                            Kofi Mensah
+                        <div className='flex items-start gap-3'>
+                          <div className="flex flex-col">
+                            <span className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest mb-1">
+                              Guide
+                            </span>
+                            <div className="flex items-center text-sm font-medium">
+                              <img
+                                src={MOCK_SPECIALISTS[0].profilePhoto}
+                                className="w-5 h-5 rounded-full mr-2"
+                                alt="guide"
+                              />
+                              Kofi Mensah
+                            </div>
                           </div>
-                        </div>
-                        <div className="flex items-center md:justify-end gap-3 col-span-2 md:col-span-1">
                           <button className="p-3 bg-brand-teal/10 text-brand-teal rounded-full hover:bg-brand-teal hover:text-white transition-all">
                             <MessageSquare className="w-5 h-5" />
                           </button>
+                        </div>
+                        <div className=''>
                           <button
                             onClick={() => setShowBookingDetails(!showBookingDetails)}
-                            className="flex items-center gap-2 px-6 py-3 bg-brand-earth text-white rounded-full text-sm font-bold shadow-lg"
+                            className="w-full sm:w-auto flex items-center justify-center md:justify-start gap-2 px-6 py-3 bg-brand-earth text-white rounded-full text-sm font-bold shadow-lg"
                           >
                             Booking Details{' '}
                             <ChevronDown
@@ -528,9 +530,9 @@ function DashboardContent() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: 'auto', opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        className="overflow-hidden border-t border-brand-earth/5 pt-6"
+                        className="overflow-hidden"
                       >
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-6 pt-6 border-t border-brand-earth/5 ">
                           <div className="space-y-4">
                             <span className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest font-sans">
                               Accommodation
@@ -589,9 +591,9 @@ function DashboardContent() {
                               >
                                 Cancel Entire Trip
                               </button>
-                              <button className="w-full py-3 bg-brand-earth text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brand-teal transition-all">
+                              {/* <button className="w-full py-3 bg-brand-earth text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brand-teal transition-all">
                                 Modify Dates
-                              </button>
+                              </button> */}
                             </div>
                           </div>
                         </div>
@@ -666,13 +668,12 @@ function DashboardContent() {
                           </div>
                         </div>
                         <span
-                          className={`self-start px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-                            req.status === 'Pending'
+                          className={`self-start px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${req.status === 'Pending'
                               ? 'bg-amber-100 text-amber-700'
                               : req.status === 'Offered'
                                 ? 'bg-brand-teal text-white'
                                 : 'bg-green-100 text-green-700'
-                          }`}
+                            }`}
                         >
                           {req.status === 'Offered' ? 'Offer Received' : req.status}
                         </span>

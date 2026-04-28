@@ -5,11 +5,11 @@ import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 export default function TermsOfUse() {
   return (
-    <div className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6">
+    <div className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-4xl mx-auto">
         <Link
           href="/"
-          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-12 transition-colors"
+          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-6 md:mb-12 transition-colors"
         >
           <ArrowLeft className="w-4 h-4 mr-2" /> Back to Home
         </Link>

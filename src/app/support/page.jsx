@@ -43,7 +43,7 @@ export default function Support() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <StatusModal
         isOpen={showStatusModal}
@@ -56,8 +56,8 @@ export default function Support() {
       />
 
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
-          <header className="mb-10 md:mb-16">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 md:mb-12 gap-6">
+          <header className="mb-2 md:mb-16">
             <h1 className="font-serif text-3xl md:text-5xl text-brand-earth mb-4 md:mb-6 leading-tight">
               Support Center
             </h1>

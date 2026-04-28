@@ -102,7 +102,7 @@ export default function DriverDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-12 md:pb-20"
     >
       <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-8 text-brand-earth">
         <div>
@@ -438,26 +438,31 @@ export default function DriverDashboard() {
                       </div>
                     </div>
 
-                    <div className="space-y-6">
-                      <h3 className="font-serif text-2xl">Ride Preferences</h3>
-                      <div className="flex items-center justify-between p-6 bg-brand-warm rounded-3xl border border-brand-earth/5">
-                        <div>
-                          <p className="font-bold text-sm">Accept Round Trips</p>
-                          <p className="text-[10px] text-brand-earth/40">
-                            Enable this to receive return-trip requests
-                          </p>
+                    <div className="flex flex-col gap-4 justify-around">
+                      <div className='space-y-6'>
+                        <h3 className="font-serif text-2xl">Ride Preferences</h3>
+                        <div className="flex items-center justify-between p-6 bg-brand-warm rounded-3xl border border-brand-earth/5">
+                          <div>
+                            <p className="font-bold text-sm">Accept Round Trips</p>
+                            <p className="text-[10px] text-brand-earth/40">
+                              Enable this to receive return-trip requests
+                            </p>
+                          </div>
+                          <button
+                            onClick={() =>
+                              setPricing({ ...pricing, acceptsRoundTrip: !pricing.acceptsRoundTrip })
+                            }
+                            className={`w-14 h-8 rounded-full transition-all relative ${pricing.acceptsRoundTrip ? 'bg-brand-teal' : 'bg-brand-earth/20'}`}
+                          >
+                            <div
+                              className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-all ${pricing.acceptsRoundTrip ? 'right-1' : 'left-1'}`}
+                            />
+                          </button>
                         </div>
-                        <button
-                          onClick={() =>
-                            setPricing({ ...pricing, acceptsRoundTrip: !pricing.acceptsRoundTrip })
-                          }
-                          className={`w-14 h-8 rounded-full transition-all relative ${pricing.acceptsRoundTrip ? 'bg-brand-teal' : 'bg-brand-earth/20'}`}
-                        >
-                          <div
-                            className={`absolute top-1 w-6 h-6 bg-white rounded-full transition-all ${pricing.acceptsRoundTrip ? 'right-1' : 'left-1'}`}
-                          />
-                        </button>
                       </div>
+                      <button className="w-full py-3 bg-brand-earth text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brand-teal transition-all">
+                        Update Pricing
+                      </button>
                     </div>
                   </div>
                 </div>

@@ -126,12 +126,12 @@ export default function StayProviderDashboard() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
+      className="2xl:max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-12 md:pb-20"
     >
-      <div className="flex flex-col md:flex-row gap-8 md:gap-12 text-brand-earth">
+      <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 text-brand-earth">
         {/* Sidebar */}
-        <aside className="w-full md:w-64 space-y-8">
-          <div className="text-center md:text-left">
+        <aside className="w-full lg:w-64 space-y-8">
+          <div className="text-center lg:text-left">
             <div className="relative inline-block mb-4">
               <img
                 src="https://picsum.photos/seed/stay/200/200"
@@ -148,7 +148,7 @@ export default function StayProviderDashboard() {
             </p>
           </div>
 
-          <nav className="flex overflow-x-auto md:flex-col space-x-2 md:space-x-0 md:space-y-2 pb-4 md:pb-0 no-scrollbar">
+          <nav className="flex overflow-x-auto lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 pb-4 lg:pb-0 no-scrollbar">
             <TabButton
               active={activeTab === 'reservations'}
               icon={<Calendar className="w-4 h-4" />}
@@ -397,7 +397,7 @@ export default function StayProviderDashboard() {
           )}
 
           {activeTab === 'calendar' && (
-            <section className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden">
+            <section className="glass-card rounded-3xl md:rounded-[48px] w-full lg:max-w-[calc(100vw-400px)] p-4 md:p-8 lg:p-12 border border-brand-earth/5 shadow-2xl overflow-hidden">
               <div className="flex flex-col md:flex-row md:items-center justify-between mb-8 md:mb-10 gap-6">
                 <div>
                   <h3 className="font-serif text-3xl mb-2">Availability Calendar</h3>
@@ -417,15 +417,15 @@ export default function StayProviderDashboard() {
                 </div>
               </div>
 
-              <div className="overflow-x-auto">
-                <table className="w-full min-w-[800px] border-collapse">
+              <div className="overflow-x-auto pb-4">
+                <table className="w-full min-w-max border-collapse">
                   <thead>
                     <tr>
-                      <th className="p-4 text-left font-serif text-lg border-b border-brand-earth/10 sticky left-0 bg-white z-20 w-48">
+                      <th className="p-2 md:p-4 text-left font-serif text-sm md:text-lg border-b border-brand-earth/10 sticky left-0 bg-white z-20 w-32 md:w-40 lg:w-48">
                         Room Tier
                       </th>
                       {[...Array(14)].map((_, i) => (
-                        <th key={i} className="p-4 border-b border-brand-earth/10 min-w-[60px]">
+                        <th key={i} className="p-2 md:p-4 border-b border-brand-earth/10 min-w-[50px] md:min-w-[60px]">
                           <div className="flex flex-col items-center">
                             <span className="text-[10px] uppercase font-bold text-brand-earth/40">
                               Jul
@@ -439,14 +439,14 @@ export default function StayProviderDashboard() {
                   <tbody>
                     {rooms.map((room) => (
                       <tr key={room.id} className="group hover:bg-brand-warm/20 transition-all">
-                        <td className="p-4 border-b border-brand-earth/5 sticky left-0 bg-white/80 backdrop-blur-md z-10 group-hover:bg-brand-warm/30 transition-all">
-                          <div className="flex items-center space-x-3">
-                            <div className="w-8 h-8 rounded-lg bg-brand-earth/5 flex items-center justify-center">
-                              <HomeIcon className="w-4 h-4 text-brand-earth/30" />
+                        <td className="p-2 md:p-4 border-b border-brand-earth/5 sticky left-0 bg-white/80 backdrop-blur-md z-10 group-hover:bg-brand-warm/30 transition-all">
+                          <div className="flex items-center space-x-2 md:space-x-3">
+                            <div className="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-brand-earth/5 flex items-center justify-center">
+                              <HomeIcon className="w-3 h-3 md:w-4 md:h-4 text-brand-earth/30" />
                             </div>
                             <div>
-                              <p className="text-sm font-bold">{room.tier}</p>
-                              <p className="text-[9px] text-brand-earth/40 font-bold uppercase">
+                              <p className="text-xs md:text-sm font-bold">{room.tier}</p>
+                              <p className="hidden md:block text-[9px] text-brand-earth/40 font-bold uppercase">
                                 ID: {room.id}
                               </p>
                             </div>
@@ -455,14 +455,13 @@ export default function StayProviderDashboard() {
                         {[...Array(14)].map((_, i) => {
                           const isBooked = Math.random() > 0.7; // Simulating some bookings
                           return (
-                            <td key={i} className="p-1 border-b border-brand-earth/5 relative h-20">
+                            <td key={i} className="p-1 border-b border-brand-earth/5 relative h-16 md:h-20">
                               {isBooked ? (
                                 <div
-                                  className={`h-full w-full rounded-xl flex flex-col justify-center px-2 cursor-pointer transition-all border shadow-sm ${
-                                    i % 4 === 0
-                                      ? 'bg-brand-teal/10 border-brand-teal/20 text-brand-teal'
-                                      : 'bg-brand-earth/5 border-brand-earth/10 text-brand-earth/40'
-                                  }`}
+                                  className={`h-full w-full rounded-xl flex flex-col justify-center px-2 cursor-pointer transition-all border shadow-sm ${i % 4 === 0
+                                    ? 'bg-brand-teal/10 border-brand-teal/20 text-brand-teal'
+                                    : 'bg-brand-earth/5 border-brand-earth/10 text-brand-earth/40'
+                                    }`}
                                 >
                                   <span className="text-[8px] font-bold uppercase truncate">
                                     Booked

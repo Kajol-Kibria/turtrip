@@ -29,10 +29,10 @@ export default function Search() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-20 px-6"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white rounded-[40px] p-8 shadow-2xl border border-brand-earth/5 mb-12">
+        <div className="bg-white rounded-[40px] md:px-4 md:py-4 shadow-2xl border border-brand-earth/5 mb-8 md:mb-12">
           <div className="flex flex-col lg:flex-row items-center gap-6">
             <div className="flex-1 w-full relative">
               <SearchIcon className="absolute left-6 top-1/2 -translate-y-1/2 text-brand-earth/40 w-5 h-5" />

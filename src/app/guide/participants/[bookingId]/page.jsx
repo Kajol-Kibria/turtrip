@@ -97,10 +97,10 @@ export default function ParticipantList() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-5xl mx-auto px-6 py-12 text-brand-earth"
+      className="max-w-5xl mx-auto px-6 py-5 md:pt-18 text-brand-earth"
     >
-      <div className="flex items-center justify-between mb-12">
-        <div className="flex items-center space-x-6">
+      <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 md:mb-12 gap-6 md:gap-0">
+        <div className="flex flex-col md:flex-row items-start md:items-center space-x-6">
           <Link
             href="/guide/dashboard"
             className="p-3 bg-brand-warm rounded-full hover:bg-brand-earth hover:text-white transition-all"
@@ -108,7 +108,7 @@ export default function ParticipantList() {
             <ArrowLeft className="w-5 h-5" />
           </Link>
           <div>
-            <h1 className="font-serif text-4xl mb-1">Booking Participants</h1>
+            <h1 className="font-serif text-3xl md:text-4xl mb-1">Booking Participants</h1>
             <p className="text-brand-earth/60">
               Managing participants for Serengeti Migration Safari (ID: {bookingId})
             </p>
@@ -125,7 +125,7 @@ export default function ParticipantList() {
           {participants.map((p) => (
             <div
               key={p.id}
-              className="glass-card rounded-3xl p-6 flex items-center justify-between border border-brand-earth/5 hover:border-brand-teal/20 transition-all"
+              className="glass-card rounded-3xl p-4 md:p-6 flex items-center justify-between border border-brand-earth/5 hover:border-brand-teal/20 transition-all"
             >
               <div className="flex items-center space-x-4">
                 <img src={p.photo} className="w-12 h-12 rounded-full" alt={p.name} />
@@ -153,7 +153,7 @@ export default function ParticipantList() {
 
         {/* Broadcast Box */}
         <div className="lg:col-span-1">
-          <div className="glass-card rounded-[40px] p-8 border border-brand-earth/5 sticky top-32">
+          <div className="glass-card rounded-[40px] p-6 md:p-8 border border-brand-earth/5 sticky top-32">
             <div className="flex items-center space-x-3 mb-6">
               <Mail className="w-6 h-6 text-brand-teal" />
               <h3 className="font-serif text-2xl italic">Broadcast Info</h3>

@@ -71,7 +71,7 @@ export default function GuideDashboard() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-7xl mx-auto px-4 md:px-6 pt-24 md:pt-32 pb-12 md:pb-20"
+      className="max-w-7xl mx-auto px-4 md:px-6 pt-5 md:pt-18 pb-12 md:pb-20"
     >
       <div className="flex flex-col md:flex-row justify-between items-start mb-8 md:mb-12 gap-6 md:gap-8 text-brand-earth">
         <div>
@@ -166,7 +166,7 @@ export default function GuideDashboard() {
               onClick={() => setActiveTab('private')}
               className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'private' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
             >
-              Private Requests
+              Private&nbsp;Requests
               {activeTab === 'private' && (
                 <motion.div
                   layoutId="gt"
@@ -178,7 +178,7 @@ export default function GuideDashboard() {
               onClick={() => setActiveTab('active')}
               className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'active' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
             >
-              My Experiences
+              My&nbsp;Experiences
               {activeTab === 'active' && (
                 <motion.div
                   layoutId="gt"
@@ -190,7 +190,7 @@ export default function GuideDashboard() {
               onClick={() => setActiveTab('messages')}
               className={`py-4 text-sm font-bold relative transition-all whitespace-nowrap ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
             >
-              Message Center
+              Message&nbsp;Center
               {activeTab === 'messages' && (
                 <motion.div
                   layoutId="gt"
@@ -227,7 +227,7 @@ export default function GuideDashboard() {
                       </div>
                     </div>
 
-                    <div className="flex flex-col items-end">
+                    <div className="flex flex-col items-start md:items-end">
                       <div className="flex -space-x-3 mb-2">
                         {[1, 2, 3, 4, 5].map((p) => (
                           <img
@@ -598,7 +598,7 @@ export default function GuideDashboard() {
           )}
 
           {activeTab === 'messages' && (
-            <section className="max-w-2xl bg-white rounded-[40px] p-8 border border-brand-earth/5 shadow-xl">
+            <section className="max-w-2xl bg-white rounded-[40px] p-6 md:p-8 border border-brand-earth/5 shadow-xl">
               <ChatList />
             </section>
           )}

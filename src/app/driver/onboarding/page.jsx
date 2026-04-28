@@ -37,7 +37,7 @@ export default function DriverOnboarding() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/30 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-6"
     >
       <StatusModal
         isOpen={showSuccess}
@@ -54,7 +54,7 @@ export default function DriverOnboarding() {
           <div className="inline-flex items-center px-4 py-1 rounded-full bg-brand-teal/10 text-brand-teal border border-brand-teal/20 text-[10px] font-bold tracking-widest uppercase mb-4">
             Become a Partner
           </div>
-          <h1 className="font-serif text-5xl mb-4 text-brand-earth">Driver Onboarding</h1>
+          <h1 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">Driver Onboarding</h1>
           <p className="text-brand-earth/60">
             Join the Manjaro network and start earning by guiding travelers across local trails.
           </p>
@@ -64,20 +64,20 @@ export default function DriverOnboarding() {
           {[1, 2, 3, 4].map((s) => (
             <div key={s} className="flex items-center">
               <div
-                className={`w-12 h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all ${step >= s ? 'bg-brand-teal text-white shadow-lg' : 'bg-brand-earth/10 text-brand-earth/30'}`}
+                className={`w-6 h-6 md:w-12 md:h-12 rounded-full flex items-center justify-center text-sm font-bold transition-all ${step >= s ? 'bg-brand-teal text-white shadow-lg' : 'bg-brand-earth/10 text-brand-earth/30'}`}
               >
                 {step > s ? <CheckCircle2 className="w-6 h-6" /> : s}
               </div>
               {s < 4 && (
                 <div
-                  className={`w-12 h-1 mx-2 rounded-full ${step > s ? 'bg-brand-teal' : 'bg-brand-earth/10'}`}
+                  className={`w-8 md:w-12 h-0.5 md:h-1 mx-2 rounded-full ${step > s ? 'bg-brand-teal' : 'bg-brand-earth/10'}`}
                 />
               )}
             </div>
           ))}
         </div>
 
-        <div className="glass-card rounded-[48px] p-8 md:p-12 shadow-2xl border border-brand-earth/5 bg-white">
+        <div className="glass-card rounded-3xl md:rounded-[48px] p-6 md:p-8 md:p-12 shadow-2xl border border-brand-earth/5 bg-white">
           {step === 1 && (
             <motion.div
               initial={{ x: 20, opacity: 0 }}
@@ -88,7 +88,7 @@ export default function DriverOnboarding() {
                 <div className="p-4 bg-brand-warm rounded-2xl text-brand-earth">
                   <UserIcon className="w-8 h-8" />
                 </div>
-                <h2 className="font-serif text-3xl">Personal Identity (KYC)</h2>
+                <h2 className="font-serif text-2xl md:text-3xl">Personal Identity (KYC)</h2>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">

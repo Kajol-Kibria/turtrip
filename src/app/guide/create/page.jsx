@@ -72,6 +72,7 @@ export default function CreateExperience() {
   const [bookingDeadlineTime, setBookingDeadlineTime] = useState('23:59');
   const [isSpecificDate, setIsSpecificDate] = useState(true);
   const [requiredEquipment, setRequiredEquipment] = useState(['Hiking Boots', 'Water Bottle']);
+  const [transportMeans, setTransportMeans] = useState('Road');
   const [emergencyProviders, setEmergencyProviders] = useState([
     { id: '1', name: '', sector: 'Health', email: '', phone: '' },
   ]);
@@ -105,6 +106,9 @@ export default function CreateExperience() {
           const bd = new Date(trip.bookingDeadline);
           setBookingDeadlineDate(bd.toISOString().split('T')[0]);
           setBookingDeadlineTime(bd.toTimeString().split(' ')[0].substring(0, 5));
+        }
+        if (trip.transportMeans) {
+          setTransportMeans(trip.transportMeans);
         }
       }
     }
@@ -140,10 +144,10 @@ export default function CreateExperience() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="max-w-4xl mx-auto px-6 py-20"
+      className="max-w-4xl mx-auto px-6 py-5 md:py-18"
     >
       <div className="text-center mb-16">
-        <h1 className="font-serif text-5xl mb-4 text-brand-earth">
+        <h1 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">
           {id ? 'Edit Experience' : 'Create New Experience'}
         </h1>
         <p className="text-brand-earth/60">
@@ -171,7 +175,7 @@ export default function CreateExperience() {
         ))}
       </div>
 
-      <div className="glass-card rounded-[40px] p-8 md:p-12">
+      <div className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8">
         {step === 1 && (
           <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -232,8 +236,8 @@ export default function CreateExperience() {
                 ></textarea>
               </div>
 
-              <div className="p-8 bg-brand-warm rounded-[40px] border border-brand-earth/5">
-                <div className="flex items-center justify-between mb-8">
+              <div className="p-4 md:p-8 bg-brand-warm rounded-2xl md:rounded-[40px] border border-brand-earth/5">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-0 items-center justify-between mb-4 md:mb-8">
                   <div className="flex items-center space-x-3">
                     <Calendar className="w-6 h-6 text-brand-teal" />
                     <h3 className="font-serif text-2xl">Experience Timing</h3>
@@ -455,7 +459,12 @@ export default function CreateExperience() {
                   {['Flight', 'Road', 'Sea', 'Mixed'].map((t) => (
                     <button
                       key={t}
-                      className="p-3 rounded-xl border border-brand-earth/10 text-xs font-bold hover:bg-brand-earth hover:text-white transition-all"
+                      onClick={() => setTransportMeans(t)}
+                      className={`p-3 rounded-xl border text-xs font-bold transition-all ${
+                        transportMeans === t
+                          ? 'bg-brand-earth text-white border-brand-earth'
+                          : 'border-brand-earth/10 text-brand-earth hover:bg-brand-earth/5'
+                      }`}
                     >
                       {t}
                     </button>
@@ -474,7 +483,7 @@ export default function CreateExperience() {
                 {foodPackages.map((pkg, idx) => (
                   <div
                     key={pkg.id}
-                    className="p-4 bg-brand-warm rounded-2xl flex items-center space-x-4"
+                    className="p-4 bg-brand-warm rounded-2xl flex flex-wrap items-center space-x-4"
                   >
                     <input
                       type="text"
@@ -666,7 +675,7 @@ export default function CreateExperience() {
                   <label className="block text-[10px] uppercase font-bold tracking-widest text-brand-earth/40 mb-4">
                     Logistics Preparation Time
                   </label>
-                  <div className="flex items-center space-x-6">
+                  <div className="flex flex-col md:flex-row items-center gap-3 md:gap-6">
                     <input
                       type="range"
                       min="0"
@@ -674,7 +683,7 @@ export default function CreateExperience() {
                       step="1"
                       value={bookingCutoffDays}
                       onChange={(e) => setBookingCutoffDays(parseInt(e.target.value))}
-                      className="flex-1 accent-brand-teal"
+                      className="flex-1 w-full accent-brand-teal"
                     />
 
                     <div className="bg-white px-4 py-2 rounded-xl border border-brand-earth/10 text-center min-w-[120px]">

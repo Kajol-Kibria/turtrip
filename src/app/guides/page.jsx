@@ -36,10 +36,10 @@ export default function GuidesList() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen bg-brand-warm/30 pt-24 md:pt-32 pb-12 md:pb-20 px-4 md:px-6"
+      className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6"
     >
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-10 md:mb-16">
+        <div className="text-center mb-8 md:mb-16">
           <h1 className="font-serif text-3xl md:text-5xl mb-4 text-brand-earth">Professional Local Guides</h1>
           <p className="text-brand-earth/60 max-w-2xl mx-auto">
             Connecting you with vetted specialists who know their terrain better than anyone else.
@@ -47,7 +47,7 @@ export default function GuidesList() {
         </div>
 
         {/* Search & Filter */}
-        <div className="flex flex-col md:flex-row gap-6 mb-12">
+        <div className="flex flex-col md:flex-row gap-6 mb-8 md:mb-12">
           <div className="flex-1 relative">
             <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-brand-earth/20 w-5 h-5" />
             <input
@@ -120,11 +120,11 @@ export default function GuidesList() {
                   <MapPin className="w-3 h-3 mr-1" /> {guide.location}
                 </div>
 
-                <p className="text-sm text-brand-earth/60 line-clamp-3 mb-6 h-[60px] leading-relaxed">
+                <p className="text-sm text-brand-earth/60 line-clamp-3 mb-3 md:mb-6 leading-relaxed">
                   {guide.description}
                 </p>
 
-                <div className="flex flex-wrap gap-2 mb-8">
+                <div className="flex flex-wrap gap-2 mb-4 md:mb-8">
                   {guide.specialization.map((s) => (
                     <span
                       key={s}
@@ -135,7 +135,7 @@ export default function GuidesList() {
                   ))}
                 </div>
 
-                <div className="pt-6 border-t border-brand-earth/5 flex items-center justify-between">
+                <div className="pt-4 md:pt-6 border-t border-brand-earth/5 flex items-center justify-between">
                   <div className="space-y-1">
                     <p className="text-[9px] uppercase font-bold text-brand-earth/30 tracking-widest">
                       Active Experiences

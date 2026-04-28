@@ -122,12 +122,12 @@ export default function GuideProfile() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen bg-brand-warm/10 pt-32 pb-20 px-6"
+      className="min-h-screen bg-brand-warm/10 pt-5 md:pt-18 pb-20 px-6"
     >
       <div className="max-w-7xl mx-auto">
         <Link
           href="/guides"
-          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-12"
+          className="inline-flex items-center text-sm font-bold text-brand-earth/40 hover:text-brand-earth mb-5 md:mb-12"
         >
           <ChevronLeft className="w-4 h-4 mr-2" /> Back to All Guides
         </Link>
@@ -135,7 +135,7 @@ export default function GuideProfile() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Sidebar Info */}
           <div className="lg:col-span-4 space-y-8">
-            <div className="glass-card rounded-[48px] p-10 text-center border border-brand-earth/5">
+            <div className="glass-card rounded-[40px] md:rounded-[48px] p-6 md:p-10 text-center border border-brand-earth/5">
               <div className="relative w-32 h-32 mx-auto mb-6">
                 <img
                   src={guide.profilePhoto}
@@ -212,8 +212,8 @@ export default function GuideProfile() {
           <div className="lg:col-span-8 space-y-12">
             {/* Experience Calendar */}
             <section className="glass-card rounded-[48px] p-10 border border-brand-earth/5 shadow-xl">
-              <div className="flex items-center justify-between mb-8">
-                <div>
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-8">
+                <div className="mb-6 md:mb-0">
                   <h2 className="font-serif text-3xl mb-1 text-brand-earth">
                     Availability & Custom Requests
                   </h2>
