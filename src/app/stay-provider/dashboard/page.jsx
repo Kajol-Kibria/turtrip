@@ -16,6 +16,7 @@ import {
   Star,
   Image as ImageIcon,
 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 import ChatList from '@/components/ChatList';
 import StatusModal from '@/components/StatusModal';
@@ -70,6 +71,7 @@ const MOCK_ROOMS = [
 ];
 
 export default function StayProviderDashboard() {
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState('reservations');
   const [showAddRoom, setShowAddRoom] = useState(false);
   const [rooms, setRooms] = useState(MOCK_ROOMS);
@@ -146,6 +148,13 @@ export default function StayProviderDashboard() {
             <p className="text-xs text-brand-earth/40 font-bold uppercase tracking-widest mt-1">
               Lagos, Nigeria
             </p>
+            <button 
+              onClick={() => router.push(`/reviews/1`)}
+              className="flex items-center justify-center md:justify-start space-x-1 text-brand-saffron mt-2 hover:scale-105 transition-transform w-full"
+            >
+               <Star className="w-3 h-3 fill-current" />
+               <span className="text-xs font-bold text-brand-earth">4.8 (124 reviews)</span>
+            </button>
           </div>
 
           <nav className="flex overflow-x-auto lg:flex-col space-x-2 lg:space-x-0 lg:space-y-2 pb-4 lg:pb-0 no-scrollbar">

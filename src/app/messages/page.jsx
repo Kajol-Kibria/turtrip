@@ -111,7 +111,7 @@ export default function Messages() {
           )}
         </AnimatePresence>
 
-        <div className="flex items-center space-x-4 bg-brand-warm/30 p-2 rounded-2xl">
+        <div className="flex items-center space-x-2 md:space-x-4 bg-brand-warm/30 p-1.5 md:p-2 rounded-2xl">
           <input 
             type="file" 
             ref={fileInputRef}
@@ -121,9 +121,9 @@ export default function Messages() {
           />
           <button 
             onClick={() => fileInputRef.current?.click()}
-            className="p-3 text-brand-earth/40 hover:text-brand-teal transition-colors"
+            className="p-2 md:p-3 text-brand-earth/40 hover:text-brand-teal transition-colors shrink-0"
           >
-            <ImageIcon className="w-5 h-5" />
+            <ImageIcon className="w-5 h-5 md:w-5 md:h-5" />
           </button>
           <input 
             type="text" 
@@ -131,11 +131,11 @@ export default function Messages() {
             onChange={(e) => setInputText(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Type your message..." 
-            className="flex-1 bg-transparent border-none outline-none px-4 py-2 text-sm"
+            className="flex-1 bg-transparent border-none outline-none px-2 md:px-4 py-2 text-sm placeholder:text-xs md:placeholder:text-sm min-w-0"
           />
           <button 
             onClick={handleSend}
-            className="p-3 bg-brand-earth text-white rounded-xl shadow-lg hover:bg-brand-earth/90 transition-all disabled:opacity-20"
+            className="p-2.5 md:p-3 bg-brand-earth text-white rounded-xl shadow-lg hover:bg-brand-earth/90 transition-all disabled:opacity-20 shrink-0"
             disabled={!inputText.trim() && !selectedImage}
           >
             <Send className="w-4 h-4" />

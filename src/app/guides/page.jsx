@@ -10,11 +10,13 @@ import {
   User as UserIcon,
   Filter,
   BadgeCheck,
+  Link,
 } from 'lucide-react';
-import Link from 'next/link';
+import { useRouter} from 'next/navigation';
 import { MOCK_SPECIALISTS, MOCK_TRIPS } from '@/mockData';
 
 export default function GuidesList() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedLocation, setSelectedLocation] = useState('All');
 
@@ -100,10 +102,13 @@ export default function GuidesList() {
                     )}
                   </div>
                   <div className="flex flex-col items-end">
-                    <div className="flex items-center text-brand-saffron font-bold text-sm mb-1">
+                    <button
+                      onClick={() => router.push(`/reviews/${guide.id}`)}
+                      className="flex items-center text-brand-saffron font-bold text-sm mb-1 hover:scale-110 transition-transform cursor-pointer"
+                    >
                       <Star className="w-4 h-4 fill-current mr-1" />
                       {guide.rating}
-                    </div>
+                    </button>
                     <p className="text-[10px] text-brand-earth/40 font-bold uppercase tracking-widest">
                       {guide.completedTrips} Trips Led
                     </p>

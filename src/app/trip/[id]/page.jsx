@@ -118,13 +118,16 @@ export default function TripDetails() {
                 <Users className="w-5 h-5 mr-2 text-brand-earth/30" />
                 <span className="font-medium">{trip.groupType} Group</span>
               </div>
-              <div className="flex items-center">
+              <button 
+                onClick={() => router.push(`/reviews/${trip.id}`)}
+                className="flex items-center cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <div className="flex items-center text-brand-saffron mr-2">
                   <Star className="w-4 h-4 fill-current mr-1" />
                   <span className="font-bold">{trip.rating}</span>
                 </div>
                 <span className="text-sm text-brand-earth/40">({trip.reviewCount} reviews)</span>
-              </div>
+              </button>
             </div>
 
             {/* Availability & Deadline Block */}

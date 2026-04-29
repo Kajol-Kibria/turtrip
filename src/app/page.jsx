@@ -845,10 +845,17 @@ export default function Home() {
                         <span className="text-sm font-medium">{trip.groupType}</span>
                       </div>
                       <div className="flex flex-col items-end">
-                        <div className="flex items-center text-brand-saffron">
+                        <button
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            router.push(`/reviews/${trip.id}`);
+                          }}
+                          className="flex items-center text-brand-saffron hover:scale-110 transition-transform cursor-pointer"
+                        >
                           <Star className="w-3 h-3 fill-current mr-1" />
                           <span className="text-sm font-bold">{trip.rating}</span>
-                        </div>
+                        </button>
                         <span className="text-[10px] text-brand-earth/40 font-bold">
                           {trip.reviewCount} reviews
                         </span>

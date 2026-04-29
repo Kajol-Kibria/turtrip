@@ -3,6 +3,7 @@ import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
+import { useRouter } from 'next/navigation';
 import {
   Star,
   MapPin,
@@ -25,6 +26,7 @@ import { MOCK_SPECIALISTS, MOCK_TRIPS } from '@/mockData';
 import StatusModal from '@/components/StatusModal';
 
 export default function GuideProfile() {
+  const router = useRouter();
   const { id } = useParams();
   const guide = MOCK_SPECIALISTS.find((g) => g.id === id) || MOCK_SPECIALISTS[0];
   const activeTrips = MOCK_TRIPS.filter((t) => guide.activeExperienceIds?.includes(t.id));
@@ -153,9 +155,12 @@ export default function GuideProfile() {
               </div>
 
               <div className="grid grid-cols-3 gap-4 border-y border-brand-earth/5 py-6 mb-8">
-                <div>
-                  <p className="text-[9px] uppercase font-bold text-brand-earth/30 mb-1">Rating</p>
-                  <p className="font-serif text-xl text-brand-saffron flex items-center justify-center">
+                <div
+                  onClick={() => router.push(`/reviews/${guide.id}`)}
+                  className="cursor-pointer group"
+                >
+                  <p className="text-[9px] uppercase font-bold text-brand-earth/30 mb-1 group-hover:text-brand-teal transition-colors">Rating</p>
+                  <p className="font-serif text-xl text-brand-saffron flex items-center justify-center group-hover:scale-110 transition-transform">
                     <Star className="w-4 h-4 fill-current mr-1" /> {guide.rating}
                   </p>
                 </div>
@@ -259,15 +264,14 @@ export default function GuideProfile() {
                     <div
                       key={idx}
                       onClick={() => day && handleDateClick(day)}
-                      className={`aspect-square md:h-24 rounded-2xl md:rounded-3xl p-2 md:p-4 border transition-all flex flex-col justify-between cursor-pointer ${
-                        !day
+                      className={`aspect-square md:h-24 rounded-2xl md:rounded-3xl p-2 md:p-4 border transition-all flex flex-col justify-between cursor-pointer ${!day
                           ? 'bg-transparent border-transparent'
                           : tripOnDate
                             ? 'bg-brand-teal/10 border-brand-teal/30 ring-1 ring-brand-teal'
                             : blocked
                               ? 'bg-brand-earth/5 border-brand-earth/5 opacity-50 grayscale'
                               : 'bg-white border-brand-earth/5 hover:border-brand-teal hover:shadow-lg'
-                      }`}
+                        }`}
                     >
                       {day && (
                         <>

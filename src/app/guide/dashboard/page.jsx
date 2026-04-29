@@ -16,13 +16,14 @@ import {
 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { MOCK_PRIVATE_REQUESTS, MOCK_TRIPS } from '@/mockData';
+import { MOCK_PRIVATE_REQUESTS, MOCK_TRIPS, MOCK_BOOKINGS, MOCK_SPECIALISTS } from '@/mockData';
 import ChatList from '@/components/ChatList';
 import StatusModal from '@/components/StatusModal';
 
 export default function GuideDashboard() {
   const router = useRouter();
   const [activeTab, setActiveTab] = useState('pending');
+  // const [activeTab, setActiveTab] = useState('pending');
   const [privateRequests, setPrivateRequests] = useState(MOCK_PRIVATE_REQUESTS);
   const [selectedPR, setSelectedPR] = useState(null);
   const [isMakingOffer, setIsMakingOffer] = useState(false);
@@ -55,10 +56,10 @@ export default function GuideDashboard() {
       privateRequests.map((r) =>
         r.id === selectedPR
           ? {
-              ...r,
-              status: 'Offered',
-              offer: { totalCost: total, currency: 'TZS', breakdown: offerBreakdown },
-            }
+            ...r,
+            status: 'Offered',
+            offer: { totalCost: total, currency: 'TZS', breakdown: offerBreakdown },
+          }
           : r
       )
     );
@@ -187,6 +188,20 @@ export default function GuideDashboard() {
               )}
             </button>
             <button
+              onClick={() => setActiveTab('completed')}
+              className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'completed' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
+            >
+              Completed
+              {activeTab === 'completed' && <motion.div layoutId="gt" className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-earth" />}
+            </button>
+            <button
+              onClick={() => setActiveTab('history')}
+              className={`py-4 text-sm font-bold relative transition-all ${activeTab === 'history' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
+            >
+              History
+              {activeTab === 'history' && <motion.div layoutId="gt" className="absolute bottom-0 left-0 right-0 h-[2px] bg-brand-earth" />}
+            </button>
+            <button
               onClick={() => setActiveTab('messages')}
               className={`py-4 text-sm font-bold relative transition-all whitespace-nowrap ${activeTab === 'messages' ? 'text-brand-earth' : 'text-brand-earth/40'}`}
             >
@@ -252,8 +267,10 @@ export default function GuideDashboard() {
 
                   <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pt-6 border-t border-brand-earth/5 gap-4">
                     <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-                      <button className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-warm text-brand-earth rounded-full text-xs font-bold hover:bg-brand-earth hover:text-white transition-all flex items-center justify-center">
-                        <MessageSquare className="w-3 h-3 mr-2" /> Chat
+                      <button
+                        onClick={() => setActiveTab('messages')}
+                        className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-warm text-brand-earth rounded-full text-xs font-bold hover:bg-brand-earth hover:text-white transition-all flex items-center justify-center">
+                        <MessageSquare className="w-3 h-3 mr-2" /> Chat<span className='hidden md:block'>&nbsp;with&nbsp;Group</span>
                       </button>
                       <Link href="/guide/logistics/b1" className="flex-1 sm:flex-none px-4 md:px-6 py-2 bg-brand-teal text-white rounded-full text-xs font-bold shadow-lg hover:bg-brand-teal/90 transition-all justify-center text-center">
                         Logistics
@@ -301,13 +318,12 @@ export default function GuideDashboard() {
                     </div>
                     <div className="flex flex-col items-start md:items-end">
                       <span
-                        className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${
-                          req.status === 'Pending'
-                            ? 'bg-amber-100 text-amber-700'
-                            : req.status === 'Offered'
-                              ? 'bg-blue-100 text-blue-700'
-                              : 'bg-green-100 text-green-700'
-                        }`}
+                        className={`px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${req.status === 'Pending'
+                          ? 'bg-amber-100 text-amber-700'
+                          : req.status === 'Offered'
+                            ? 'bg-blue-100 text-blue-700'
+                            : 'bg-green-100 text-green-700'
+                          }`}
                       >
                         {req.status}
                       </span>
@@ -506,94 +522,95 @@ export default function GuideDashboard() {
 
           {activeTab === 'completed' && (
             <section className="space-y-8">
-              <div className="bg-brand-warm/30 p-6 rounded-3xl border border-brand-earth/5">
-                <h4 className="font-serif text-xl mb-2 italic">Feedback & Ratings</h4>
-                <p className="text-xs text-brand-earth/60">
-                  Manage reviews from travelers and rate your guests to build trust.
+              <div className="bg-brand-warm/30 p-8 rounded-3xl border border-brand-earth/5">
+                <h4 className="font-serif text-2xl mb-2 italic">Completed Experiences & Feedback</h4>
+                <p className="text-sm text-brand-earth/60">
+                  View all past trip instances and manage traveler reviews.
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <h5 className="text-[10px] uppercase font-bold tracking-widest text-brand-earth/40 px-2">
-                  Recent Reviews from Travelers
-                </h5>
-                {[1].map((i) => (
-                  <div
-                    key={i}
-                    className="glass-card rounded-3xl md:rounded-[40px] p-6 md:p-8 border border-brand-earth/5"
-                  >
-                    <div className="flex flex-col sm:flex-row justify-between items-start mb-4 md:mb-6 gap-4">
-                      <div className="flex items-center space-x-4">
-                        <img
-                          src="https://picsum.photos/seed/user1/100/100"
-                          className="w-12 h-12 rounded-full"
-                          alt="traveler"
-                        />
+              {MOCK_BOOKINGS.filter(b => b.status === 'Completed').map(booking => {
+                const experience = MOCK_TRIPS.find(t => t.id === booking.tripId);
+                // Get reviews for this specific booking or trip
+                const guideReviews = MOCK_SPECIALISTS[0].reviews || [];
+                const bookingReviews = guideReviews.filter((r) => r.bookingId === booking.id || r.tripId === booking.tripId);
+                return (
+                  <div key={booking.id} className="glass-card rounded-[40px] p-8 border border-brand-earth/5 overflow-hidden">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
+                      <div className="flex items-center space-x-6">
+                        <img src={experience?.coverImage} className="w-24 h-24 rounded-3xl object-cover" alt="trip" />
                         <div>
-                          <h6 className="font-bold">Pelu Yusuf</h6>
-                          <p className="text-[10px] text-brand-earth/40">
-                            Zanzibar Safari • 2 days ago
+                          <h4 className="font-serif text-2xl">{experience?.title}</h4>
+                          <p className="text-xs text-brand-earth/40 font-bold uppercase tracking-widest mt-1">
+                            {new Date(booking.startDate).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })} • {booking.id}
                           </p>
                         </div>
                       </div>
-                      <div className="flex text-brand-saffron">
-                        {[1, 2, 3, 4, 5].map((s) => (
-                          <Star key={s} className="w-4 h-4 fill-current" />
+                      <div className="flex flex-col items-end">
+                        <span className="px-4 py-1 bg-brand-teal/10 text-brand-teal rounded-full text-[10px] font-bold uppercase tracking-widest mb-2">
+                          Fully Fulfilled
+                        </span>
+                        <p className="text-xs font-bold text-brand-earth/40">{bookingReviews.length} Reviews received</p>
+                      </div>
+                    </div>
+
+                    {bookingReviews.length > 0 ? (
+                      <div className="space-y-4 pt-6 border-t border-brand-earth/5">
+                        {bookingReviews.map((review) => (
+                          <div key={review.id} className="bg-brand-warm/20 p-6 rounded-3xl">
+                            <div className="flex justify-between items-start mb-4">
+                              <div className="flex items-center space-x-3">
+                                <img src={review.userPhoto} className="w-10 h-10 rounded-full" alt="user" />
+                                <div>
+                                  <p className="text-sm font-bold">{review.userName}</p>
+                                  <div className="flex text-brand-saffron">
+                                    {[...Array(review.rating)].map((_, i) => <Star key={i} className="w-3 h-3 fill-current" />)}
+                                  </div>
+                                </div>
+                              </div>
+                              <p className="text-[10px] text-brand-earth/40 font-bold uppercase">{review.date}</p>
+                            </div>
+                            <p className="text-sm text-brand-earth/70 italic mb-4">"{review.comment}"</p>
+
+                            {review.reply ? (
+                              <div className="ml-8 p-4 bg-white/60 rounded-2xl border-l-4 border-brand-teal">
+                                <div className="flex items-center space-x-2 mb-2">
+                                  <img src={review.reply.authorPhoto} className="w-6 h-6 rounded-full" alt="author" />
+                                  <p className="text-[10px] font-bold text-brand-teal uppercase tracking-widest">Your Response ({review.reply.date})</p>
+                                </div>
+                                <p className="text-sm text-brand-earth/80 leading-relaxed">{review.reply.text}</p>
+                              </div>
+                            ) : (
+                              <button
+                                onClick={() => { setSelectedReview({ ...review, travelerName: review.userName }); setShowReplyModal(true); }}
+                                className="text-[10px] font-bold uppercase tracking-widest text-brand-teal hover:underline flex items-center"
+                              >
+                                <MessageSquare className="w-3 h-3 mr-2" /> Reply to traveler
+                              </button>
+                            )}
+                          </div>
                         ))}
                       </div>
-                    </div>
-                    <p className="text-sm text-brand-earth italic mb-6 leading-relaxed">
-                      "Kofi was an incredible guide! Knowledgable, patient, and knew all the best
-                      hidden spots for photos. Highly recommended."
-                    </p>
-
-                    <button
-                      onClick={() => {
-                        setSelectedReview({ id: 'rev1', travelerName: 'Pelu Yusuf' });
-                        setShowReplyModal(true);
-                      }}
-                      className="text-[10px] font-bold uppercase tracking-widest text-brand-teal hover:underline flex items-center"
-                    >
-                      <MessageSquare className="w-3 h-3 mr-2" /> Reply to Review
-                    </button>
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-6">
-                <h5 className="text-[10px] uppercase font-bold tracking-widest text-brand-earth/40 px-2">
-                  Rate Your Travelers
-                </h5>
-                {[1].map((i) => (
-                  <div
-                    key={i}
-                    className="glass-card rounded-3xl md:rounded-[40px] p-5 md:p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between border border-brand-earth/5 gap-4"
-                  >
-                    <div className="flex items-center space-x-4">
-                      <img
-                        src="https://picsum.photos/seed/user2/100/100"
-                        className="w-10 h-10 md:w-12 md:h-12 rounded-full"
-                        alt="traveler"
-                      />
-                      <div>
-                        <h6 className="font-bold text-sm md:text-base">Jane Smith</h6>
-                        <p className="text-[10px] text-brand-earth/40">
-                          Kilimanjaro Trek • Fully Funded
-                        </p>
+                    ) : (
+                      <div className="pt-6 border-t border-brand-earth/5 flex items-center justify-between text-brand-earth/40">
+                        <p className="text-sm italic">No reviews yet for this session.</p>
+                        <button
+                          onClick={() => { setSelectedTraveler({ id: booking.userId, name: 'Traveler' }); setShowReviewUserModal(true); }}
+                          className="text-[10px] font-bold uppercase tracking-widest text-brand-teal hover:underline"
+                        >
+                          Rate Guest
+                        </button>
                       </div>
-                    </div>
-                    <button
-                      onClick={() => {
-                        setSelectedTraveler({ id: 'u2', name: 'Jane Smith' });
-                        setShowReviewUserModal(true);
-                      }}
-                      className="px-6 py-2 bg-brand-earth text-white rounded-full text-[10px] font-bold uppercase tracking-widest shadow-lg"
-                    >
-                      Rate Traveler
-                    </button>
+                    )}
                   </div>
-                ))}
-              </div>
+                );
+              })}
+
+              {MOCK_BOOKINGS.filter(b => b.status === 'Completed').length === 0 && (
+                <div className="text-center py-20 bg-brand-warm/10 rounded-[40px] border-2 border-dashed border-brand-earth/10">
+                  <p className="text-brand-earth/40 font-serif text-xl italic">No completed experiences found.</p>
+                </div>
+              )}
             </section>
           )}
 

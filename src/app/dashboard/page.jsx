@@ -496,14 +496,19 @@ function DashboardContent() {
                             <span className="text-[10px] text-brand-earth/40 uppercase font-bold tracking-widest mb-1">
                               Guide
                             </span>
-                            <div className="flex items-center text-sm font-medium">
-                              <img
-                                src={MOCK_SPECIALISTS[0].profilePhoto}
-                                className="w-5 h-5 rounded-full mr-2"
-                                alt="guide"
-                              />
-                              Kofi Mensah
-                            </div>
+                            <button
+                              onClick={() => router.push(`/reviews/${MOCK_SPECIALISTS[0].id}`)}
+                              className="flex items-center text-sm font-medium hover:text-brand-teal transition-colors"
+                            >
+                              <div className="flex items-center text-sm font-medium">
+                                <img
+                                  src={MOCK_SPECIALISTS[0].profilePhoto}
+                                  className="w-5 h-5 rounded-full mr-2"
+                                  alt="guide"
+                                />
+                                Kofi Mensah
+                              </div>
+                            </button>
                           </div>
                           <button className="p-3 bg-brand-teal/10 text-brand-teal rounded-full hover:bg-brand-teal hover:text-white transition-all">
                             <MessageSquare className="w-5 h-5" />
@@ -610,6 +615,7 @@ function DashboardContent() {
                   {[1, 2].map((i) => (
                     <div
                       key={i}
+                      onClick={() => router.push(`/reviews/past-trip-${i}`)}
                       className="flex items-center space-x-6 p-4 rounded-3xl bg-brand-warm/30 border border-brand-earth/5 hover:border-brand-earth/20 transition-all cursor-pointer"
                     >
                       <img
@@ -669,10 +675,10 @@ function DashboardContent() {
                         </div>
                         <span
                           className={`self-start px-4 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest ${req.status === 'Pending'
-                              ? 'bg-amber-100 text-amber-700'
-                              : req.status === 'Offered'
-                                ? 'bg-brand-teal text-white'
-                                : 'bg-green-100 text-green-700'
+                            ? 'bg-amber-100 text-amber-700'
+                            : req.status === 'Offered'
+                              ? 'bg-brand-teal text-white'
+                              : 'bg-green-100 text-green-700'
                             }`}
                         >
                           {req.status === 'Offered' ? 'Offer Received' : req.status}

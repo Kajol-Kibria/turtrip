@@ -503,7 +503,18 @@ export const MOCK_SPECIALISTS = [
         userPhoto: 'https://picsum.photos/seed/u1/100/100',
         rating: 5,
         comment: 'Kofi is an absolute legend! Best safari ever.',
-        date: 'Oct 2025',
+        date: 'Oct 23, 2025',
+        timestamp: 1729683000000,
+        tripId: '1',
+        bookingId: 'b1',
+        reply: {
+          text: 'Thank you Alice! It was a pleasure hosting you.',
+          date: 'Oct 24, 2025',
+          timestamp: 1729760400000,
+          authorName: 'Kofi Mensah',
+          authorPhoto: 'https://picsum.photos/seed/kofi/200/200',
+          authorRole: 'Guide'
+        }
       },
       {
         id: 'rev2',
@@ -511,8 +522,10 @@ export const MOCK_SPECIALISTS = [
         userPhoto: 'https://picsum.photos/seed/u2/100/100',
         rating: 4,
         comment: 'Great knowledge of local trails.',
-        date: 'Nov 2025',
-      },
+        date: 'Nov 12, 2025',
+        timestamp: 1731422700000,
+        tripId: '100'
+      }
     ],
   },
   {
@@ -544,6 +557,7 @@ export const MOCK_SPECIALISTS = [
         rating: 5,
         comment: 'Very professional agency. Handled our group of 30 students perfectly.',
         date: 'Jan 2026',
+        timestamp: 1735689600000
       },
     ],
   },
@@ -574,6 +588,7 @@ export const MOCK_SPECIALISTS = [
         rating: 5,
         comment: 'Sarah knows Accra like the back of her hand.',
         date: 'Dec 2025',
+        timestamp: 1732924800000
       },
     ],
   },
@@ -646,7 +661,32 @@ export const MOCK_BOOKINGS = [
       { service: 'Stay', isFulfilled: true, providerId: 'h1', providerName: 'West Park Hotels' },
       { service: 'Experience', isFulfilled: false, providerId: 'g1', providerName: 'Kofi Mensah' },
     ],
-
+  },
+  {
+    id: 'b_past1',
+    tripId: '3',
+    userId: 'u1',
+    status: 'Completed',
+    totalPaid: 800000,
+    currency: 'TZS',
+    startDate: '2025-12-10',
+    endDate: '2025-12-13',
+    fulfillment: [
+      { service: 'Experience', isFulfilled: true, providerId: 'g1', providerName: 'Kofi Mensah' }
+    ]
+  },
+  {
+    id: 'b_past2',
+    tripId: '4',
+    userId: 'u2',
+    status: 'Completed',
+    totalPaid: 450000,
+    currency: 'TZS',
+    startDate: '2026-01-05',
+    endDate: '2026-01-05',
+    fulfillment: [
+      { service: 'Experience', isFulfilled: true, providerId: 'g1', providerName: 'Kofi Mensah' }
+    ],
     rideDetails: {
       driverId: 'd1',
       pickupLocation: 'Kilimanjaro Airport',

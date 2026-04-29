@@ -4,6 +4,7 @@ import { motion } from 'motion/react';
 import { ArrowLeft, MessageSquare, UserX, Send, Mail } from 'lucide-react';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import StatusModal from '@/components/StatusModal';
 
 const MOCK_PARTICIPANTS = [
@@ -59,6 +60,7 @@ const MOCK_PARTICIPANTS = [
 
 export default function ParticipantList() {
   const { bookingId } = useParams();
+  const router = useRouter();
   const [participants, setParticipants] = useState(MOCK_PARTICIPANTS);
   const [broadcastMessage, setBroadcastMessage] = useState('');
 
@@ -137,7 +139,7 @@ export default function ParticipantList() {
                 </div>
               </div>
               <div className="flex items-center space-x-2">
-                <button className="p-3 bg-brand-warm text-brand-earth rounded-full hover:bg-brand-teal hover:text-white transition-all">
+                <button onClick={() => router.push(`/messages?chatId=${bookingId}`)} className="p-3 bg-brand-warm text-brand-earth rounded-full hover:bg-brand-teal hover:text-white transition-all">
                   <MessageSquare className="w-4 h-4" />
                 </button>
                 <button

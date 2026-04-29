@@ -12,12 +12,14 @@ import {
   Wallet,
   MessageSquare,
 } from 'lucide-react';
-import { MOCK_RIDE_REQUESTS } from '@/mockData';
+import { useRouter } from 'next/navigation';
+import { MOCK_RIDE_REQUESTS, MOCK_SPECIALISTS } from '@/mockData';
 
 import ChatList from '@/components/ChatList';
 import StatusModal from '@/components/StatusModal';
 
 export default function DriverDashboard() {
+  const router = useRouter();
   const [isOnline, setIsOnline] = useState(true);
   const [requests, setRequests] = useState(MOCK_RIDE_REQUESTS);
   const [activeTab, setActiveTab] = useState('requests');
@@ -161,7 +163,9 @@ export default function DriverDashboard() {
             {stats.map((stat, i) => (
               <div
                 key={i}
-                className="glass-card rounded-3xl p-6 flex items-center justify-between border border-brand-earth/5"
+                onClick={() => stat.label === 'Rating' && router.push(`/reviews/${MOCK_SPECIALISTS[0].id}`)}
+                className={`glass-card rounded-3xl p-6 flex items-center justify-between border border-brand-earth/5
+                   ${stat.label === 'Rating' ? 'cursor-pointer hover:border-brand-teal/30 hover:scale-[1.02] transition-all' : ''}`}
               >
                 <div className="flex items-center space-x-4">
                   <div className="p-3 rounded-xl bg-brand-warm text-brand-earth">
@@ -423,7 +427,7 @@ export default function DriverDashboard() {
                           className="w-full p-4 rounded-xl border border-brand-earth/10 outline-none focus:border-brand-teal transition-all"
                         />
                       </div>
-                      <div>
+                      {/* <div>
                         <label className="block text-[10px] uppercase font-bold tracking-widest text-brand-earth/40 mb-2">
                           Waiting Fee (TSh / Hour)
                         </label>
@@ -435,7 +439,7 @@ export default function DriverDashboard() {
                           }
                           className="w-full p-4 rounded-xl border border-brand-earth/10 outline-none focus:border-brand-teal transition-all"
                         />
-                      </div>
+                      </div> */}
                     </div>
 
                     <div className="flex flex-col gap-4 justify-around">
@@ -460,11 +464,11 @@ export default function DriverDashboard() {
                           </button>
                         </div>
                       </div>
-                      <button className="w-full py-3 bg-brand-earth text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brand-teal transition-all">
-                        Update Pricing
-                      </button>
                     </div>
                   </div>
+                  <button className="w-full py-3 bg-brand-earth text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-brand-teal transition-all">
+                    Update Pricing
+                  </button>
                 </div>
 
                 {/* Vehicle Settings */}

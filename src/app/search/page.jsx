@@ -15,11 +15,12 @@ import {
   Check,
 } from 'lucide-react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { MOCK_TRIPS, MOCK_SPECIALISTS } from '@/mockData';
 
 export default function SearchResults() {
   const location = usePathname();
+  const router = useRouter();
   const searchParams = new URLSearchParams(location.search);
   const initialCategory = searchParams.get('category') || 'All';
   const initialSearch = searchParams.get('q') || '';
@@ -104,38 +105,38 @@ export default function SearchResults() {
   return (
     <div className="min-h-screen bg-brand-warm/30 pt-5 md:pt-18 pb-12 md:pb-20 px-4 md:px-6">
       <div className="max-w-7xl mx-auto">
-          <div className="mb-8 md:mb-12">
-            <h1 className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-brand-earth leading-tight">
-              Explore Adventures
-            </h1>
-            <p className="text-brand-earth/60 font-medium text-sm md:text-base">
-              Found {filteredTrips.length} experiences matching your search.
-            </p>
-          </div>
+        <div className="mb-8 md:mb-12">
+          <h1 className="font-serif text-3xl md:text-5xl mb-3 md:mb-4 text-brand-earth leading-tight">
+            Explore Adventures
+          </h1>
+          <p className="text-brand-earth/60 font-medium text-sm md:text-base">
+            Found {filteredTrips.length} experiences matching your search.
+          </p>
+        </div>
 
-          <div className="flex flex-row items-center justify-between gap-4 mb-8">
+        <div className="flex flex-row items-center justify-between gap-4 mb-8">
+          <button
+            onClick={() => setShowMobileFilters(true)}
+            className="lg:hidden flex items-center space-x-2 px-4 py-2.5 bg-white border border-brand-earth/10 rounded-full text-brand-earth text-xs font-bold shadow-sm"
+          >
+            <Filter className="w-4 h-4" />
+            <span>Filters</span>
+          </button>
+          <div className="flex bg-white rounded-full p-1 border border-brand-earth/10 ml-auto">
             <button
-              onClick={() => setShowMobileFilters(true)}
-              className="lg:hidden flex items-center space-x-2 px-4 py-2.5 bg-white border border-brand-earth/10 rounded-full text-brand-earth text-xs font-bold shadow-sm"
+              onClick={() => setView('grid')}
+              className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'grid' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
             >
-              <Filter className="w-4 h-4" />
-              <span>Filters</span>
+              <Grid className="w-4 h-4 md:w-5 md:h-5" />
             </button>
-            <div className="flex bg-white rounded-full p-1 border border-brand-earth/10 ml-auto">
-              <button
-                onClick={() => setView('grid')}
-                className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'grid' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
-              >
-                <Grid className="w-4 h-4 md:w-5 md:h-5" />
-              </button>
-              <button
-                onClick={() => setView('list')}
-                className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'list' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
-              >
-                <ListIcon className="w-4 h-4 md:w-5 md:h-5" />
-              </button>
-            </div>
+            <button
+              onClick={() => setView('list')}
+              className={`p-1.5 md:p-2 rounded-full transition-all ${view === 'list' ? 'bg-brand-earth text-white' : 'text-brand-earth/30'}`}
+            >
+              <ListIcon className="w-4 h-4 md:w-5 md:h-5" />
+            </button>
           </div>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 md:gap-12">
           {/* Desktop Sidebar Filters */}
@@ -330,11 +331,18 @@ export default function SearchResults() {
                   </div>
                   <div className="p-6 md:p-8 flex-1 flex flex-col justify-between">
                     <div>
-                      <div className="flex items-center space-x-1 text-brand-saffron mb-3">
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          router.push(`/reviews/${trip.id}`);
+                        }}
+                        className="flex items-center space-x-1 text-brand-saffron mb-3 hover:scale-105 transition-transform"
+                      >
                         <Star className="w-4 h-4 fill-current" />
                         <span className="text-sm font-bold text-brand-earth">{trip.rating}</span>
                         <span className="text-sm text-brand-earth/40">({trip.reviewCount})</span>
-                      </div>
+                      </button>
                       <h3 className="font-serif text-xl md:text-2xl text-brand-earth group-hover:text-brand-teal transition-colors mb-2 leading-tight">
                         {trip.title}
                       </h3>
