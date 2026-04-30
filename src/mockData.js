@@ -36,7 +36,7 @@ export const MOCK_NOTIFICATIONS = [
     id: 'n3',
     userId: 'u1',
     title: 'Driver Assigned',
-    description: 'Samuel Okoro has been assigned as your driver for the airport pickup.',
+    description: 'Zuberi Bakari has been assigned as your driver for the airport pickup.',
     type: 'update',
     timestamp: '2026-04-23 15:30',
     isRead: true,
@@ -627,7 +627,7 @@ export const MOCK_CHAT_PREVIEWS = [
   {
     id: 'c2',
     participantId: 'd1',
-    participantName: 'Samuel Okoro',
+    participantName: 'Zuberi Bakari',
     participantPhoto: 'https://picsum.photos/seed/d1/100/100',
     participantRole: 'Driver',
     lastMessage: 'Where exactly should I pick you up from?',
@@ -657,7 +657,7 @@ export const MOCK_BOOKINGS = [
     startDate: '2026-04-20',
     endDate: '2026-04-25',
     fulfillment: [
-      { service: 'Ride', isFulfilled: true, providerId: 'd1', providerName: 'Samuel Okoro' },
+      { service: 'Ride', isFulfilled: true, providerId: 'd1', providerName: 'Zuberi Bakari' },
       { service: 'Stay', isFulfilled: true, providerId: 'h1', providerName: 'West Park Hotels' },
       { service: 'Experience', isFulfilled: false, providerId: 'g1', providerName: 'Kofi Mensah' },
     ],
@@ -719,9 +719,10 @@ export const MOCK_BOOKINGS = [
 export const MOCK_DRIVERS = [
   {
     id: 'd1',
-    name: 'Samuel Okoro',
+    name: 'Zuberi Bakari',
     photo: 'https://picsum.photos/seed/d1/200/200',
-    rating: 4.8,
+    rating: 4.92,
+    completedTrips: 124,
     vehicle: {
       type: 'Safari Van',
       make: 'Toyota',
@@ -735,6 +736,34 @@ export const MOCK_DRIVERS = [
       status: 'Approved',
     },
     settings: { pricePerKm: 1500, waitingFeePerHour: 5000, acceptsRoundTrip: true },
+    reviews: [
+      {
+        id: 'dr_rev1',
+        userName: 'Sarah L.',
+        userPhoto: 'https://picsum.photos/seed/u7/100/100',
+        rating: 5,
+        comment: 'Very punctual and the vehicle was spotless. Highly recommend!',
+        date: 'April 20, 2026',
+        timestamp: 1745152200000,
+        reply: {
+          text: 'Thank you Sarah! It was a pleasure driving you.',
+          date: 'April 21, 2026',
+          timestamp: 1745238600000,
+          authorName: 'Zuberi Bakari',
+          authorPhoto: 'https://picsum.photos/seed/d1/200/200',
+          authorRole: 'Driver'
+        }
+      },
+      {
+        id: 'dr_rev2',
+        userName: 'James K.',
+        userPhoto: 'https://picsum.photos/seed/u8/100/100',
+        rating: 4,
+        comment: 'Great knowledge of the area, though we were 5 mins late due to traffic.',
+        date: 'April 15, 2026',
+        timestamp: 1744719600000
+      }
+    ]
   },
   {
     id: 'd2',

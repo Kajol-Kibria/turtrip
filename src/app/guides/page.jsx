@@ -103,7 +103,7 @@ export default function GuidesList() {
                   </div>
                   <div className="flex flex-col items-end">
                     <button
-                      onClick={() => router.push(`/reviews/${guide.id}`)}
+                      onClick={() => router.push(`/reviews/${guide.id}?type=guide`)}
                       className="flex items-center text-brand-saffron font-bold text-sm mb-1 hover:scale-110 transition-transform cursor-pointer"
                     >
                       <Star className="w-4 h-4 fill-current mr-1" />

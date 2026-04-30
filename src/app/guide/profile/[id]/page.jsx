@@ -156,7 +156,7 @@ export default function GuideProfile() {
 
               <div className="grid grid-cols-3 gap-4 border-y border-brand-earth/5 py-6 mb-8">
                 <div
-                  onClick={() => router.push(`/reviews/${guide.id}`)}
+                  onClick={() => router.push(`/reviews/${guide.id}?type=guide`)}
                   className="cursor-pointer group"
                 >
                   <p className="text-[9px] uppercase font-bold text-brand-earth/30 mb-1 group-hover:text-brand-teal transition-colors">Rating</p>

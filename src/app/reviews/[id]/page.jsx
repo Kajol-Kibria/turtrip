@@ -65,6 +65,29 @@ export default function Reviews() {
         ]
       };
     }
+  } else if (type === 'stay') {
+    const allStays = MOCK_TRIPS.flatMap(t => t.accommodations || []);
+    const stay = allStays.find(s => s.id === entityId);
+    if (stay) {
+      entityInfo = {
+        name: stay.name,
+        photo: stay.images?.[0] || '',
+        role: 'Accommodation',
+        rating: stay.rating,
+        reviewCount: stay.reviews || 0,
+        reviews: [
+          {
+            id: 'st1',
+            userName: 'Elena V.',
+            userPhoto: 'https://picsum.photos/seed/u9/100/100',
+            rating: 5,
+            comment: 'Incredible stay! The view from my room was breathtaking and the service was top-notch.',
+            date: 'April 5, 2026',
+            timestamp: 1743858000000
+          }
+        ]
+      };
+    }
   } else if (type === 'driver') {
     const driver = MOCK_DRIVERS.find(d => d.id === entityId);
     if (driver) {
@@ -73,18 +96,8 @@ export default function Reviews() {
         photo: driver.photo,
         role: 'Driver',
         rating: driver.rating,
-        reviewCount: 156, // Mock count
-        reviews: [
-           {
-             id: 'dr1',
-             userName: 'Sarah L.',
-             userPhoto: 'https://picsum.photos/seed/u7/100/100',
-             rating: 5,
-             comment: 'Very punctual and the vehicle was spotless. Highly recommend!',
-             date: 'April 20, 2026',
-             timestamp: 1745152200000
-           }
-        ]
+        reviewCount: driver.completedTrips || 0,
+        reviews: driver.reviews || []
       };
     }
   }

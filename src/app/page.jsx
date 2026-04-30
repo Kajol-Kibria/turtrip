@@ -849,7 +849,7 @@ export default function Home() {
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
-                            router.push(`/reviews/${trip.id}`);
+                            router.push(`/reviews/${trip.id}?type=trip`);
                           }}
                           className="flex items-center text-brand-saffron hover:scale-110 transition-transform cursor-pointer"
                         >

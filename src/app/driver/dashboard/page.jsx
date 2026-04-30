@@ -13,7 +13,7 @@ import {
   MessageSquare,
 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import { MOCK_RIDE_REQUESTS, MOCK_SPECIALISTS } from '@/mockData';
+import { MOCK_RIDE_REQUESTS, MOCK_SPECIALISTS, MOCK_DRIVERS } from '@/mockData';
 
 import ChatList from '@/components/ChatList';
 import StatusModal from '@/components/StatusModal';
@@ -163,7 +163,7 @@ export default function DriverDashboard() {
             {stats.map((stat, i) => (
               <div
                 key={i}
-                onClick={() => stat.label === 'Rating' && router.push(`/reviews/${MOCK_SPECIALISTS[0].id}`)}
+                onClick={() => stat.label === 'Rating' && router.push(`/reviews/${MOCK_DRIVERS[0].id}?type=driver`)}
                 className={`glass-card rounded-3xl p-6 flex items-center justify-between border border-brand-earth/5
                    ${stat.label === 'Rating' ? 'cursor-pointer hover:border-brand-teal/30 hover:scale-[1.02] transition-all' : ''}`}
               >

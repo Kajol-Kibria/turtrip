@@ -569,7 +569,13 @@ export default function BookingFlow() {
                             <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest text-brand-earth">
                               {hotel.type}
                             </div>
-                            <div className="absolute top-4 right-4 bg-brand-saffron text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-lg flex items-center">
+                            <div 
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                router.push(`/reviews/${hotel.id}?type=stay`);
+                              }}
+                              className="absolute top-4 right-4 bg-brand-saffron text-white px-3 py-1 rounded-full text-[10px] font-bold shadow-lg flex items-center cursor-pointer hover:scale-105 transition-transform z-20"
+                            >
                               ★ {hotel.rating}
                             </div>
                           </div>
@@ -845,7 +851,13 @@ export default function BookingFlow() {
                                   <h4 className="font-bold text-sm">
                                     {driver.vehicle.make} {driver.vehicle.model}
                                   </h4>
-                                  <div className="flex items-center text-brand-saffron font-bold text-[10px]">
+                                  <div 
+                                    onClick={(e) => {
+                                      e.stopPropagation();
+                                      router.push(`/reviews/${driver.id}?type=driver`);
+                                    }}
+                                    className="flex items-center text-brand-saffron font-bold text-[10px] cursor-pointer hover:scale-110 transition-transform p-1 -m-1"
+                                  >
                                     ★ {driver.rating}
                                   </div>
                                 </div>

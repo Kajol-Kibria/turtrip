@@ -119,7 +119,7 @@ export default function TripDetails() {
                 <span className="font-medium">{trip.groupType} Group</span>
               </div>
               <button 
-                onClick={() => router.push(`/reviews/${trip.id}`)}
+                onClick={() => router.push(`/reviews/${trip.id}?type=trip`)}
                 className="flex items-center cursor-pointer hover:opacity-70 transition-opacity"
               >
                 <div className="flex items-center text-brand-saffron mr-2">

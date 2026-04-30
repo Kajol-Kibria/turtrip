@@ -335,7 +335,7 @@ export default function SearchResults() {
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
-                          router.push(`/reviews/${trip.id}`);
+                          router.push(`/reviews/${trip.id}?type=trip`);
                         }}
                         className="flex items-center space-x-1 text-brand-saffron mb-3 hover:scale-105 transition-transform"
                       >

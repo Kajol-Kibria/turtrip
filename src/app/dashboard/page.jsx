@@ -497,7 +497,7 @@ function DashboardContent() {
                               Guide
                             </span>
                             <button
-                              onClick={() => router.push(`/reviews/${MOCK_SPECIALISTS[0].id}`)}
+                              onClick={() => router.push(`/reviews/${MOCK_SPECIALISTS[0].id}?type=guide`)}
                               className="flex items-center text-sm font-medium hover:text-brand-teal transition-colors"
                             >
                               <div className="flex items-center text-sm font-medium">
@@ -615,7 +615,7 @@ function DashboardContent() {
                   {[1, 2].map((i) => (
                     <div
                       key={i}
-                      onClick={() => router.push(`/reviews/past-trip-${i}`)}
+                      onClick={() => router.push(`/reviews/${MOCK_TRIPS[i].id}?type=trip`)}
                       className="flex items-center space-x-6 p-4 rounded-3xl bg-brand-warm/30 border border-brand-earth/5 hover:border-brand-earth/20 transition-all cursor-pointer"
                     >
                       <img

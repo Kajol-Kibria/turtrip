@@ -149,7 +149,7 @@ export default function StayProviderDashboard() {
               Lagos, Nigeria
             </p>
             <button 
-              onClick={() => router.push(`/reviews/1`)}
+              onClick={() => router.push(`/reviews/h1?type=stay`)}
               className="flex items-center justify-center md:justify-start space-x-1 text-brand-saffron mt-2 hover:scale-105 transition-transform w-full"
             >
                <Star className="w-3 h-3 fill-current" />
